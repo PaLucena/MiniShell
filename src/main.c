@@ -6,11 +6,11 @@
 /*   By: palucena <palucena@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 19:07:37 by palucena          #+#    #+#             */
-/*   Updated: 2023/10/18 19:27:29 by palucena         ###   ########.fr       */
+/*   Updated: 2023/10/18 20:23:54 by palucena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell.h"
+#include "minishell.h"
 
 int	main(int argc, char **argv, char **envp)
 {
@@ -19,9 +19,10 @@ int	main(int argc, char **argv, char **envp)
 	(void)argc;
 	(void)argv;
 	(void)envp; // este no
+	//ft_env(envp);
 	while (1)
 	{
-		str = readline("minishell  ");
+		str = readline("\033[36;1mminishell$ \033[0m");
 		if (!str || ft_strncmp(str, "exit\0", 5) == 0)
 			break ;
 	}

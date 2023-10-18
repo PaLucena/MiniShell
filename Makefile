@@ -11,7 +11,7 @@ OBJ = $(addprefix $(OBJ_PATH), $(SRC:.c=.o))
 INC = includes
 LIB = includes/libft/libft.a
 
-HEADERS	= -I $(LIB)/include/ -I ./include
+HEADERS	= -I ./includes
 
 #//= Colors =//#
 BOLD	:= \033[1m
@@ -25,27 +25,29 @@ CYAN	:= \033[36;1m
 WHITE	:= \033[37;1m
 RESET	:= \033[0m
 
-libft:
-	make -C $(INC)/libft
-
 all: libft $(NAME)
 
 $(NAME): $(OBJ)
-	@ gcc $(FLAGS) $(OBJ) $(LIB) -lreadline -o $(NAME)
+	@ gcc $(FLAGS) $(OBJ) $(LIB) $(HEADERS) -lreadline -o $(NAME)
 	@ echo "\n\t\t$(GREEN)$(BOLD)----MiniShell compiled----\n$(RESET)"
 
 $(OBJ_PATH)%.o: $(SRC_PATH)%.c
 	@ mkdir -p  $(OBJ_PATH)
-	@ $(CC) $(FLAGS) -c $< -o $@
+	@ $(CC) $(FLAGS) -c $< -o $@ $(HEADERS)
+
+libft:
+	@ make -C $(INC)/libft
 
 clean:
 	@ rm -rf $(OBJ_PATH)
+	@ make -C $(INC)/libft clean
 	@ echo "\n\t\t\t$(RED)$(BOLD)Cleaning...\n$(RESET)"
 
 fclean: clean
 	@ rm -rf $(NAME)
+	@ make -C $(INC)/libft fclean
 
 re: fclean all
 
 
-.PHONY: all clean fclean re
+.PHONY: all libft clean fclean re
