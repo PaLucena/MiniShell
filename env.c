@@ -6,7 +6,7 @@
 /*   By: rdelicad <rdelicad@student.42.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 19:15:28 by rdelicad          #+#    #+#             */
-/*   Updated: 2023/10/18 21:12:07 by rdelicad         ###   ########.fr       */
+/*   Updated: 2023/10/19 00:12:40 by rdelicad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ char	*ft_strchr(const char *s, int c)
 	}
 	if (a == '\0')
 		return ((char *)s);
-	return (NULL);
+	return (0);
 }
 
 int	len_envp(char **envp)
@@ -73,6 +73,12 @@ int main(int ac, char **av, char **envp)
 {
 	(void)ac;
 	(void)av;
-	ft_envp(envp);
+	//ft_envp(envp);
+	int i = 0;
+	while (envp[i] != NULL)
+	{
+		printf("%s\n", envp[i]);
+		i++;
+	}
 	return (0);
 }
