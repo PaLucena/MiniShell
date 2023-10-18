@@ -8,8 +8,8 @@ SRC = main.c #todos los archivos.c
 OBJ_PATH = objs/
 OBJ = $(addprefix $(OBJ_PATH), $(SRC:.c=.o))
 
-INC = -I includes/
-LIB = -I includes/libft/libft.a
+INC = includes
+LIB = includes/libft/libft.a
 
 HEADERS	= -I $(LIB)/include/ -I ./include
 
@@ -25,10 +25,13 @@ CYAN	:= \033[36;1m
 WHITE	:= \033[37;1m
 RESET	:= \033[0m
 
-all: $(NAME)
+libft:
+	make -C $(INC)/libft
+
+all: libft $(NAME)
 
 $(NAME): $(OBJ)
-	@ gcc $(FLAGS) $(OBJ) -lreadline -o
+	@ gcc $(FLAGS) $(OBJ) $(LIB) -lreadline -o $(NAME)
 	@ echo "\n\t\t$(GREEN)$(BOLD)----MiniShell compiled----\n$(RESET)"
 
 $(OBJ_PATH)%.o: $(SRC_PATH)%.c
