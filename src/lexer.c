@@ -6,19 +6,24 @@
 /*   By: palucena <palucena@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 10:45:41 by palucena          #+#    #+#             */
-/*   Updated: 2023/10/19 11:07:17 by palucena         ###   ########.fr       */
+/*   Updated: 2023/10/19 13:30:24 by palucena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	ft_lexer(t_lx **lex, char *input)
+int	ft_lexer(t_lx **lex, char *input)
 {
-	int	i;
+	char	**words;
+	int		i;
 
+	(void)lex;
+	words = l_split(input);
+	i = -1;
+	while (words[++i])
+		printf("%s\n", words[i]);
+	if (!words)
+		return (-1);
 	i = 0;
-	while (input[i])
-	{
-		
-	}
+	return (0);
 }
