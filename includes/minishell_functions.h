@@ -1,34 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   minishell_functions.h                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: palucena <palucena@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/18 19:07:37 by palucena          #+#    #+#             */
-/*   Updated: 2023/10/19 11:07:51 by palucena         ###   ########.fr       */
+/*   Created: 2023/10/19 11:11:25 by palucena          #+#    #+#             */
+/*   Updated: 2023/10/19 11:15:48 by palucena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#ifndef MINISHELL_FUNCTIONS_H
+# define MINISHELL_FUNCTIONS_H
 
-int	main(int argc, char **argv, char **envp)
-{
-	t_lx	*lex;
-	char	*input;
+# include "minishell_structs.h"
 
-	(void)argc;
-	(void)argv;
-	(void)envp; // este no
-	//ft_env(envp);
-	lex = malloc(sizeof(t_lx));
-	while (1)
-	{
-		lex = NULL;
-		input = readline("\033[36;1mminishell$ \033[0m");
-		ft_lexer(&lex, input);
-		if (!input || ft_strncmp(input, "exit\0", 5) == 0)
-			break ;
-	}
-	return (0);
-}
+////////// lexer.c ////////// 
+void	ft_lexer(t_lx **lex, char *input);+
+
+#endif

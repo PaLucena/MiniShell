@@ -4,7 +4,7 @@ CC = gcc -g
 FLAGS = -Wall -Wextra -Werror #-fsanitize=address
 
 SRC_PATH = src/
-SRC = main.c #todos los archivos.c
+SRC = main.c lexer.c #todos los archivos.c
 OBJ_PATH = objs/
 OBJ = $(addprefix $(OBJ_PATH), $(SRC:.c=.o))
 

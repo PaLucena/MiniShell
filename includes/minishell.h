@@ -6,7 +6,7 @@
 /*   By: palucena <palucena@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 18:36:00 by palucena          #+#    #+#             */
-/*   Updated: 2023/10/19 10:26:23 by palucena         ###   ########.fr       */
+/*   Updated: 2023/10/19 11:11:13 by palucena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,18 +16,30 @@
 # define TOKEN_WORD 1
 
 # include "libft/libft.h"
-# include <stdio.h>
-# include <stdlib.h>
-# include <unistd.h>
-# include <readline/readline.h>
-# include <readline/history.h>
+# include "minishell_structs.h"
+# include "minishell_functions.h"
 
-typedef struct s_lex 
-{
-	int				token;
-	char			*content;
-	struct s_lex	*next;
-}	t_lex;
+#include <readline/readline.h>
+#include <readline/history.h>
+
+#include <stdio.h>
+#include <stdlib.h>
+
+#include <fcntl.h>
+#include <unistd.h>
+
+#include <sys/types.h>
+#include <sys/wait.h>
+#include <signal.h>
+
+#include <dirent.h>
+#include <sys/stat.h>
+
+#include <termios.h>
+
+#include <curses.h>
+
+#include <stdlib.h>
 
 
 #endif

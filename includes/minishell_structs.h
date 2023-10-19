@@ -1,34 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   minishell_structs.h                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: palucena <palucena@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/18 19:07:37 by palucena          #+#    #+#             */
-/*   Updated: 2023/10/19 11:07:51 by palucena         ###   ########.fr       */
+/*   Created: 2023/10/19 10:44:14 by palucena          #+#    #+#             */
+/*   Updated: 2023/10/19 10:53:13 by palucena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#ifndef MINISHELL_STRUCTS_H
+# define MINISHELL_STRUCTS_H
 
-int	main(int argc, char **argv, char **envp)
+typedef struct s_lexic_list
 {
-	t_lx	*lex;
-	char	*input;
+	int				token;
+	char			*content;
+	struct s_lex	*next;
+}	t_lx;
 
-	(void)argc;
-	(void)argv;
-	(void)envp; // este no
-	//ft_env(envp);
-	lex = malloc(sizeof(t_lx));
-	while (1)
-	{
-		lex = NULL;
-		input = readline("\033[36;1mminishell$ \033[0m");
-		ft_lexer(&lex, input);
-		if (!input || ft_strncmp(input, "exit\0", 5) == 0)
-			break ;
-	}
-	return (0);
-}
+#endif
