@@ -6,7 +6,7 @@
 /*   By: palucena <palucena@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 19:07:37 by palucena          #+#    #+#             */
-/*   Updated: 2023/10/19 14:05:55 by palucena         ###   ########.fr       */
+/*   Updated: 2023/10/19 17:06:02 by palucena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,7 @@ int	main(int argc, char **argv, char **envp)
 		lex = NULL;
 		input = readline("\033[36;1mminishell$ \033[0m");
 		add_history(input);
-		if (ft_lexer(&lex, input) == -1)
-			break ;
+		ft_lexer(&lex, input);
 		if (!input || ft_strncmp(input, "exit\0", 5) == 0)
 			break ;
 	}

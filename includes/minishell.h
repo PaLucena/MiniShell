@@ -6,14 +6,13 @@
 /*   By: palucena <palucena@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 18:36:00 by palucena          #+#    #+#             */
-/*   Updated: 2023/10/19 11:11:13 by palucena         ###   ########.fr       */
+/*   Updated: 2023/10/19 18:01:45 by palucena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINISHELL_H
 # define MINISHELL_H
 
-# define TOKEN_WORD 1
 
 # include "libft/libft.h"
 # include "minishell_structs.h"

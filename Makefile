@@ -5,7 +5,7 @@ FLAGS = -Wall -Wextra -Werror -fsanitize=address
 
 SRC_PATH = src/
 SRC = main.c\
-		lexer.c l_split.c l_split_fill.c
+		lexer.c l_split.c
 OBJ_PATH = objs/
 OBJ = $(addprefix $(OBJ_PATH), $(SRC:.c=.o))
 
