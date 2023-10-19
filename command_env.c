@@ -6,7 +6,7 @@
 /*   By: rdelicad <rdelicad@student.42.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 19:15:28 by rdelicad          #+#    #+#             */
-/*   Updated: 2023/10/19 20:53:49 by rdelicad         ###   ########.fr       */
+/*   Updated: 2023/10/19 21:00:30 by rdelicad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ void	ft_envp(char **envp)
 	aux = list_env;
 	while (aux != NULL)
 	{
-		printf("Key: %s, Value: %s\n", aux->key, aux->value);
+		printf("%s=%s\n", aux->key, aux->value);
 		aux = aux->next;
 	}
 	// ft_split(envp, '\n');
