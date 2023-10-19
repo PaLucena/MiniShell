@@ -6,7 +6,7 @@
 /*   By: palucena <palucena@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 18:36:00 by palucena          #+#    #+#             */
-/*   Updated: 2023/10/18 20:48:52 by palucena         ###   ########.fr       */
+/*   Updated: 2023/10/19 10:21:33 by palucena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,11 @@
 # include <readline/readline.h>
 # include <readline/history.h>
 
-/* typedef struct s_tokens {
-	
-} */
+typedef struct s_lex {
+	char	*key;
+	char	*value;
+	t_lex	*next;
+}			t_lex;
 
 
 #endif
