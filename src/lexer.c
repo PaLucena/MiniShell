@@ -6,7 +6,7 @@
 /*   By: palucena <palucena@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 10:45:41 by palucena          #+#    #+#             */
-/*   Updated: 2023/10/19 18:25:47 by palucena         ###   ########.fr       */
+/*   Updated: 2023/10/20 15:12:09 by palucena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,33 @@ char	**l_split(char *input)
 	return (words);
 }
 
-//convertir en lista
+void	l_tokenkizer(t_lx *lex, char **words)
+{
+	t_lx	*curr;
+	int		i;
 
-int	ft_lexer(t_lx **lex, char *input)
+	curr = lex;
+	i = 0;
+	while (words[i]) /// esto no va asi
+	{
+		curr->content = words[i];
+		curr->token = l_get_token(words, i);
+		if (words[i + 1])
+			curr = curr->next;
+		i++;
+	}
+	curr->next = NULL;
+	//no
+	curr = lex;
+	while (curr->next)
+	{
+		printf("%s %i\n", curr->content, (int)curr->token);
+		curr = curr->next;
+	}
+	//no
+}
+
+int	ft_lexer(t_lx *lex, char *input)
 {
 	char	**words;
 	int		i;
@@ -54,9 +78,10 @@ int	ft_lexer(t_lx **lex, char *input)
 		return (0);
 	}
 	words = l_split(input);
-	i = -1;
+	l_tokenkizer(lex, words);
+/* 	i = -1;
 	while (words[++i]) 				// Esto
-		printf("%s\n", words[i]);	// no
+		printf("%s\n", words[i]);	// no */
 	i = 0;
 	return (0);
 }

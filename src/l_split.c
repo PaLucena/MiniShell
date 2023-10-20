@@ -6,7 +6,7 @@
 /*   By: palucena <palucena@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 12:34:10 by palucena          #+#    #+#             */
-/*   Updated: 2023/10/19 19:38:16 by palucena         ###   ########.fr       */
+/*   Updated: 2023/10/20 15:11:41 by palucena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ int	l_end_of_quote(char *str, int start)
 		return (i + 1);
 	if (str[i] == 0)
 		return (-1);
-	printf("Final palabra: %i\nPrincipio: %i\n", i, start);
 	return (i);
 }
 
@@ -38,7 +37,6 @@ int	l_count_words(char *str)
 	n_words = 0;
 	while (str[i])
 	{
-		printf("Entra en %i\n", i);
 		if (str[i] == 34 || str[i] == 39)
 		{
 			i = l_end_of_quote(str, i);
@@ -54,33 +52,33 @@ int	l_count_words(char *str)
 		}
 		i++;
 	}
-	printf("cantidad de palabras: %i\n", n_words);
 	return (n_words);
 }
 
 char	*l_fill_quote(char *input, int start)
 {
 	char	*word;
-	int		end;
 	int		i;
+	int		j;
 
-	end = l_end_of_quote(input, start);
-	word = malloc(sizeof(char) * (end - start + 2));
+	word = malloc(sizeof(char) * (l_end_of_quote(input, start) - start + 2));
 	i = 0;
-	if (start != 0 && input[start - 1] == ' ')
+	j = start;
+	if (j != 0 && input[j - 1] == ' ')
 	{
 		word[0] = input[start];
 		word[1] = input[start - 1];
 		i = 2;
-		start++;
+		j++;
 	}
-	while (start <= end)
+	word[i]  = input[j];
+	while (input[++j] != input[start])
 	{
-		word[i]  = input[start];
-		start++;
 		i++;
+		word[i]  = input[j];
 	}
-	word[i] = '\0'; // error aqui
+	word[++i]  = input[j];
+	word[++i] = '\0';
 	return (word);
 }
 

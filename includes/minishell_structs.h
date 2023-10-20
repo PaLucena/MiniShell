@@ -6,31 +6,31 @@
 /*   By: palucena <palucena@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 10:44:14 by palucena          #+#    #+#             */
-/*   Updated: 2023/10/19 18:07:15 by palucena         ###   ########.fr       */
+/*   Updated: 2023/10/20 15:02:09 by palucena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINISHELL_STRUCTS_H
 # define MINISHELL_STRUCTS_H
 
-typedef enum e_tokens
+typedef enum e_oken
 {
-	CMD = 0,
-	ARG,
-	PIPE,
-	REDIR_IN,
-	REDIR_OUT,
-	REDIR_AP,
-	REDIR_HE,
-	REDIR_FILEIN,
-	REDIR_FILEOUT,
-}	t_tokens;
+	CMD = 0, //  0
+	ARG, //  1
+	PIPE, //  2
+	REDIR_IN, //  3 <
+	REDIR_OUT, //  4 >
+	REDIR_HEREDOC, //  5 <<
+	REDIR_APPEND, //  6 >>
+	REDIR_FILEIN, //  7
+	REDIR_FILEOUT, //  8
+}	t_oken;
 
-typedef struct s_lexic_list
+typedef struct s_lx
 {
-	int				token;
 	char			*content;
-	struct s_lex	*next;
+	int				token;
+	struct s_lx	*next;
 }	t_lx;
 
 #endif
