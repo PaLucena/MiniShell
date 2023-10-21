@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   command_env.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: palucena <palucena@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: rdelicad <rdelicad@student.42.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 19:15:28 by rdelicad          #+#    #+#             */
-/*   Updated: 2023/10/20 11:20:49 by palucena         ###   ########.fr       */
+/*   Updated: 2023/10/21 13:08:39 by rdelicad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,6 @@ t_env	*create_list_env(char **envp, int len_envp)
 {
 	t_env	*env;
 	int		i;
-	char	*key;
-	char	*value;
 	char	*equal_sign;
 
 	
@@ -58,9 +56,7 @@ t_env	*create_list_env(char **envp, int len_envp)
         if (equal_sign != NULL)
         {
             *equal_sign = '\0';
-            key = envp[i];
-            value = equal_sign + 1;
-            ft_lstadd_back(&env, ft_lstnew(key, value));
+            ft_lstadd_back(&env, ft_lstnew(envp[i], equal_sign + 1));
         }
         i++;
     }
@@ -89,12 +85,12 @@ int	main(int ac, char **av, char **envp)
 	//t_env *list_env;
 	(void)ac;
 	(void)av;
-	//ft_envp(envp);
-	int i = 0;
+	ft_envp(envp);
+	/* int i = 0;
 	while (envp[i] != NULL)
 	{
 		printf("%s\n", envp[i]);
 		i++;
-	}
+	} */
 	return (0);
 }
