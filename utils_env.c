@@ -6,26 +6,26 @@
 /*   By: rdelicad <rdelicad@student.42.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 18:48:10 by rdelicad          #+#    #+#             */
-/*   Updated: 2023/10/19 20:50:32 by rdelicad         ###   ########.fr       */
+/*   Updated: 2023/10/22 16:04:37 by rdelicad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "env.h"
 
-char	*ft_strchr(const char *s, int c)
+void	ft_free_list(t_env *list_env)
 {
-	char	a;
+	t_env *current;
+	t_env *next;
 
-	a = c;
-	while (*s != '\0')
+	current = list_env;
+	while (current != NULL)
 	{
-		if (*s == a)
-			return ((char *)s);
-		s++;
+		next = current->next;
+		free(current->key);
+		free(current->value);
+		free(current);
+		current = next;
 	}
-	if (a == '\0')
-		return ((char *)s);
-	return (NULL);
 }
 
 void	ft_lstadd_back(t_env **lst, t_env *new)
@@ -52,7 +52,15 @@ t_env	*ft_lstnew(char *key, char *value)
 		return (NULL);
 	new_node->value = strdup(value);
 	new_node->key = strdup(key);
+	new_node->equal = 0;
 	new_node->next = NULL;
+	if (!new_node->value || !new_node->key)
+	{
+        free(new_node->value);
+        free(new_node->key);
+        free(new_node);
+        return NULL;
+    }
 	return (new_node);
 }
 
