@@ -6,7 +6,7 @@
 /*   By: rdelicad <rdelicad@student.42.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/22 13:58:13 by rdelicad          #+#    #+#             */
-/*   Updated: 2023/10/23 22:42:36 by rdelicad         ###   ########.fr       */
+/*   Updated: 2023/10/23 22:59:36 by rdelicad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,7 @@ void	ft_export(t_cmd *c)
 {
 	if (c->environment == NULL)
 	{
-		while (c->list_env != NULL)
-		{
-			printf("%s=%s\n", c->list_env->key, c->list_env->value);
-			c->list_env = c->list_env->next;
-		}
+		cases_for_equal_sign(c);
 	}
 	else
 	{
@@ -42,5 +38,14 @@ void	ft_export(t_cmd *c)
 		}
 		free(c->value);
 		free(c->key);
+	}
+}
+
+void	cases_for_equal_sign(t_cmd *c)
+{
+	while (c->list_env != NULL)
+	{
+		printf("%s=%s\n", c->list_env->key, c->list_env->value);
+		c->list_env = c->list_env->next;
 	}
 }

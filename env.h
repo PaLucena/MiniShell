@@ -6,7 +6,7 @@
 /*   By: rdelicad <rdelicad@student.42.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/22 13:10:00 by rdelicad          #+#    #+#             */
-/*   Updated: 2023/10/23 22:31:29 by rdelicad         ###   ########.fr       */
+/*   Updated: 2023/10/23 22:55:03 by rdelicad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,5 +52,6 @@ void				ft_free_list(t_cmd *c);
 /* command.c */
 void				ft_export(t_cmd *c);
 void				ft_env(t_cmd *c);
+void				cases_for_equal_sign(t_cmd *c);
 
 #endif
