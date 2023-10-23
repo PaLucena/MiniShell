@@ -1,38 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   command_export.c                                   :+:      :+:    :+:   */
+/*   ft_lstswap.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rdelicad <rdelicad@student.42.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/22 13:58:13 by rdelicad          #+#    #+#             */
-/*   Updated: 2023/10/23 19:41:44 by rdelicad         ###   ########.fr       */
+/*   Created: 2023/07/30 15:15:39 by rdelicad          #+#    #+#             */
+/*   Updated: 2023/07/30 15:16:52 by rdelicad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "env.h"
+#include "libft.h"
 
-void	ft_export(t_cmd *c)
+void	ft_lstswap(t_list **stack)
 {
-	char	*equal;
+	t_list		*swap;
 
-	if (c->environment == NULL)
-	{
-		while (c->list_env != NULL)
-		{
-			printf("%s%s\n", c->list_env->key, c->list_env->value);
-			c->list_env = c->list_env->next;
-		}
-	}
+	swap = NULL;
+	if (ft_lstsize(*stack) <= 1)
+		return ;
 	else
 	{
-		equal = (strchr(c->environment, '=') + 1);
-		if (equal != NULL)
-		{
-			*equal = '\0';
-			c->key = strdup(c->environment);
-			c->value = strdup(equal + 1);
-			add_env(c);
-		}
+		swap = (*stack)->next;
+		(*stack)->next = (*stack)->next->next;
+		(*stack)->next->next = swap;
 	}
 }

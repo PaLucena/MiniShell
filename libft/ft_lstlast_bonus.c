@@ -1,38 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   command_export.c                                   :+:      :+:    :+:   */
+/*   ft_lstlast_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rdelicad <rdelicad@student.42.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/22 13:58:13 by rdelicad          #+#    #+#             */
-/*   Updated: 2023/10/23 19:41:44 by rdelicad         ###   ########.fr       */
+/*   Created: 2023/05/08 21:12:56 by rdelicad          #+#    #+#             */
+/*   Updated: 2023/05/08 21:22:30 by rdelicad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "env.h"
+#include "libft.h"
 
-void	ft_export(t_cmd *c)
+t_list	*ft_lstlast(t_list *lst)
 {
-	char	*equal;
+	t_list	*tmp;
 
-	if (c->environment == NULL)
-	{
-		while (c->list_env != NULL)
-		{
-			printf("%s%s\n", c->list_env->key, c->list_env->value);
-			c->list_env = c->list_env->next;
-		}
-	}
-	else
-	{
-		equal = (strchr(c->environment, '=') + 1);
-		if (equal != NULL)
-		{
-			*equal = '\0';
-			c->key = strdup(c->environment);
-			c->value = strdup(equal + 1);
-			add_env(c);
-		}
-	}
+	if (!lst)
+		return (NULL);
+	tmp = lst;
+	while (tmp->next != NULL)
+		tmp = tmp->next;
+	return (tmp);
 }

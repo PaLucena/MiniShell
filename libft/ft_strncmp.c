@@ -1,38 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   command_export.c                                   :+:      :+:    :+:   */
+/*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rdelicad <rdelicad@student.42.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/22 13:58:13 by rdelicad          #+#    #+#             */
-/*   Updated: 2023/10/23 19:41:44 by rdelicad         ###   ########.fr       */
+/*   Created: 2023/04/23 18:35:35 by rdelicad          #+#    #+#             */
+/*   Updated: 2023/04/23 20:02:35 by rdelicad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "env.h"
+#include "libft.h"
 
-void	ft_export(t_cmd *c)
+int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
-	char	*equal;
+	size_t	i;
 
-	if (c->environment == NULL)
+	i = 0;
+	if (n == 0)
 	{
-		while (c->list_env != NULL)
-		{
-			printf("%s%s\n", c->list_env->key, c->list_env->value);
-			c->list_env = c->list_env->next;
-		}
+		return (0);
 	}
-	else
+	while (s1[i] == s2[i] && s1[i] != '\0' && s2[i] != '\0' && i < n - 1)
 	{
-		equal = (strchr(c->environment, '=') + 1);
-		if (equal != NULL)
-		{
-			*equal = '\0';
-			c->key = strdup(c->environment);
-			c->value = strdup(equal + 1);
-			add_env(c);
-		}
+		i++;
 	}
+	return ((unsigned char)s1[i] - (unsigned char)s2[i]);
 }

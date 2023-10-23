@@ -1,38 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   command_export.c                                   :+:      :+:    :+:   */
+/*   ft_striteri.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rdelicad <rdelicad@student.42.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/22 13:58:13 by rdelicad          #+#    #+#             */
-/*   Updated: 2023/10/23 19:41:44 by rdelicad         ###   ########.fr       */
+/*   Created: 2023/05/02 17:25:50 by rdelicad          #+#    #+#             */
+/*   Updated: 2023/05/02 17:26:05 by rdelicad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "env.h"
+#include "libft.h"
 
-void	ft_export(t_cmd *c)
+void	ft_striteri(char *s, void (*f)(unsigned int, char *))
 {
-	char	*equal;
+	size_t	i;
 
-	if (c->environment == NULL)
+	i = 0;
+	if (s && f)
 	{
-		while (c->list_env != NULL)
+		while (*s)
 		{
-			printf("%s%s\n", c->list_env->key, c->list_env->value);
-			c->list_env = c->list_env->next;
-		}
-	}
-	else
-	{
-		equal = (strchr(c->environment, '=') + 1);
-		if (equal != NULL)
-		{
-			*equal = '\0';
-			c->key = strdup(c->environment);
-			c->value = strdup(equal + 1);
-			add_env(c);
+			f(i, s);
+			s++;
+			i++;
 		}
 	}
 }

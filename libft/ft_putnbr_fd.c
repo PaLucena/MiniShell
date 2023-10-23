@@ -1,38 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   command_export.c                                   :+:      :+:    :+:   */
+/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rdelicad <rdelicad@student.42.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/22 13:58:13 by rdelicad          #+#    #+#             */
-/*   Updated: 2023/10/23 19:41:44 by rdelicad         ###   ########.fr       */
+/*   Created: 2023/05/02 17:41:15 by rdelicad          #+#    #+#             */
+/*   Updated: 2023/05/02 18:10:48 by rdelicad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "env.h"
+#include <unistd.h>
 
-void	ft_export(t_cmd *c)
+void	ft_putnbr_fd(int n, int fd)
 {
-	char	*equal;
+	char	res;
 
-	if (c->environment == NULL)
+	if (n == -2147483648)
 	{
-		while (c->list_env != NULL)
-		{
-			printf("%s%s\n", c->list_env->key, c->list_env->value);
-			c->list_env = c->list_env->next;
-		}
+		write(fd, "-2147483648", 11);
+		return ;
 	}
-	else
+	if (n < 0)
 	{
-		equal = (strchr(c->environment, '=') + 1);
-		if (equal != NULL)
-		{
-			*equal = '\0';
-			c->key = strdup(c->environment);
-			c->value = strdup(equal + 1);
-			add_env(c);
-		}
+		n = -n;
+		write(fd, "-", 1);
 	}
+	if (n >= 10)
+		ft_putnbr_fd(n / 10, fd);
+	res = (n % 10) + '0';
+	write(fd, &res, 1);
 }

@@ -1,38 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   command_export.c                                   :+:      :+:    :+:   */
+/*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rdelicad <rdelicad@student.42.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/22 13:58:13 by rdelicad          #+#    #+#             */
-/*   Updated: 2023/10/23 19:41:44 by rdelicad         ###   ########.fr       */
+/*   Created: 2023/04/28 11:34:02 by rdelicad          #+#    #+#             */
+/*   Updated: 2023/04/28 16:46:00 by rdelicad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "env.h"
+#include "libft.h"
 
-void	ft_export(t_cmd *c)
+char	*ft_strtrim(const char *s1, const char *set)
 {
-	char	*equal;
+	char	*trimmed_str;
+	size_t	start;
+	size_t	len;
 
-	if (c->environment == NULL)
+	if (!s1 || !set)
+		return (NULL);
+	start = 0;
+	while (s1[start] && ft_strchr(set, s1[start]))
+		start++;
+	len = ft_strlen(&s1[start]);
+	if (len > 0)
 	{
-		while (c->list_env != NULL)
-		{
-			printf("%s%s\n", c->list_env->key, c->list_env->value);
-			c->list_env = c->list_env->next;
-		}
+		while (s1[start + len - 1] && ft_strchr(set, s1[start + len - 1]))
+			len--;
 	}
-	else
-	{
-		equal = (strchr(c->environment, '=') + 1);
-		if (equal != NULL)
-		{
-			*equal = '\0';
-			c->key = strdup(c->environment);
-			c->value = strdup(equal + 1);
-			add_env(c);
-		}
-	}
+	trimmed_str = ft_substr(s1, start, len);
+	return (trimmed_str);
 }

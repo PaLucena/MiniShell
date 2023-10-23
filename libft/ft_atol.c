@@ -1,38 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   command_export.c                                   :+:      :+:    :+:   */
+/*   ft_atol.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rdelicad <rdelicad@student.42.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/22 13:58:13 by rdelicad          #+#    #+#             */
-/*   Updated: 2023/10/23 19:41:44 by rdelicad         ###   ########.fr       */
+/*   Created: 2023/04/26 13:15:39 by rdelicad          #+#    #+#             */
+/*   Updated: 2023/07/27 19:28:49 by rdelicad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "env.h"
+#include "libft.h"
 
-void	ft_export(t_cmd *c)
+long	ft_atol(const char *str)
 {
-	char	*equal;
+	long	num;
+	int	sign;
 
-	if (c->environment == NULL)
+	sign = 1;
+	num = 0;
+	while (*str == ' ' || *str == '\t' || *str == '\r' || *str == '\v' \
+	|| *str == '\n' || *str == '\f')
+		str++;
+	if (*str == '-' || *str == '+')
 	{
-		while (c->list_env != NULL)
-		{
-			printf("%s%s\n", c->list_env->key, c->list_env->value);
-			c->list_env = c->list_env->next;
-		}
+		if (*str == '-')
+			sign = -1;
+		str++;
 	}
-	else
+	while (ft_isdigit(*str))
 	{
-		equal = (strchr(c->environment, '=') + 1);
-		if (equal != NULL)
-		{
-			*equal = '\0';
-			c->key = strdup(c->environment);
-			c->value = strdup(equal + 1);
-			add_env(c);
-		}
+		if (*str >= '0' && *str <= '9')
+			num = num * 10 + (*str - '0');
+		str++;
 	}
+	return (num * sign);
 }

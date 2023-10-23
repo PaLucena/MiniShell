@@ -1,38 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   command_export.c                                   :+:      :+:    :+:   */
+/*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rdelicad <rdelicad@student.42.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/22 13:58:13 by rdelicad          #+#    #+#             */
-/*   Updated: 2023/10/23 19:41:44 by rdelicad         ###   ########.fr       */
+/*   Created: 2023/04/25 21:59:11 by rdelicad          #+#    #+#             */
+/*   Updated: 2023/04/26 12:28:53 by rdelicad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "env.h"
+#include <string.h>
+#include <stdio.h>
+#include "libft.h"
 
-void	ft_export(t_cmd *c)
+char	*ft_strnstr(const char *big, const char *little, size_t len)
 {
-	char	*equal;
+	size_t	i;
+	size_t	j;
 
-	if (c->environment == NULL)
+	i = 0;
+	if (*little == 0)
+		return ((char *)big);
+	while (*big && i < len)
 	{
-		while (c->list_env != NULL)
-		{
-			printf("%s%s\n", c->list_env->key, c->list_env->value);
-			c->list_env = c->list_env->next;
-		}
+		j = 0;
+		while (*(big + j) == *(little + j) && *(big + j) && (i + j) < len)
+			j++;
+		if (*(little + j) == '\0')
+			return ((char *)big);
+		big++;
+		i++;
 	}
-	else
-	{
-		equal = (strchr(c->environment, '=') + 1);
-		if (equal != NULL)
-		{
-			*equal = '\0';
-			c->key = strdup(c->environment);
-			c->value = strdup(equal + 1);
-			add_env(c);
-		}
-	}
+	return (NULL);
 }

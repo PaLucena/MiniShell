@@ -1,38 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   command_export.c                                   :+:      :+:    :+:   */
+/*   ft_memcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rdelicad <rdelicad@student.42.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/22 13:58:13 by rdelicad          #+#    #+#             */
-/*   Updated: 2023/10/23 19:41:44 by rdelicad         ###   ########.fr       */
+/*   Created: 2023/04/25 18:24:44 by rdelicad          #+#    #+#             */
+/*   Updated: 2023/04/25 21:57:54 by rdelicad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "env.h"
+#include "libft.h"
 
-void	ft_export(t_cmd *c)
+int	ft_memcmp(const void *s1, const void *s2, size_t n)
 {
-	char	*equal;
+	unsigned char	*str1;
+	unsigned char	*str2;
+	size_t			i;
 
-	if (c->environment == NULL)
+	str1 = (unsigned char *)s2;
+	str2 = (unsigned char *)s1;
+	i = 0;
+	if (n == 0)
 	{
-		while (c->list_env != NULL)
-		{
-			printf("%s%s\n", c->list_env->key, c->list_env->value);
-			c->list_env = c->list_env->next;
-		}
+		return (0);
 	}
-	else
+	while (i < n - 1 && *str1 == *str2)
 	{
-		equal = (strchr(c->environment, '=') + 1);
-		if (equal != NULL)
-		{
-			*equal = '\0';
-			c->key = strdup(c->environment);
-			c->value = strdup(equal + 1);
-			add_env(c);
-		}
+		str1++;
+		str2++;
+		i++;
 	}
+	return (*str2 - *str1);
 }

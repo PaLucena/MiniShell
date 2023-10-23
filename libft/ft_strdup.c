@@ -1,38 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   command_export.c                                   :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rdelicad <rdelicad@student.42.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/22 13:58:13 by rdelicad          #+#    #+#             */
-/*   Updated: 2023/10/23 19:41:44 by rdelicad         ###   ########.fr       */
+/*   Created: 2023/04/26 20:43:16 by rdelicad          #+#    #+#             */
+/*   Updated: 2023/04/26 21:22:45 by rdelicad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "env.h"
+#include "libft.h"
 
-void	ft_export(t_cmd *c)
+static char	*ft_strcpy(char *dst, const char *src)
 {
-	char	*equal;
+	char	*dst_start;
 
-	if (c->environment == NULL)
+	dst_start = dst;
+	while (*src != '\0')
 	{
-		while (c->list_env != NULL)
-		{
-			printf("%s%s\n", c->list_env->key, c->list_env->value);
-			c->list_env = c->list_env->next;
-		}
+		*dst++ = *src++;
 	}
-	else
-	{
-		equal = (strchr(c->environment, '=') + 1);
-		if (equal != NULL)
-		{
-			*equal = '\0';
-			c->key = strdup(c->environment);
-			c->value = strdup(equal + 1);
-			add_env(c);
-		}
-	}
+	*dst = '\0';
+	return (dst_start);
+}
+
+char	*ft_strdup(const char *s1)
+{
+	int		len;
+	char	*s2;
+
+	len = ft_strlen(s1);
+	s2 = (char *)malloc(len + 1);
+	if (!s2)
+		return (NULL);
+	ft_strcpy(s2, s1);
+	return (s2);
 }
