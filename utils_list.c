@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils_env.c                                        :+:      :+:    :+:   */
+/*   utils_list.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rdelicad <rdelicad@student.42.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 18:48:10 by rdelicad          #+#    #+#             */
-/*   Updated: 2023/10/23 20:54:39 by rdelicad         ###   ########.fr       */
+/*   Updated: 2023/10/23 22:41:48 by rdelicad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,16 +20,6 @@ void	ft_free_list(t_cmd *c)
 		free(c->list_env->value);
 		c->list_env = c->list_env->next;
 	}
-}
-
-void	ft_matfree(char **str)
-{
-	int	i;
-
-	i = 0;
-	while (str[i])
-		free(str[i++]);
-	free(str);
 }
 
 void	ft_lstadd_back(t_env **lst, t_env *new)
@@ -56,7 +46,6 @@ t_env	*ft_lstnew(char *key, char *value)
 		return (NULL);
 	new_node->value = strdup(value);
 	new_node->key = strdup(key);
-	new_node->equal = 0;
 	new_node->next = NULL;
 	if (!new_node->value || !new_node->key)
 	{
@@ -65,10 +54,12 @@ t_env	*ft_lstnew(char *key, char *value)
 		free(new_node);
 		return (NULL);
 	}
+	free(new_node->value);
+	free(new_node->key);
 	return (new_node);
 }
 
-void	add_env(t_cmd *c)
+void	ft_add_new_env(t_cmd *c)
 {
 	t_env *new_node;
 
@@ -76,16 +67,5 @@ void	add_env(t_cmd *c)
 	ft_lstadd_back(&(c->list_env), new_node);
 	c->environment = NULL;
 	ft_export(c);
-}
-
-char	*ft_strldup(char const *s1, size_t n)
-{
-	char	*ptr;
-
-	ptr = (char *)malloc(n + 1);
-	if (!ptr)
-		return (NULL);
-	memcpy(ptr, s1, n);
-	ptr[n] = '\0';
-	return (ptr);
+	free(new_node);
 }
