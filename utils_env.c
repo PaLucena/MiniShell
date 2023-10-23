@@ -6,7 +6,7 @@
 /*   By: rdelicad <rdelicad@student.42.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 18:48:10 by rdelicad          #+#    #+#             */
-/*   Updated: 2023/10/23 20:15:49 by rdelicad         ###   ########.fr       */
+/*   Updated: 2023/10/23 20:48:56 by rdelicad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,4 +76,16 @@ void	add_env(t_cmd *c)
 	ft_lstadd_back(&(c->list_env), new_node);
 	c->environment = NULL;
 	ft_export(c);
+}
+
+char	*ft_strldup(char const *s1, size_t n)
+{
+	char	*ptr;
+
+	ptr = (char *)malloc(n + 1);
+	if (!ptr)
+		return (NULL);
+	memcpy(ptr, s1, n);
+	ptr[n] = '\0';
+	return (ptr);
 }

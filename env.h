@@ -6,7 +6,7 @@
 /*   By: rdelicad <rdelicad@student.42.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/22 13:10:00 by rdelicad          #+#    #+#             */
-/*   Updated: 2023/10/23 20:40:43 by rdelicad         ###   ########.fr       */
+/*   Updated: 2023/10/23 20:48:17 by rdelicad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <string.h>
-# include "libft/libft.h"
 
 typedef struct s_env
 {
@@ -48,6 +47,7 @@ t_env				*ft_lstnew(char *key, char *value);
 void				add_env(t_cmd *c);
 void				ft_free_list(t_cmd *c);
 void				ft_matfree(char **str);
+char				*ft_strldup(char const *s1, size_t n);
 
 /* command_export.c */
 void				ft_export(t_cmd *c);
