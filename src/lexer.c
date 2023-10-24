@@ -6,7 +6,7 @@
 /*   By: palucena <palucena@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 10:45:41 by palucena          #+#    #+#             */
-/*   Updated: 2023/10/20 15:12:09 by palucena         ###   ########.fr       */
+/*   Updated: 2023/10/24 22:28:58 by palucena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,53 +35,23 @@ char	**l_split(char *input)
 			words[++j] = l_fill_word(input, i);
 			i += ft_strlen(words[j]);
 		}
+		i = l_skip_space(input, i);
 	}
 	words[++j] = NULL;
 	return (words);
 }
 
-void	l_tokenkizer(t_lx *lex, char **words)
-{
-	t_lx	*curr;
-	int		i;
-
-	curr = lex;
-	i = 0;
-	while (words[i]) /// esto no va asi
-	{
-		curr->content = words[i];
-		curr->token = l_get_token(words, i);
-		if (words[i + 1])
-			curr = curr->next;
-		i++;
-	}
-	curr->next = NULL;
-	//no
-	curr = lex;
-	while (curr->next)
-	{
-		printf("%s %i\n", curr->content, (int)curr->token);
-		curr = curr->next;
-	}
-	//no
-}
-
-int	ft_lexer(t_lx *lex, char *input)
+t_lx	*ft_lexer(char *input)
 {
 	char	**words;
-	int		i;
+	t_lx	*lex;
 
-	(void)lex;
 	if (l_count_words(input) == -1)
 	{
 		printf("Close the quote!\n");
 		return (0);
 	}
 	words = l_split(input);
-	l_tokenkizer(lex, words);
-/* 	i = -1;
-	while (words[++i]) 				// Esto
-		printf("%s\n", words[i]);	// no */
-	i = 0;
-	return (0);
+	lex = l_tokenkizer(words);
+	return (lex);
 }

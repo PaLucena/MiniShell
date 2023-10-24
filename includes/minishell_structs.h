@@ -6,7 +6,7 @@
 /*   By: palucena <palucena@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 10:44:14 by palucena          #+#    #+#             */
-/*   Updated: 2023/10/20 15:02:09 by palucena         ###   ########.fr       */
+/*   Updated: 2023/10/24 14:54:57 by palucena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ typedef struct s_lx
 {
 	char			*content;
 	int				token;
-	struct s_lx	*next;
+	struct s_lx		*next;
 }	t_lx;
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: palucena <palucena@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 19:07:37 by palucena          #+#    #+#             */
-/*   Updated: 2023/10/20 15:07:19 by palucena         ###   ########.fr       */
+/*   Updated: 2023/10/24 18:47:27 by palucena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,21 +14,22 @@
 
 int	main(int argc, char **argv, char **envp)
 {
-	t_lx	*lex;
 	char	*input;
+	t_lx	*lex;
 
 	(void)argc;
 	(void)argv;
 	(void)envp; // este no
 	//ft_env(envp);
-	lex = malloc(sizeof(t_lx));
 	while (1)
 	{
 		input = readline("\033[36;1mminishell$ \033[0m");
-		add_history(input);
-		ft_lexer(lex, input);
-		if (!input || ft_strncmp(input, "exit\0", 5) == 0)
+		if (!input || ft_strcmp(input, "exit"))
 			break ;
+		if (!ft_strcmp(input, "\0"))
+			lex = ft_lexer(input);
+		add_history(input);
+		free(input);
 	}
 	return (0);
 }
