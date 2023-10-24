@@ -5,7 +5,7 @@
             "name": "gcc - Build and debug active file",
             "type": "lldb",
             "request": "launch",
-            "program": "/Users/rdelicad/projectos/lxuxer42/MiniShell/a.out",
+            "program": "/Users/rdelicad/projectos/lxuxer42/MiniShell/mini",
             "args": ["export", "hola=valor"],
             "cwd": "${workspaceFolder}",
             "preLaunchTask": "C/C++: gcc compilar archivo activo"

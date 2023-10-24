@@ -1,40 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   leaks.c                                            :+:      :+:    :+:   */
+/*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rdelicad <rdelicad@student.42.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/23 16:41:40 by rdelicad          #+#    #+#             */
-/*   Updated: 2023/10/23 22:23:54 by rdelicad         ###   ########.fr       */
+/*   Created: 2023/04/23 17:00:17 by rdelicad          #+#    #+#             */
+/*   Updated: 2023/10/24 20:03:00 by rdelicad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "env.h"
+#include "../include/libft.h"
 
-void	leaks(void)
+char	*ft_strchr(const char *s, int c)
 {
-	system ("leaks -q a.out");
-}
+	char	a;
 
-void	ft_matfree(char **str)
-{
-	int	i;
-
-	i = 0;
-	while (str[i])
-		free(str[i++]);
-	free(str);
-}
-
-char	*ft_strldup(char const *s1, size_t n)
-{
-	char	*ptr;
-
-	ptr = (char *)malloc(n + 1);
-	if (!ptr)
-		return (NULL);
-	memcpy(ptr, s1, n);
-	ptr[n] = '\0';
-	return (ptr);
+	a = c;
+	while (*s != '\0')
+	{
+		if (*s == a)
+			return ((char *)s);
+		s++;
+	}
+	if (a == '\0')
+		return ((char *)s);
+	return (NULL);
 }

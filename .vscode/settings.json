@@ -2,6 +2,7 @@
 	"files.associations": {
 		"*.excalidraw": "json",
 		"*.excalidrawlib": "json",
-		"iterator": "c"
+		"iterator": "c",
+		"__config": "cpp"
 	}
 }
