@@ -6,52 +6,79 @@
 /*   By: palucena <palucena@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 10:45:41 by palucena          #+#    #+#             */
-/*   Updated: 2023/10/24 22:28:58 by palucena         ###   ########.fr       */
+/*   Updated: 2023/10/25 00:45:25 by palucena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-char	**l_split(char *input)
+char	*l_get_quote(char *str, int start)
 {
-	char	**words;
+	char	*quote;
 	int		i;
-	int		j;
 
-	words = malloc(sizeof(char *) * (l_count_words(input) + 1));
-	if (words == NULL)
+	i = start + 1;
+	while (str[i] && str[i] != str[start])
+		i++;
+	if (!str[i])
 		return (NULL);
-	i = -1;
-	j = -1;
-	while (input[++i])
+	if (start != 0 && str[start - 1] == ' ')
+		start--;
+	quote = ft_substr(str, start, i - start + 1);
+	if (quote[0] == ' ')
 	{
-		if (input[i] == 34 || input[i] == 39)
-		{
-			words[++j] = l_fill_quote(input, i);
-			i = l_end_of_quote(input, i);
-		}
-		else if (input[i] && input[i] != ' ')
-		{
-			words[++j] = l_fill_word(input, i);
-			i += ft_strlen(words[j]);
-		}
-		i = l_skip_space(input, i);
+		quote[0] = str[start + 1];
+		quote[1] = str[start];
 	}
-	words[++j] = NULL;
-	return (words);
+	return (quote);
 }
 
-t_lx	*ft_lexer(char *input)
+char	*l_get_word(char *str, int start)
 {
-	char	**words;
-	t_lx	*lex;
+	char	*word;
+	int		i;
 
-	if (l_count_words(input) == -1)
+	i = start;
+	while (str[i] && str[i] != ' ' && str[i] != 34 && str[i] != 39)
+		i++;
+	word = ft_substr(str, start, i - start);
+	return (word);
+}
+
+char	*l_get_content(char *input, int i)
+{
+	while (input[i] == ' ')
+		i++;
+	if (input[i] && (input[i] == 34 || input[i] == 39))
+		return (l_get_quote(input, i));
+	else if (input[i])
+		return (l_get_word(input, i));
+	return (NULL);
+}
+
+t_lx	*l_fill_lx(char *input)
+{
+	t_lx	*curr;
+	t_lx	*lex;
+	int		i;
+
+	i = 0;
+	lex = NULL;
+	while (input[i])
 	{
-		printf("Close the quote!\n");
-		return (0);
+		while (input[i] == ' ')
+			i++;
+		if (lex == NULL)
+			lex = l_new_node(input, i);
+		else
+			l_lxadd_back(&lex, l_new_node(input, i));
+		curr = lex;
+		while (curr->next)
+			curr = curr->next;
+		i += ft_strlen(curr->content);
 	}
-	words = l_split(input);
-	lex = l_tokenkizer(words);
+	if (lex == NULL)
+		return (0);
+	l_tokenizer(lex);
 	return (lex);
 }

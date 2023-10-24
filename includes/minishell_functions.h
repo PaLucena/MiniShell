@@ -6,7 +6,7 @@
 /*   By: palucena <palucena@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 11:11:25 by palucena          #+#    #+#             */
-/*   Updated: 2023/10/24 22:25:23 by palucena         ###   ########.fr       */
+/*   Updated: 2023/10/25 00:44:22 by palucena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,21 +15,15 @@
 
 # include "minishell_structs.h"
 
-
 ////////// lexer.c ////////// 
-char	**l_split(char *str);
-t_lx	*ft_lexer(char *input);
+char	*l_get_quote(char *str, int start);
+char	*l_get_word(char *str, int start);
+char	*l_get_content(char *input, int i);
+t_lx	*l_fill_lx(char *input);
 
-////////// l_split.c //////////
-int		l_skip_space(char *str, int i);
-int		l_count_words(char *str);
-int		l_end_of_quote(char *str, int start); 
-char	*l_fill_quote(char *input, int start);
-char	*l_fill_word(char *input, int start);
-
-////////// l_split.c //////////
-int		l_get_token(char **word, int i);
-t_lx	*l_tokenkizer(char **words);
-
+////////// l_token.c //////////
+void	l_lxadd_back(t_lx **lst, t_lx *new);
+t_lx	*l_new_node(char *str, int i);
+void	l_tokenizer(t_lx *lx);
 
 #endif

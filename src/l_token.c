@@ -6,7 +6,7 @@
 /*   By: palucena <palucena@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 13:30:18 by palucena          #+#    #+#             */
-/*   Updated: 2023/10/24 19:52:35 by palucena         ###   ########.fr       */
+/*   Updated: 2023/10/25 00:45:02 by palucena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,17 +25,17 @@ int	l_check_redir(char *word)
 	return (0);
 }
 
-int	l_get_token(char **words, int i)
+int	l_get_token(char *actual, char *prev, int i)
 {
-	if (ft_strcmp(words[i], "|"))
-		return (PIPE);
-	else if (l_check_redir(words[i]) != 0)
-		return (l_check_redir(words[i]));
-	else if (i == 0 || ft_strcmp(words[i - 1], "|"))
+	if (i == 0 || ft_strcmp(prev, "|"))
 		return (CMD);
-	else if (ft_strcmp(words[i - 1], "<"))
+	else if (ft_strcmp(actual, "|"))
+		return (PIPE);
+	else if (l_check_redir(actual) != 0)
+		return (l_check_redir(actual));
+	else if (ft_strcmp(prev, "<"))
 		return (REDIR_FILEIN);
-	else if (ft_strcmp(words[i - 1], ">") || ft_strcmp(words[i - 1], ">>"))
+	else if (ft_strcmp(prev, ">") || ft_strcmp(prev, ">>"))
 		return (REDIR_FILEOUT);
 	else
 		return (ARG);
@@ -56,32 +56,31 @@ void	l_lxadd_back(t_lx **lst, t_lx *new)
 		*lst = new;
 }
 
-t_lx	*l_tokenkizer(char **words)
+t_lx	*l_new_node(char *str, int i)
 {
-	t_lx 	*lex;
-	t_lx	*curr;
-	int		i;
+	t_lx	*lex;
 
 	lex = malloc(sizeof(t_lx));
-	i = 0;
-	lex->content = words[i];
-	lex->token = l_get_token(words, i);
+	lex->content = l_get_content(str, i);
 	lex->next = NULL;
-	while (words[++i])
-	{
-		curr = malloc(sizeof(t_lx));
-		curr->content = words[i];
-		curr->token = l_get_token(words, i);
-		curr->next = NULL;
-		l_lxadd_back(&lex, curr);
-	}
-	//no
-	curr = lex;
+	return (lex);
+}
+
+void	l_tokenizer(t_lx *lex)
+{
+	t_lx	*curr;
+	t_lx	*prev;
+	int		i;
+
+	curr = lex->next;
+	prev = lex;
+	prev->token = CMD;
+	i = 1;
 	while (curr)
 	{
-		printf("%s %i\n", curr->content, (int)curr->token);
+		curr->token = l_get_token(curr->content, prev->content, i);
+		prev = curr;
 		curr = curr->next;
+		i++;
 	}
-	//no
-	return (lex);
 }

@@ -6,7 +6,7 @@
 /*   By: palucena <palucena@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 19:07:37 by palucena          #+#    #+#             */
-/*   Updated: 2023/10/24 18:47:27 by palucena         ###   ########.fr       */
+/*   Updated: 2023/10/25 00:31:18 by palucena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	main(int argc, char **argv, char **envp)
 		if (!input || ft_strcmp(input, "exit"))
 			break ;
 		if (!ft_strcmp(input, "\0"))
-			lex = ft_lexer(input);
+			lex = l_fill_lx(input);
 		add_history(input);
 		free(input);
 	}
