@@ -6,7 +6,7 @@
 #    By: rdelicad <rdelicad@student.42.com>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/18 19:17:24 by rdelicad          #+#    #+#              #
-#    Updated: 2023/10/24 20:55:29 by rdelicad         ###   ########.fr        #
+#    Updated: 2023/10/25 17:59:39 by rdelicad         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,11 +29,13 @@ NAME      := libft.a
 
 CC        := gcc
 
-CFLAGS    := -g -Wall -Wextra -Werror
+LIB		:= ar rcs
+
+CFLAGS    := -Wall -Wextra -Werror
 
 # --- Files ---
 
-SRCS      := ft_bzero.c ft_isalnum.c ft_isalpha.c ft_isascii.c ft_isprint.c\
+SRCS := ft_bzero.c ft_isalnum.c ft_isalpha.c ft_isascii.c ft_isprint.c\
 		ft_isdigit.c ft_memchr.c ft_memcpy.c ft_memset.c\
 		ft_strchr.c ft_strlcat.c ft_strlcpy.c ft_strlen.c ft_strncmp.c\
 		ft_strrchr.c ft_tolower.c ft_toupper.c ft_memcmp.c ft_strnstr.c\
@@ -57,7 +59,7 @@ OBJS_DIR = obj
 
 $(NAME): $(OBJS_DIR) $(OBJS)
 	@echo "$(YELLOW)$(BOLD)Compiling libft...$(RESET)"
-	@$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
+	@$(LIB) $(NAME) $(OBJS) 
 	@echo "$(GREEN)$(BOLD)Done.$(RESET)"
 
 $(OBJS_DIR):
@@ -68,13 +70,16 @@ $(OBJS) : obj/%.o: src/%.c
 
 all: $(NAME)
 
+bonus: $(OBJS)
+	$(LIB) $(NAME) $(OBJS)
+
 clean:
-	@echo "$(RED)$(BOLD)Cleaning objects from program...$(RESET)"
+	@echo "$(RED)$(BOLD)Cleaning objects from libft...$(RESET)"
 	@rm -f $(OBJS) 
 	@echo "$(GREEN)$(BOLD)Done.$(RESET)"
 
 fclean:
-	@echo "$(RED)$(BOLD)Cleaning all files from program...$(RESET)"
+	@echo "$(RED)$(BOLD)Cleaning all files from libft...$(RESET)"
 	@rm -f $(NAME) $(OBJS)
 	@echo "$(GREEN)$(BOLD)Done.$(RESET)"
 	

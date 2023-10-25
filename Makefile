@@ -6,7 +6,7 @@
 #    By: rdelicad <rdelicad@student.42.com>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/18 19:17:24 by rdelicad          #+#    #+#              #
-#    Updated: 2023/10/24 19:32:36 by rdelicad         ###   ########.fr        #
+#    Updated: 2023/10/25 17:49:17 by rdelicad         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -72,6 +72,7 @@ clean:
 fclean:
 	@echo "$(RED)$(BOLD)Cleaning all files from program...$(RESET)"
 	@rm -f $(NAME) $(OBJS)
+	@make fclean -C $(LIBFT_DIR)
 	@echo "$(GREEN)$(BOLD)Done.$(RESET)"
 	
 
