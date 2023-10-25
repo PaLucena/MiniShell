@@ -6,14 +6,14 @@
 /*   By: rdelicad <rdelicad@student.42.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/22 13:10:00 by rdelicad          #+#    #+#             */
-/*   Updated: 2023/10/25 21:06:22 by rdelicad         ###   ########.fr       */
+/*   Updated: 2023/10/25 23:02:42 by rdelicad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef ENV_
 # define ENV_
 
-# include "/Users/rdelicad/projectos/lxuxer42/MiniShell/libft/include/libft.h"
+# include "../libft/include/libft.h"
 
 typedef struct s_env
 {

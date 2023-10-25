@@ -6,7 +6,7 @@
 /*   By: rdelicad <rdelicad@student.42.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/22 13:58:13 by rdelicad          #+#    #+#             */
-/*   Updated: 2023/10/25 21:08:11 by rdelicad         ###   ########.fr       */
+/*   Updated: 2023/10/25 23:11:09 by rdelicad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ void	no_equal_sign(t_cmd *c)
 	c->equal_sign = ft_strchr(c->argv_env, '\0');
 	c->key = ft_strldup(c->argv_env, c->equal_sign - c->argv_env);
 	c->value = NULL;
-	ft_add_new_env(c);
 }
 
 void	equal_print_env(t_cmd *c)
@@ -48,6 +47,7 @@ void	equal_print_env(t_cmd *c)
 		c->value = ft_strdup(c->equal_sign + 1);
 		ft_add_new_env(c);
 	}
+	ft_free_list(c);
 }
 
 void	cmd_print_export(t_cmd *c)
