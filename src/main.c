@@ -6,7 +6,7 @@
 /*   By: rdelicad <rdelicad@student.42.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 19:15:28 by rdelicad          #+#    #+#             */
-/*   Updated: 2023/10/25 19:44:19 by rdelicad         ###   ########.fr       */
+/*   Updated: 2023/10/25 20:55:31 by rdelicad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	init_struct(t_cmd *c)
 {
-	c->environment = NULL;
+	c->argv_env = NULL;
 	c->equal_sign = NULL;
 	c->key = NULL;
 	c->list_env = NULL;
@@ -66,7 +66,7 @@ int	main(int ac, char **av, char **envp)
 		{
 			if (ac > 2)
 			{
-				c.environment = av[2];
+				c.argv_env = av[2];
 			}
 			ft_export(&c);
 		}

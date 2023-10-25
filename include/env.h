@@ -6,7 +6,7 @@
 /*   By: rdelicad <rdelicad@student.42.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/22 13:10:00 by rdelicad          #+#    #+#             */
-/*   Updated: 2023/10/25 19:32:49 by rdelicad         ###   ########.fr       */
+/*   Updated: 2023/10/25 21:06:22 by rdelicad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ typedef struct s_env
 typedef struct s_command
 {
 	t_env			*list_env;
-	char			*environment;
+	char			*argv_env;
 	char			*key;
 	char			*value;
 	char			*equal_sign;
@@ -49,6 +49,8 @@ void				ft_free_list(t_cmd *c);
 /* command.c */
 void				ft_export(t_cmd *c);
 void				ft_env(t_cmd *c);
-void				cases_for_equal_sign(t_cmd *c);
+void				equal_print_env(t_cmd *c);
+void				cmd_print_export(t_cmd *c);
+void				no_equal_sign(t_cmd *c);
 
 #endif
