@@ -6,7 +6,7 @@
 /*   By: rdelicad <rdelicad@student.42.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/22 13:58:13 by rdelicad          #+#    #+#             */
-/*   Updated: 2023/10/25 17:43:25 by rdelicad         ###   ########.fr       */
+/*   Updated: 2023/10/25 19:37:47 by rdelicad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,6 @@ void	ft_export(t_cmd *c)
 			c->value = ft_strdup(c->equal_sign + 1);
 			ft_add_new_env(c);
 		}
-		free(c->value);
-		free(c->key);
 	}
 }
 

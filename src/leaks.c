@@ -14,7 +14,7 @@
 
 void	leaks(void)
 {
-	system ("leaks -q a.out");
+	system ("leaks -q mini");
 }
 
 char	*ft_strldup(char const *s1, size_t n)

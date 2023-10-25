@@ -6,7 +6,7 @@
 /*   By: rdelicad <rdelicad@student.42.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 18:48:10 by rdelicad          #+#    #+#             */
-/*   Updated: 2023/10/24 19:48:01 by rdelicad         ###   ########.fr       */
+/*   Updated: 2023/10/25 19:42:17 by rdelicad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,14 @@
 
 void	ft_free_list(t_cmd *c)
 {
-	while (c->list_env != NULL)
+	t_env	*curr;
+
+	curr = c->list_env;
+	while (curr != NULL)
 	{
-		free(c->list_env->key);
-		free(c->list_env->value);
-		c->list_env = c->list_env->next;
+		free(curr->key);
+		free(curr->value);
+		curr = curr->next;
 	}
 }
 
@@ -54,8 +57,6 @@ t_env	*ft_lstnew_env(char *key, char *value)
 		free(new_node);
 		return (NULL);
 	}
-	free(new_node->value);
-	free(new_node->key);
 	return (new_node);
 }
 

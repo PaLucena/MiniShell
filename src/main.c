@@ -6,7 +6,7 @@
 /*   By: rdelicad <rdelicad@student.42.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 19:15:28 by rdelicad          #+#    #+#             */
-/*   Updated: 2023/10/24 19:47:46 by rdelicad         ###   ########.fr       */
+/*   Updated: 2023/10/25 19:44:19 by rdelicad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ int	len_envp(char **envp)
 t_env	*create_list_env(t_cmd *c, char **envp, int len_envp)
 {
 	t_env	*env;
-	t_env	*new;
 	int		i;
 
 	env = NULL;
@@ -46,11 +45,7 @@ t_env	*create_list_env(t_cmd *c, char **envp, int len_envp)
 		{
 			c->key = ft_strldup(envp[i], c->equal_sign - envp[i]);
 			c->value = ft_strdup(c->equal_sign + 1);
-			new = ft_lstnew_env(c->key, c->value);
-			ft_lstadd_back_env(&env, new);
-			free(c->key);
-			free(c->value);
-			free(new);
+			ft_lstadd_back_env(&env, ft_lstnew_env(c->key, c->value));
 		}
 		i++;
 	}
