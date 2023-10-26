@@ -6,7 +6,7 @@
             "type": "lldb",
             "request": "launch",
             "program": "${workspaceFolder}/mini",
-            "args": ["export", "hola"],
+            "args": ["export", "key=valor"],
             "cwd": "${workspaceFolder}",
             "preLaunchTask": "C/C++: gcc compilar archivo activo"
         }

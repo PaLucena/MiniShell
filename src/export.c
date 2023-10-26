@@ -6,7 +6,7 @@
 /*   By: rdelicad <rdelicad@student.42.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/22 13:58:13 by rdelicad          #+#    #+#             */
-/*   Updated: 2023/10/26 21:07:33 by rdelicad         ###   ########.fr       */
+/*   Updated: 2023/10/26 21:28:26 by rdelicad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	ft_export(t_cmd *c)
 {
 	if (c->argv_env == NULL)
-		normal_export(c);
+		ft_putenv(c, 1);
 	else if (ft_strchr(c->argv_env, '='))
 		equal_print_env(c);
 	else if (!ft_strchr(c->argv_env, '='))
@@ -45,14 +45,3 @@ void	equal_print_env(t_cmd *c)
 		ft_add_new_env(c);
 	}
 }
-
-void	normal_export(t_cmd *c)
-{
-	while (c->list_env != NULL)
-	{
-		ft_putenv(c->list_env->key, c->list_env->value, 1);
-		c->list_env = c->list_env->next;
-	}
-}
-
-
