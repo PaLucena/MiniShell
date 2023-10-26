@@ -6,7 +6,7 @@
 /*   By: rdelicad <rdelicad@student.42.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/22 13:58:13 by rdelicad          #+#    #+#             */
-/*   Updated: 2023/10/25 23:11:09 by rdelicad         ###   ########.fr       */
+/*   Updated: 2023/10/26 09:14:48 by rdelicad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ void	ft_export(t_cmd *c)
 
 void	no_equal_sign(t_cmd *c)
 {
+	//char	*key;
+
 	c->equal_sign = ft_strchr(c->argv_env, '\0');
 	c->key = ft_strldup(c->argv_env, c->equal_sign - c->argv_env);
 	c->value = NULL;
