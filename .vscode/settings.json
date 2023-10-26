@@ -4,6 +4,7 @@
     "*.excalidrawlib": "json",
     "iterator": "c",
     "__config": "cpp",
-    "__node_handle": "c"
+    "__node_handle": "c",
+    "ostream": "c"
   }
 }

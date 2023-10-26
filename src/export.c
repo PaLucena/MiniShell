@@ -6,7 +6,7 @@
 /*   By: rdelicad <rdelicad@student.42.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/22 13:58:13 by rdelicad          #+#    #+#             */
-/*   Updated: 2023/10/26 19:50:19 by rdelicad         ###   ########.fr       */
+/*   Updated: 2023/10/26 21:07:33 by rdelicad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,38 +55,4 @@ void	normal_export(t_cmd *c)
 	}
 }
 
-void	ft_putenv(char *key, char *value, int fd)
-{
-	//funcion que imprime export teniendo en cuenta si value = "" o no
-	//si hola= imprimira "declare -x hola=""
-	//si hola=hola imprimira "declare -x hola=hola	
-	if (value == NULL)
-	{
-		if (fd == 1)
-			write(1, "declare -x ", 11);
-		else
-			write(1, "declare -xr ", 12);
-		ft_putstr_fd(key, fd);
-		write(1, "\n", 1);
-	}
-	else
-	{
-		if (fd == 1)
-			write(1, "declare -x ", 11);
-		else
-			write(1, "declare -xr ", 12);
-		ft_putstr_fd(key, fd);
-		write(1, "=", 1);
-		ft_putstr_fd(value, fd);
-		write(1, "\n", 1);
-	}
-}
-	/* if (fd == 1)
-		write(1, "declare -x ", 11);
-	else
-		write(1, "declare -xr ", 12);
-	ft_putstr_fd(key, fd);
-	write(1, "=", 1);
-	ft_putstr_fd(value, fd);
-	write(1, "\n", 1);
-} */
+
