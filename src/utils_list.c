@@ -6,7 +6,7 @@
 /*   By: rdelicad <rdelicad@student.42.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 18:48:10 by rdelicad          #+#    #+#             */
-/*   Updated: 2023/10/26 09:16:04 by rdelicad         ###   ########.fr       */
+/*   Updated: 2023/10/26 09:22:12 by rdelicad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,4 +80,6 @@ void	ft_add_new_env(t_cmd *c)
 	free(new_node);
 	free(c->key);
 	free(c->value);
+	free(key);
+	free(value);
 }

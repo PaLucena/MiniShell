@@ -6,7 +6,7 @@
 /*   By: rdelicad <rdelicad@student.42.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/22 13:10:00 by rdelicad          #+#    #+#             */
-/*   Updated: 2023/10/25 23:48:44 by rdelicad         ###   ########.fr       */
+/*   Updated: 2023/10/26 09:29:32 by rdelicad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ char				*ft_strldup(char const *s1, size_t n);
 /* main.c */
 void				init_struct(t_cmd *c);
 int					len_envp(char **envp);
-t_env				*create_list_env(t_cmd *c, char **arr_env, int len_envp);
+void				create_list_env(t_cmd *c, char **arr_env, int len_envp);
 
 /* utils_list.c */
 void				ft_lstadd_back_env(t_env **lst, t_env *new);
