@@ -6,7 +6,7 @@
 #    By: rdelicad <rdelicad@student.42.com>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/18 19:17:24 by rdelicad          #+#    #+#              #
-#    Updated: 2023/10/25 23:52:27 by rdelicad         ###   ########.fr        #
+#    Updated: 2023/10/26 19:50:04 by rdelicad         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,7 +38,7 @@ LIBFT_PATH	:= $(LIBFT_DIR)/libft.a
 
 # --- Files ---
 
-SRCS      := leaks.c command.c main.c utils_list.c
+SRCS      := leaks.c main.c utils_list.c env.c export.c\
 
 OBJS = $(addprefix $(OBJS_DIR)/,$(SRCS:.c=.o))
 

@@ -6,7 +6,7 @@
 /*   By: rdelicad <rdelicad@student.42.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 18:48:10 by rdelicad          #+#    #+#             */
-/*   Updated: 2023/10/26 09:22:12 by rdelicad         ###   ########.fr       */
+/*   Updated: 2023/10/26 18:51:43 by rdelicad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ void	ft_free_list(t_cmd *c)
 		free(curr);
 		curr = next;
 	}
-	/* free(c->key);
-	free(c->value); */
+	free(c->key);
+	free(c->value);
 }
 
 void	ft_lstadd_back_env(t_env **lst, t_env *new)
@@ -67,19 +67,11 @@ t_env	*ft_lstnew_env(char *key, char *value)
 
 void	ft_add_new_env(t_cmd *c)
 {
-	t_env *new_node;
-	char	*key;
-	char	*value;
+	t_env	*new_node;
 
-	key = c->key;
-	value = c->value;
-	new_node = ft_lstnew_env(key, value);
+	new_node = NULL;
+	new_node = ft_lstnew_env(c->key, c->value);
 	ft_lstadd_back_env(&(c->list_env), new_node);
 	c->argv_env = NULL;
 	ft_export(c);
-	free(new_node);
-	free(c->key);
-	free(c->value);
-	free(key);
-	free(value);
 }

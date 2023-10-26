@@ -6,7 +6,7 @@
 /*   By: rdelicad <rdelicad@student.42.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/22 13:10:00 by rdelicad          #+#    #+#             */
-/*   Updated: 2023/10/26 09:29:32 by rdelicad         ###   ########.fr       */
+/*   Updated: 2023/10/26 18:51:22 by rdelicad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,11 +46,14 @@ t_env				*ft_lstnew_env(char *key, char *value);
 void				ft_add_new_env(t_cmd *c);
 void				ft_free_list(t_cmd *c);
 
-/* command.c */
-void				ft_export(t_cmd *c);
+/* env.c */
 void				ft_env(t_cmd *c);
+
+/* export.c */
+void				ft_export(t_cmd *c);
+void				normal_export(t_cmd *c);
 void				equal_print_env(t_cmd *c);
-void				cmd_print_export(t_cmd *c);
 void				no_equal_sign(t_cmd *c);
+void				ft_putenv(char *key, char *value, int fd);
 
 #endif
