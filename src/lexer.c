@@ -6,7 +6,7 @@
 /*   By: palucena <palucena@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 10:45:41 by palucena          #+#    #+#             */
-/*   Updated: 2023/10/25 00:45:25 by palucena         ###   ########.fr       */
+/*   Updated: 2023/10/26 17:22:20 by palucena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ t_lx	*l_fill_lx(char *input)
 		if (lex == NULL)
 			lex = l_new_node(input, i);
 		else
-			l_lxadd_back(&lex, l_new_node(input, i));
+			l_add_k(&lex, l_new_node(input, i));
 		curr = lex;
 		while (curr->next)
 			curr = curr->next;
