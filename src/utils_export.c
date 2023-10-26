@@ -6,7 +6,7 @@
 /*   By: rdelicad <rdelicad@student.42.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 20:24:55 by rdelicad          #+#    #+#             */
-/*   Updated: 2023/10/26 21:24:46 by rdelicad         ###   ########.fr       */
+/*   Updated: 2023/10/26 21:41:31 by rdelicad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	ft_putenv(t_cmd *c, int fd)
 	}
 }
 
-void	ft_put_noeq(t_cmd *c, char *key, int fd)
+void	ft_put_noeq(t_cmd *c, char *key, char *value, int fd)
 {
 	while (c->list_env != NULL)
 	{
@@ -37,12 +37,18 @@ void	ft_put_noeq(t_cmd *c, char *key, int fd)
 		else
 			write(1, "declare -xr ", 12);
 		ft_putstr_fd(key, fd);
-		write(1, "\n", 1);
+		if (*c->list_env->value != '\0')
+		{
+			write(1, "=", 1);
+			ft_putstr_fd(value, fd);
+		}
+		else
+			write(1, "\n", 1);
 		c->list_env = c->list_env->next;
 	}
 }
 
-void	ft_put_eq_novalue(t_cmd *c, char *key, int fd)
+void	ft_put_eq_novalue(t_cmd *c, char *key, char *value, int fd)
 {
 	while (c->list_env != NULL)
 	{
@@ -52,7 +58,10 @@ void	ft_put_eq_novalue(t_cmd *c, char *key, int fd)
 			write(1, "declare -xr ", 12);
 		ft_putstr_fd(key, fd);
 		write(1, "=", 1);
-		write(1, """", 1);
+		if (*c->list_env->value == '\0')
+			write(1, """", 1);
+		else
+			ft_putstr_fd(value, fd);
 		write(1, "\n", 1);
 		c->list_env = c->list_env->next;
 	}
