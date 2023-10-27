@@ -6,7 +6,7 @@
 /*   By: rdelicad <rdelicad@student.42.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/22 13:58:13 by rdelicad          #+#    #+#             */
-/*   Updated: 2023/10/27 07:57:44 by rdelicad         ###   ########.fr       */
+/*   Updated: 2023/10/27 17:48:48 by rdelicad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,15 +50,14 @@ void	normal_export(t_cmd *c)
 {
 	while (c->list_env != NULL)
 	{
-		ft_putenv(c->argv_env, c->list_env->key, c->list_env->value, 1);
+		ft_putenv(c, c->list_env->key, c->list_env->value, 1);
 		c->list_env = c->list_env->next;
 	}
 }
 
-void	ft_putenv(char *argv, char *key, char *value, int fd)
+void	ft_putenv(t_cmd *c, char *key, char *value, int fd)
 {
-	//char	str[2] = "\"\"";
-	(void)argv;
+	char	str[2] = "\"\"";
 
 	if (*value == '\0')
 	{
@@ -67,11 +66,11 @@ void	ft_putenv(char *argv, char *key, char *value, int fd)
 		else
 			write(1, "declare -xr ", 12);
 		ft_putstr_fd(key, fd);
-		/* if (ft_strchr(argv, '='))
+		if (c->argv_env != NULL && ft_strchr(c->argv_env, '='))
 		{
 			write(1, "=", 1);
 			write(1, str, 2);
-		} */
+		}
 		write(1, "\n", 1);
 	}
 	else

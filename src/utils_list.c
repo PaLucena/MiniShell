@@ -6,7 +6,7 @@
 /*   By: rdelicad <rdelicad@student.42.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 18:48:10 by rdelicad          #+#    #+#             */
-/*   Updated: 2023/10/27 07:57:07 by rdelicad         ###   ########.fr       */
+/*   Updated: 2023/10/27 17:43:24 by rdelicad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,11 @@ void	ft_add_new_env(t_cmd *c)
 	new_node = NULL;
 	new_node = ft_lstnew_env(c->key, c->value);
 	ft_lstadd_back_env(&(c->list_env), new_node);
-	c->argv_env = NULL;
-	ft_export(c);
+	if (ft_strchr(c->argv_env, '=') && *new_node->value == '\0')
+		normal_export(c);
+	else 
+	{
+		c->argv_env = NULL;
+		ft_export(c);
+	}
 }
