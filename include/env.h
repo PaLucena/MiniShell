@@ -6,7 +6,11 @@
 /*   By: rdelicad <rdelicad@student.42.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/22 13:10:00 by rdelicad          #+#    #+#             */
+<<<<<<< Updated upstream
 /*   Updated: 2023/10/26 21:37:34 by rdelicad         ###   ########.fr       */
+=======
+/*   Updated: 2023/10/27 21:02:44 by rdelicad         ###   ########.fr       */
+>>>>>>> Stashed changes
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +29,7 @@ typedef struct s_env
 typedef struct s_command
 {
 	t_env			*list_env;
+	t_env			*sorted_list;
 	char			*argv_env;
 	char			*key;
 	char			*value;
@@ -55,8 +60,15 @@ void				equal_print_env(t_cmd *c);
 void				no_equal_sign(t_cmd *c);
 
 /* utils_export.c */
+<<<<<<< Updated upstream
 void				ft_putenv(t_cmd *c, int fd);
 void				ft_put_noeq(t_cmd *c, char *key, char *value, int fd);
 void				ft_put_eq_novalue(t_cmd *c, char *key, char *value, int fd);
+=======
+void				ft_value_zero(t_cmd *c, char *key, char *value, int fd);
+void				copy_env_list(t_cmd *c);
+void				sort_env_list(t_cmd *c);
+void				print_sorted_list(t_cmd *c);
+>>>>>>> Stashed changes
 
 #endif

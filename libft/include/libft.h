@@ -6,7 +6,7 @@
 /*   By: rdelicad <rdelicad@student.42.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 14:53:34 by rdelicad          #+#    #+#             */
-/*   Updated: 2023/10/26 12:25:11 by rdelicad         ###   ########.fr       */
+/*   Updated: 2023/10/27 20:24:37 by rdelicad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ long	ft_atol(const char *str);
 void	ft_swap(int *a, int *b);
 size_t	ft_strcspn(const char *s, const char *reject);
 void	ft_matfree(char	**str);
+void	ft_error(int fd, char *msn);
 
 /*
 ** libft_Bonus

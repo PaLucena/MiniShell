@@ -6,7 +6,7 @@
 /*   By: rdelicad <rdelicad@student.42.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 19:15:28 by rdelicad          #+#    #+#             */
-/*   Updated: 2023/10/26 13:34:48 by rdelicad         ###   ########.fr       */
+/*   Updated: 2023/10/27 20:15:50 by rdelicad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ void	init_struct(t_cmd *c)
 	c->key = NULL;
 	c->list_env = NULL;
 	c->value = NULL;
+	c->sorted_list = NULL;
 }
 
 int	len_envp(char **envp)
