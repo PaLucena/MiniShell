@@ -6,7 +6,7 @@
 /*   By: rdelicad <rdelicad@student.42.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/22 13:58:13 by rdelicad          #+#    #+#             */
-/*   Updated: 2023/10/27 18:17:51 by rdelicad         ###   ########.fr       */
+/*   Updated: 2023/10/27 18:24:57 by rdelicad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,14 @@ void	ft_putenv(t_cmd *c, char *key, char *value, int fd)
 			write(1, "declare -xr ", 12);
 		ft_putstr_fd(key, fd);
 		write(1, "=", 1);
-		ft_putstr_fd(value, fd);
+		if (ft_strchr(value, '='))
+		{
+			write(1, "\'", 1);
+			ft_putstr_fd(value, fd);
+			write(1, "\'", 1);
+		}
+		else
+			ft_putstr_fd(value, fd);
 		write(1, "\n", 1);
 	}
 }
