@@ -6,7 +6,7 @@
 /*   By: rdelicad <rdelicad@student.42.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 17:53:05 by rdelicad          #+#    #+#             */
-/*   Updated: 2023/10/28 17:23:51 by rdelicad         ###   ########.fr       */
+/*   Updated: 2023/10/28 17:53:37 by rdelicad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,9 @@ void	ft_value_sign(char *value, int fd)
 {
 	if (ft_strchr(value, '=') || ft_strchr(value, 32))
 	{
-		write(1, "\"", 1);
+		//write(1, "\"", 1);
 		ft_putstr_fd(value, fd);
-		write(1, "\"", 1);
+		//write(1, "\"", 1);
 	}
 	else
 		ft_putstr_fd(value, fd);

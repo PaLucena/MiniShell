@@ -6,7 +6,7 @@
 /*   By: rdelicad <rdelicad@student.42.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/28 15:58:35 by rdelicad          #+#    #+#             */
-/*   Updated: 2023/10/28 17:33:15 by rdelicad         ###   ########.fr       */
+/*   Updated: 2023/10/28 19:06:37 by rdelicad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,12 +48,19 @@ void	equal_sign_env(t_cmd *c)
 
 void	normal_export(t_cmd *c)
 {
+	t_env	*curr;
+
 	//sorted_list_env(&c->list_env);
-	while (c->list_env != NULL)
+	curr = c->list_env;
+	while (curr != NULL)
 	{
-		ft_putenv(c, c->list_env->key, c->list_env->value, 1);
-		c->list_env = c->list_env->next;
+		ft_putenv(c, curr->key, curr->value, 1);
+		curr = curr->next;
 	}
+	ft_printf("\n");
+	ft_printf("---------- Comando ENV ------------\n");
+	ft_printf("\n");
+	ft_env(c);
 }
 
 void	ft_putenv(t_cmd *c, char *key, char *value, int fd)

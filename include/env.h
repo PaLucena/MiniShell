@@ -6,7 +6,7 @@
 /*   By: rdelicad <rdelicad@student.42.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/28 16:00:10 by rdelicad          #+#    #+#             */
-/*   Updated: 2023/10/28 17:23:29 by rdelicad         ###   ########.fr       */
+/*   Updated: 2023/10/28 19:03:47 by rdelicad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ typedef struct s_env
 {
 	char			*key;
 	char			*value;
+	int				equal;
 	struct s_env	*next;
 }					t_env;
 

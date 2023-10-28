@@ -6,7 +6,7 @@
 /*   By: rdelicad <rdelicad@student.42.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 18:21:05 by rdelicad          #+#    #+#             */
-/*   Updated: 2023/10/26 19:50:25 by rdelicad         ###   ########.fr       */
+/*   Updated: 2023/10/28 19:12:25 by rdelicad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,18 @@
 
 void	ft_env(t_cmd *c)
 {
-	while (c->list_env != NULL)
+	t_env	*curr;
+
+	curr = c->list_env;
+	while (curr != NULL)
 	{
-		ft_putstr_fd(c->list_env->key, 1);
-		ft_putstr_fd("=", 1);
-		ft_putstr_fd(c->list_env->value, 1);
-		ft_putstr_fd("\n", 1);
-		c->list_env = c->list_env->next;
+		if (curr->equal == 1)
+		{
+			ft_putstr_fd(curr->key, 1);
+			ft_putstr_fd("=", 1);
+			ft_putstr_fd(curr->value, 1);
+			ft_putstr_fd("\n", 1);
+		}
+		curr = curr->next;
 	}
 }

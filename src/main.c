@@ -6,7 +6,7 @@
 /*   By: rdelicad <rdelicad@student.42.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 19:15:28 by rdelicad          #+#    #+#             */
-/*   Updated: 2023/10/28 16:27:37 by rdelicad         ###   ########.fr       */
+/*   Updated: 2023/10/28 19:05:22 by rdelicad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,8 @@ void	create_list_env(t_cmd *c, char **envp, int len_envp)
 			c->value = ft_strdup(c->equal_sign + 1);
 			new = ft_lstnew_env(c->key, c->value);
 			ft_lstadd_back_env(&c->list_env, new);
+			if (ft_strchr(envp[i], '='))
+				new->equal = 1;
 		}
 		i++;
 	}
