@@ -6,7 +6,7 @@
 /*   By: rdelicad <rdelicad@student.42.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/28 16:00:10 by rdelicad          #+#    #+#             */
-/*   Updated: 2023/10/28 16:01:31 by rdelicad         ###   ########.fr       */
+/*   Updated: 2023/10/28 17:23:29 by rdelicad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,20 +46,21 @@ void				ft_lstadd_back_env(t_env **lst, t_env *new);
 t_env				*ft_lstnew_env(char *key, char *value);
 void				ft_add_new_env(t_cmd *c);
 void				ft_free_list(t_cmd *c);
+void				ft_free_node(t_env *node);
 
 /* env.c */
 void				ft_env(t_cmd *c);
 
 /* export.c */
 void				ft_export(t_cmd *c);
-void				equal_print_env(t_cmd *c);
-void				no_equal_sign(t_cmd *c);
+void				equal_sign_env(t_cmd *c);
+void				no_equal_sign_env(t_cmd *c);
 
 /* utils_export.c */
 void				ft_value_zero(t_cmd *c, char *key, char *value, int fd);
-void				copy_env_list(t_cmd *c);
-void				sort_env_list(t_cmd *c);
-void				print_sorted_list(t_cmd *c);
+void				ft_value_sign(char *value, int fd);
+void				sorted_list_env(t_env **env_list);
+void				ft_lst_swap(t_env *node_a, t_env *node_b);
 
 /* export.c */
 void				normal_export(t_cmd *c);

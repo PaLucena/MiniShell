@@ -6,7 +6,7 @@
 /*   By: rdelicad <rdelicad@student.42.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 17:53:05 by rdelicad          #+#    #+#             */
-/*   Updated: 2023/10/28 15:51:47 by rdelicad         ###   ########.fr       */
+/*   Updated: 2023/10/28 17:23:51 by rdelicad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ void	ft_value_zero(t_cmd *c, char *key, char *value, int fd)
 {
 	(void)value;
 	char str[2] = "\"\"";
-
 	if (fd == 1)
 		write(1, "declare -x ", 11);
 	else
@@ -30,22 +29,34 @@ void	ft_value_zero(t_cmd *c, char *key, char *value, int fd)
 	write(1, "\n", 1);
 }
 
+void	ft_value_sign(char *value, int fd)
+{
+	if (ft_strchr(value, '=') || ft_strchr(value, 32))
+	{
+		write(1, "\"", 1);
+		ft_putstr_fd(value, fd);
+		write(1, "\"", 1);
+	}
+	else
+		ft_putstr_fd(value, fd);
+}
+
 void	sorted_list_env(t_env **env_list)
 {
-	t_env	*curr;
-	t_env	*next;
+	t_env				*curr;
+	t_env				*next;
 	long unsigned int	i;
 	long unsigned int	j;
-	int	swapped;
+	int					swapped;
+	long unsigned int	list_size;
 
-	long unsigned int list_size = 0;
+	list_size = 0;
 	curr = *env_list;
 	while (curr != NULL)
 	{
 		list_size++;
 		curr = curr->next;
 	}
-
 	i = 0;
 	while (i < list_size - 1)
 	{
@@ -65,7 +76,7 @@ void	sorted_list_env(t_env **env_list)
 			j++;
 		}
 		if (swapped == 0)
-			break;
+			break ;
 		i++;
 	}
 }

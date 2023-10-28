@@ -6,7 +6,7 @@
 /*   By: rdelicad <rdelicad@student.42.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/28 15:58:35 by rdelicad          #+#    #+#             */
-/*   Updated: 2023/10/28 16:04:30 by rdelicad         ###   ########.fr       */
+/*   Updated: 2023/10/28 17:33:15 by rdelicad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void	equal_sign_env(t_cmd *c)
 
 void	normal_export(t_cmd *c)
 {
-	sorted_list_env(&c->list_env);
+	//sorted_list_env(&c->list_env);
 	while (c->list_env != NULL)
 	{
 		ft_putenv(c, c->list_env->key, c->list_env->value, 1);
@@ -70,14 +70,14 @@ void	ft_putenv(t_cmd *c, char *key, char *value, int fd)
 			write(1, "declare -xr ", 12);
 		ft_putstr_fd(key, fd);
 		write(1, "=", 1);
-		if (ft_strchr(value, '=') || ft_strchr(value, 32))
+		if (!ft_strchr(value, 34))
 		{
 			write(1, "\"", 1);
-			ft_putstr_fd(value, fd);
+			ft_value_sign(value, fd);
 			write(1, "\"", 1);
 		}
 		else
-			ft_putstr_fd(value, fd);
+			ft_value_sign(value, fd);
 		write(1, "\n", 1);
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: rdelicad <rdelicad@student.42.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 18:48:10 by rdelicad          #+#    #+#             */
-/*   Updated: 2023/10/28 15:51:23 by rdelicad         ###   ########.fr       */
+/*   Updated: 2023/10/28 16:25:38 by rdelicad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,14 @@ void	ft_free_list(t_cmd *c)
 	}
 	free(c->key);
 	free(c->value);
+}
+
+void	ft_free_node(t_env *node)
+{
+	free(node->key);
+	free(node->value);
+	free(node);
+	node = NULL;
 }
 
 void	ft_lstadd_back_env(t_env **lst, t_env *new)
