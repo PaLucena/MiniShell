@@ -3,10 +3,10 @@
     "configurations": [
         {
             "name": "gcc - Build and debug active file",
-            "type": "lldb",
+            "type": "cppdbg",
             "request": "launch",
             "program": "${workspaceFolder}/mini",
-            "args": ["export", "hola"],
+            "args": ["export"],
             "cwd": "${workspaceFolder}",
             "preLaunchTask": "C/C++: gcc compilar archivo activo"
         }

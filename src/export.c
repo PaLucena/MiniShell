@@ -6,7 +6,7 @@
 /*   By: rdelicad <rdelicad@student.42.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/22 13:58:13 by rdelicad          #+#    #+#             */
-/*   Updated: 2023/10/27 18:24:57 by rdelicad         ###   ########.fr       */
+/*   Updated: 2023/10/28 12:46:33 by rdelicad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ void	equal_sign_env(t_cmd *c)
 
 void	normal_export(t_cmd *c)
 {
+	sorted_list_env(&c->list_env);
 	while (c->list_env != NULL)
 	{
 		ft_putenv(c, c->list_env->key, c->list_env->value, 1);

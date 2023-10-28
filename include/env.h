@@ -6,7 +6,7 @@
 /*   By: rdelicad <rdelicad@student.42.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/22 13:10:00 by rdelicad          #+#    #+#             */
-/*   Updated: 2023/10/27 18:18:05 by rdelicad         ###   ########.fr       */
+/*   Updated: 2023/10/28 12:10:50 by rdelicad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,5 +58,6 @@ void				ft_putenv(t_cmd *c, char *key, char *value, int fd);
 
 /* utils_export.c */
 void				ft_value_zero(t_cmd *c, char *key, char *value, int fd);
-
+void				ft_lst_swap(t_env *node_a, t_env *node_b);
+void				sorted_list_env(t_env **env_list);
 #endif
