@@ -6,7 +6,7 @@
 /*   By: rdelicad <rdelicad@student.42.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/28 15:58:35 by rdelicad          #+#    #+#             */
-/*   Updated: 2023/10/28 15:58:48 by rdelicad         ###   ########.fr       */
+/*   Updated: 2023/10/28 16:04:30 by rdelicad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	ft_export(t_cmd *c)
 {
 	if (c->argv_env == NULL)
-		ft_putenv(c, 1);
+		normal_export(c);
 	else if (ft_strchr(c->argv_env, '='))
 		equal_sign_env(c);
 	else if (!ft_strchr(c->argv_env, '='))
