@@ -6,7 +6,7 @@
 /*   By: rdelicad <rdelicad@student.42.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 14:53:34 by rdelicad          #+#    #+#             */
-/*   Updated: 2023/10/28 12:01:41 by rdelicad         ###   ########.fr       */
+/*   Updated: 2023/10/28 13:33:52 by rdelicad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,18 @@
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 42
 # endif
+
+/* Color definitions */
+# define BOLD "\033[1m"
+# define BLACK "\033[30;1m"
+# define RED "\033[31;1m"
+# define GREEN "\033[32;1m"
+# define YELLOW "\033[33;1m"
+# define BLUE "\033[34;1m"
+# define MAGENTA "\033[35;1m"
+# define CYAN "\033[36;1m"
+# define WHITE "\033[37;1m"
+# define RESET "\033[0m"
 
 # include <fcntl.h>
 # include <limits.h>
@@ -67,6 +79,7 @@ long				ft_atol(const char *str);
 void				ft_swap(int *a, int *b);
 size_t				ft_strcspn(const char *s, const char *reject);
 void				ft_matfree(char **str);
+void				ft_error(int fd, char *msn);
 
 /*
 ** libft_Bonus
