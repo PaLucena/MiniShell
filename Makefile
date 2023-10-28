@@ -6,7 +6,7 @@
 #    By: rdelicad <rdelicad@student.42.com>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/18 19:17:24 by rdelicad          #+#    #+#              #
-#    Updated: 2023/10/28 15:53:39 by rdelicad         ###   ########.fr        #
+#    Updated: 2023/10/28 20:16:17 by rdelicad         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,7 +29,7 @@ NAME      := mini
 
 CC        := gcc
 
-CFLAGS    := -g -Wall -Wextra -Werror #-fsanitize=leak
+CFLAGS    := -g -Wall -Wextra -Werror #-fsanitize=address
 
 # --- Library ---
 

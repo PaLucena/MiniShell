@@ -6,28 +6,22 @@
 /*   By: rdelicad <rdelicad@student.42.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 18:48:10 by rdelicad          #+#    #+#             */
-/*   Updated: 2023/10/28 19:08:47 by rdelicad         ###   ########.fr       */
+/*   Updated: 2023/10/28 20:02:05 by rdelicad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/env.h"
 
-void	ft_free_list(t_cmd *c)
+void	ft_free_list(t_env *list)
 {
 	t_env	*curr;
-	t_env	*next;
 
-	curr = c->list_env;
-	while (curr != NULL)
+	while (list != NULL)
 	{
-		free(curr->key);
-		free(curr->value);
-		next = curr->next;
-		free(curr);
-		curr = next;
+		curr = list;
+		list = list->next;
+		ft_free_node(curr);
 	}
-	free(c->key);
-	free(c->value);
 }
 
 void	ft_free_node(t_env *node)
