@@ -6,7 +6,7 @@
 /*   By: palucena <palucena@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 10:44:14 by palucena          #+#    #+#             */
-/*   Updated: 2023/10/26 17:00:33 by palucena         ###   ########.fr       */
+/*   Updated: 2023/10/30 00:00:44 by palucena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,11 +35,11 @@ typedef struct s_lx
 
 typedef struct s_ps
 {
-	char	**cmd;
-	//		path???
-	int		infile;
-	int		outfile;
-	t_ps	*next;
+	char		*cmd;
+	char		**args;
+	int			infile;
+	int			outfile;
+	struct s_ps	*next;
 }	t_ps;
 
 #endif

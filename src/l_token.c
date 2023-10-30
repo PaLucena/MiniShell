@@ -6,7 +6,7 @@
 /*   By: palucena <palucena@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 13:30:18 by palucena          #+#    #+#             */
-/*   Updated: 2023/10/26 17:22:20 by palucena         ###   ########.fr       */
+/*   Updated: 2023/10/29 23:12:45 by palucena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int	l_get_token(char *actual, char *prev, int i)
 		return (ARG);
 }
 
-void	l_add_k(t_lx **lst, t_lx *new)
+void	l_add_back(t_lx **lst, t_lx *new)
 {
 	t_lx	*actual;
 

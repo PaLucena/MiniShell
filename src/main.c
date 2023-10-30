@@ -6,24 +6,51 @@
 /*   By: palucena <palucena@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 19:07:37 by palucena          #+#    #+#             */
-/*   Updated: 2023/10/26 17:01:02 by palucena         ###   ########.fr       */
+/*   Updated: 2023/10/30 00:56:30 by palucena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	translate_input(char *input)
+void	print_select(t_lx *lex, t_ps *par, char **argv)
+{
+	if (ft_strcmp(argv[1], "-l"))
+	{
+		int	i = 0;
+		ft_printf("\033[33;1m	----lexer----\033[0m\n");
+		while (lex)
+		{
+			ft_printf("%i. %s, token: %i\n", ++i, lex->content, lex->token);
+			lex = lex->next;
+		}
+		ft_printf("\033[33;1m	 ----end----\033[0m\n");
+	}
+	if (ft_strcmp(argv[1], "-p"))
+	{
+		int	i = 0;
+		ft_printf("\033[33;1m	----parser----\033[0m\n");
+		int	j;
+		while (par)
+		{
+			j = -1;
+			ft_printf("%i. Cmd: %s", ++i, par->cmd);
+			while (par->args[++j])
+				ft_printf(" %s", par->args[j]);
+			ft_printf("\n");
+			par = par->next;
+		}
+		ft_printf("\033[33;1m	 ----end----\033[0m\n");
+	}
+}
+
+void	translate_input(char *input, char **argv)
 {
 	t_lx	*lex;
 	t_ps	*par;
 
 	lex = l_fill_lx(input);
-	par = p_fill_ps(lex);
-	while (lex)
-	{
-		printf("%s %i\n", lex->content, lex->token);
-		lex = lex->next;
-	}
+	par = p_fill_ps(lex, NULL);
+	print_select(lex, par, argv);
 }
 
 int	main(int argc, char **argv, char **envp)
@@ -33,7 +60,6 @@ int	main(int argc, char **argv, char **envp)
 	char	*prompt;
 
 	(void)argc;
-	(void)argv;
 	(void)envp; // este no
 	//ft_env(envp);
 	name = "minishell";
@@ -44,7 +70,7 @@ int	main(int argc, char **argv, char **envp)
 		if (!input || ft_strcmp(input, "exit"))
 			break ;
 		if (!ft_strcmp(input, "\0"))
-			translate_input(input);
+			translate_input(input, argv);
 		add_history(input);
 		free(input);
 	}
