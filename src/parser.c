@@ -6,7 +6,7 @@
 /*   By: palucena <palucena@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 19:09:51 by palucena          #+#    #+#             */
-/*   Updated: 2023/10/30 00:59:37 by palucena         ###   ########.fr       */
+/*   Updated: 2023/10/31 00:04:32 by palucena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,20 +21,26 @@ t_ps	*p_new_node(t_ps *par, t_lx *lex)
 	i = 0;
 	rot = lex;
 	new = malloc(sizeof(t_ps));
+
 	while (rot && rot->token != PIPE)
 	{
 		if (rot->token == CMD)
 			new->cmd = malloc(sizeof(char) * (ft_strlen(rot->content) + 1));
-		while (rot && rot->token == ARG)
+		if (rot->token == ARG)
 		{
-			rot = rot->next;
-			i++;
+			while (rot && rot->token == ARG)
+			{
+				rot = rot->next;
+				i++;
+			}
+			break ;
 		}
-		new->args = malloc(sizeof(char *) * (i + 1));
 		if (rot)
 			rot = rot->next;
 	}
+	new->args = malloc(sizeof(char *) * (i + 1));
 	new->args[i] = NULL;
+	new->next = NULL;
 	if (par)
 		par->next = new;
 	return (new);
@@ -58,10 +64,14 @@ t_lx	*p_fill_arg(t_lx *lex, t_ps *par)
 {
 	int	i;
 
-	i = 0;
+	i = -1;
 	while (lex && lex->token == ARG)
-		par->args[i++] = ft_strdup(lex->content);
-	par->args[i] = NULL;
+	{
+		par->args[++i] = malloc(sizeof(char) * (ft_strlen(lex->content) + 1));
+		par->args[i] = lex->content;
+		lex = lex->next;
+	}
+	par->args[++i] = NULL;
 	return (lex);
 }
 
@@ -82,13 +92,16 @@ t_ps	*p_fill_ps(t_lx *lex, t_ps *par)
 			curr->cmd = lex->content;
 		else if (lex->token == ARG)
 			lex = p_fill_arg(lex, curr);
-		else if (lex->token == PIPE)
+		if (lex && lex->token == PIPE)
 		{
+			lex = lex->next;
 			pipe(fd);
 			curr->outfile = fd[1];
 			curr = p_new_node(curr, lex);
 			curr->infile = fd[0];
 		}
+		if (!lex)
+			break ;
 		lex = lex->next;
 	}
 	return (par);

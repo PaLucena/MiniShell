@@ -6,7 +6,7 @@
 /*   By: palucena <palucena@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 13:30:18 by palucena          #+#    #+#             */
-/*   Updated: 2023/10/29 23:12:45 by palucena         ###   ########.fr       */
+/*   Updated: 2023/10/31 00:04:05 by palucena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,18 +25,28 @@ int	l_check_redir(char *word)
 	return (0);
 }
 
-int	l_get_token(char *actual, char *prev, int i)
+int	l_get_token(char *actual, t_lx *prev, bool check)
 {
-	if (i == 0 || ft_strcmp(prev, "|"))
-		return (CMD);
-	else if (ft_strcmp(actual, "|"))
+	static bool	cmd_door = false;
+
+	if (check)
+		cmd_door = true;
+	if (ft_strcmp(actual, "|"))
+	{
+		cmd_door = false;
 		return (PIPE);
+	}
 	else if (l_check_redir(actual) != 0)
 		return (l_check_redir(actual));
-	else if (ft_strcmp(prev, "<"))
+	else if (prev->token == REDIR_IN)
 		return (REDIR_FILEIN);
-	else if (ft_strcmp(prev, ">") || ft_strcmp(prev, ">>"))
+	else if (prev->token == REDIR_OUT || prev->token == REDIR_APPEND)
 		return (REDIR_FILEOUT);
+	else if (!cmd_door)
+	{
+		cmd_door = true;
+		return (CMD);
+	}
 	else
 		return (ARG);
 }
@@ -68,17 +78,26 @@ t_lx	*l_new_node(char *str, int i)
 
 void	l_tokenizer(t_lx *lex)
 {
+	bool	cmd_door;
 	t_lx	*curr;
 	t_lx	*prev;
 	int		i;
 
 	curr = lex->next;
 	prev = lex;
-	prev->token = CMD;
+	cmd_door = false;
+	if (l_check_redir(prev->content) == 0)
+	{
+		cmd_door = true;
+		prev->token = CMD;
+	}
+	else
+		prev->token = l_check_redir(prev->content);
 	i = 1;
 	while (curr)
 	{
-		curr->token = l_get_token(curr->content, prev->content, i);
+		curr->token = l_get_token(curr->content, prev, cmd_door);
+		cmd_door = false;
 		prev = curr;
 		curr = curr->next;
 		i++;
