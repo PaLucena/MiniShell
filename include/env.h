@@ -6,7 +6,7 @@
 /*   By: rdelicad <rdelicad@student.42.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/28 16:00:10 by rdelicad          #+#    #+#             */
-/*   Updated: 2023/10/28 20:36:55 by rdelicad         ###   ########.fr       */
+/*   Updated: 2023/10/30 14:45:47 by rdelicad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ typedef struct s_env
 typedef struct s_command
 {
 	t_env			*list_env;
-	t_env			*sorted_list;
 	char			*argv_env;
 	char			*key;
 	char			*value;

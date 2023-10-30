@@ -6,7 +6,7 @@
 /*   By: rdelicad <rdelicad@student.42.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 19:15:28 by rdelicad          #+#    #+#             */
-/*   Updated: 2023/10/28 20:35:14 by rdelicad         ###   ########.fr       */
+/*   Updated: 2023/10/30 15:06:12 by rdelicad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ void	init_struct(t_cmd *c)
 	c->key = NULL;
 	c->list_env = NULL;
 	c->value = NULL;
-	c->sorted_list = NULL;
 }
 
 int	len_envp(char **envp)
@@ -52,6 +51,8 @@ void	create_list_env(t_cmd *c, char **envp, int len_envp)
 			ft_lstadd_back_env(&c->list_env, new);
 			if (ft_strchr(envp[i], '='))
 				new->equal = 1;
+			free(key);
+			free(value);
 		}
 		i++;
 	}
@@ -79,6 +80,6 @@ int	main(int ac, char **av, char **envp)
 			ft_printf("error");
 	}
 	ft_free_list(c.list_env);
-	atexit(leaks);
+	//atexit(leaks);
 	return (0);
 }
