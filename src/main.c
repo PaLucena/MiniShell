@@ -6,7 +6,7 @@
 /*   By: rdelicad <rdelicad@student.42.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 19:15:28 by rdelicad          #+#    #+#             */
-/*   Updated: 2023/10/28 19:05:22 by rdelicad         ###   ########.fr       */
+/*   Updated: 2023/10/30 15:06:12 by rdelicad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ void	init_struct(t_cmd *c)
 	c->key = NULL;
 	c->list_env = NULL;
 	c->value = NULL;
-	c->sorted_list = NULL;
 }
 
 int	len_envp(char **envp)
@@ -36,6 +35,8 @@ void	create_list_env(t_cmd *c, char **envp, int len_envp)
 {
 	t_env	*new;
 	int		i;
+	char	*key;
+	char	*value;
 
 	new = NULL;
 	i = 0;
@@ -44,12 +45,14 @@ void	create_list_env(t_cmd *c, char **envp, int len_envp)
 		c->equal_sign = ft_strchr(envp[i], '=');
 		if (c->equal_sign != NULL)
 		{
-			c->key = ft_strldup(envp[i], c->equal_sign - envp[i]);
-			c->value = ft_strdup(c->equal_sign + 1);
-			new = ft_lstnew_env(c->key, c->value);
+			key = ft_strldup(envp[i], c->equal_sign - envp[i]);
+			value = ft_strdup(c->equal_sign + 1);
+			new = ft_lstnew_env(key, value);
 			ft_lstadd_back_env(&c->list_env, new);
 			if (ft_strchr(envp[i], '='))
 				new->equal = 1;
+			free(key);
+			free(value);
 		}
 		i++;
 	}
@@ -76,7 +79,7 @@ int	main(int ac, char **av, char **envp)
 		else
 			ft_printf("error");
 	}
-	ft_free_list(&c);
+	ft_free_list(c.list_env);
 	//atexit(leaks);
 	return (0);
 }
