@@ -6,7 +6,7 @@
 /*   By: rdelicad <rdelicad@student.42.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 19:15:28 by rdelicad          #+#    #+#             */
-/*   Updated: 2023/10/31 14:34:45 by rdelicad         ###   ########.fr       */
+/*   Updated: 2023/10/31 18:10:37 by rdelicad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,16 +125,22 @@ int main(int ac, char** av, char** envp)
         }
 
         // Verificar los comandos ingresados y llamar a las funciones correspondientes
-        if (!strcmp(args[0], "env")) {
+        if (!strcmp(args[0], "env")) 
             ft_env(&c);
-        } else if (!strcmp(args[0], "export")) {
-            if (i > 1) {
+		else if (!strcmp(args[0], "export")) 
+		{
+            if (i > 1)
                 c.argv_env = args[1];
-            }
             ft_export(&c);
-        } else {
-            ft_printf("Comando inválido.\n");
         }
+		else if (!strcmp(args[0], "unset"))
+		{
+			if (i > 1)
+				c.argv_unset = args[1];
+			ft_unset(&c);
+		}
+		else
+            ft_printf("Comando inválido.\n");
     }
 
     ft_free_list(c.list_env);

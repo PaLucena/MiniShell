@@ -6,7 +6,7 @@
 /*   By: rdelicad <rdelicad@student.42.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/28 16:00:10 by rdelicad          #+#    #+#             */
-/*   Updated: 2023/10/31 12:18:25 by rdelicad         ###   ########.fr       */
+/*   Updated: 2023/10/31 19:41:04 by rdelicad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ typedef struct s_command
 {
 	t_env			*list_env;
 	char			*argv_env;
+	char			*argv_unset;
 	char			*key;
 	char			*value;
 	char			*equal_sign;
@@ -64,5 +65,13 @@ void				ft_value_zero(t_cmd *c, char *key, char *value, int fd);
 void				ft_value_sign(char *value, int fd);
 void				sorted_list_env(t_env **list_env);
 void				ft_swap_node(t_env *a, t_env *b);
+
+/* utils_export1.c */
+void				yes_value(t_cmd *c);
+void				no_value(t_cmd *c);
+int					check_spaces(char *str);
+
+/* unset.c */
+void				ft_unset(t_cmd *c);
 
 #endif
