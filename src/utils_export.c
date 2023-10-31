@@ -6,7 +6,7 @@
 /*   By: rdelicad <rdelicad@student.42.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 17:53:05 by rdelicad          #+#    #+#             */
-/*   Updated: 2023/10/30 18:37:35 by rdelicad         ###   ########.fr       */
+/*   Updated: 2023/10/31 12:56:45 by rdelicad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,21 +14,32 @@
 
 int	check_argv_exp(t_cmd *c)
 {
-	if (!ft_isalpha(c->argv_env[0]))
+	int	i;
+
+	if (!ft_isalpha(c->argv_env[0]) && c->argv_env[0] != '_')
 	{
-		if (c->argv_env[0] != '_')
+		ft_error(2, "not a valid identifier");
+		return (0);
+	}
+	i = 1;
+	while (c->argv_env[i] != '\0' && c->argv_env[i] != '=')
+	{
+		if (!ft_isalnum(c->argv_env[i]) && !ft_isalpha(c->argv_env[i])
+			&& c->argv_env[i] != '_')
 		{
 			ft_error(2, "not a valid identifier");
 			return (0);
 		}
+		i++;
 	}
 	return (1);
 }
 
 void	ft_value_zero(t_cmd *c, char *key, char *value, int fd)
 {
+	char	str[2] = "\"\"";
+
 	(void)value;
-	char str[2] = "\"\"";
 	if (fd == 1)
 		write(1, "declare -x ", 11);
 	else
@@ -46,22 +57,25 @@ void	ft_value_sign(char *value, int fd)
 {
 	if (ft_strchr(value, '=') || ft_strchr(value, 32))
 		ft_putstr_fd(value, fd);
+	else
+		ft_putstr_fd(value, fd);
 }
 
 void	sorted_list_env(t_env **list_env)
 {
 	t_env	*curr;
-	t_env	*last;
 	int		swap;
 
+	// t_env	*last;
+	curr = NULL;
 	if ((*list_env) == NULL || (*list_env)->next == NULL)
-		return;
+		return ;
 	swap = 1;
 	while (swap)
 	{
 		swap = 0;
 		curr = (*list_env);
-		last = NULL;
+		// last = NULL;
 		while (curr->next != NULL)
 		{
 			if (ft_strcmp(curr->key, curr->next->key) > 0)
@@ -69,7 +83,7 @@ void	sorted_list_env(t_env **list_env)
 				ft_swap_node(curr, curr->next);
 				swap = 1;
 			}
-			last = curr;
+			// last = curr;
 			curr = curr->next;
 		}
 	}
@@ -82,12 +96,12 @@ void	ft_swap_node(t_env *a, t_env *b)
 	int		aux_equal;
 
 	aux_key = a->key;
-	aux_value = a->value;
-	aux_equal = a->equal;
 	a->key = b->key;
-	a->value = b->value;
-	a->equal = b->equal;
 	b->key = aux_key;
+	aux_value = a->value;
+	a->value = b->value;
 	b->value = aux_value;
+	aux_equal = a->equal;
+	a->equal = b->equal;
 	b->equal = aux_equal;
 }

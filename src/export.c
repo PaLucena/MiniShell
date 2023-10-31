@@ -6,7 +6,7 @@
 /*   By: rdelicad <rdelicad@student.42.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/28 15:58:35 by rdelicad          #+#    #+#             */
-/*   Updated: 2023/10/30 16:57:52 by rdelicad         ###   ########.fr       */
+/*   Updated: 2023/10/31 12:01:28 by rdelicad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,8 +62,9 @@ void	normal_export(t_cmd *c)
 {
 	t_env	*curr;
 
-	ft_env(c);
 	ft_printf("---------- Comando ENV ------------\n");
+	ft_env(c);
+	ft_printf("---------- Comando EXPORT ------------\n");
 	ft_printf("\n");
 	sorted_list_env(&c->list_env);
 	curr = c->list_env;
