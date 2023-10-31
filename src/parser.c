@@ -6,7 +6,7 @@
 /*   By: palucena <palucena@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 19:09:51 by palucena          #+#    #+#             */
-/*   Updated: 2023/10/31 00:04:32 by palucena         ###   ########.fr       */
+/*   Updated: 2023/10/31 16:21:57 by palucena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@ t_ps	*p_new_node(t_ps *par, t_lx *lex)
 	i = 0;
 	rot = lex;
 	new = malloc(sizeof(t_ps));
-
+	new->infile = 0;
+	new->outfile = 1;
 	while (rot && rot->token != PIPE)
 	{
 		if (rot->token == CMD)
@@ -50,13 +51,13 @@ int	p_open(t_lx *lex)
 {
 	int	fd;
 
-	fd = -1;
-	if (lex->next && lex->token == REDIR_FILEIN)
+	fd = -2;
+	if (lex->next && lex->token == REDIR_IN)
 		fd = open(lex->next->content, 0444);
-	else if (lex->next && lex->token == REDIR_FILEOUT)
-		fd = open(lex->next->content, 0777, O_TRUNC);
-	else if (lex->next)
-		fd = open(lex->next->content, 0777, O_APPEND);
+	else if (lex->next && lex->token == REDIR_OUT)
+		fd = open(lex->next->content, O_CREAT | O_RDWR | O_TRUNC, 0777);
+	else if (lex->next && lex->token == REDIR_APPEND)
+		fd = open(lex->next->content, O_CREAT | O_RDWR | O_APPEND, 0777);
 	return (fd);
 }
 
@@ -84,15 +85,15 @@ t_ps	*p_fill_ps(t_lx *lex, t_ps *par)
 	par = curr;
 	while (lex)
 	{
-		if (lex->token == REDIR_FILEIN)
+		if (lex->token == REDIR_IN)
 			curr->infile = p_open(lex);
-		else if (lex->token == REDIR_FILEOUT || lex->token == REDIR_APPEND)
+		else if (lex->token == REDIR_OUT || lex->token == REDIR_APPEND)
 			curr->outfile = p_open(lex);
 		else if (lex->token == CMD)
 			curr->cmd = lex->content;
-		else if (lex->token == ARG)
+		if (lex->token == ARG)
 			lex = p_fill_arg(lex, curr);
-		if (lex && lex->token == PIPE)
+		else if (lex && lex->token == PIPE)
 		{
 			lex = lex->next;
 			pipe(fd);
@@ -100,9 +101,11 @@ t_ps	*p_fill_ps(t_lx *lex, t_ps *par)
 			curr = p_new_node(curr, lex);
 			curr->infile = fd[0];
 		}
-		if (!lex)
+		else if (lex)
+			lex = lex->next;
+		else
 			break ;
-		lex = lex->next;
 	}
+	printf("¿? %s\n", par->cmd);
 	return (par);
 }
