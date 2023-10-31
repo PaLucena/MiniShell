@@ -6,7 +6,7 @@
 /*   By: rdelicad <rdelicad@student.42.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/28 15:58:35 by rdelicad          #+#    #+#             */
-/*   Updated: 2023/10/30 15:05:00 by rdelicad         ###   ########.fr       */
+/*   Updated: 2023/10/31 12:01:28 by rdelicad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,16 @@ void	ft_export(t_cmd *c)
 {
 	if (c->argv_env == NULL)
 		normal_export(c);
-	else if (ft_strchr(c->argv_env, '='))
-		equal_sign_env(c);
-	else if (!ft_strchr(c->argv_env, '='))
-		no_equal_sign_env(c);
+	else
+	{
+		if (check_argv_exp(c))
+		{
+			if (ft_strchr(c->argv_env, '='))
+				equal_sign_env(c);
+			else if (!ft_strchr(c->argv_env, '='))
+				no_equal_sign_env(c);
+		}
+	}
 }
 
 void	no_equal_sign_env(t_cmd *c)
@@ -56,7 +62,11 @@ void	normal_export(t_cmd *c)
 {
 	t_env	*curr;
 
-	//sorted_list_env(&c->list_env);
+	ft_printf("---------- Comando ENV ------------\n");
+	ft_env(c);
+	ft_printf("---------- Comando EXPORT ------------\n");
+	ft_printf("\n");
+	sorted_list_env(&c->list_env);
 	curr = c->list_env;
 	while (curr != NULL)
 	{
@@ -64,9 +74,6 @@ void	normal_export(t_cmd *c)
 		curr = curr->next;
 	}
 	ft_printf("\n");
-	ft_printf("---------- Comando ENV ------------\n");
-	ft_printf("\n");
-	ft_env(c);
 }
 
 void	ft_putenv(t_cmd *c, char *key, char *value, int fd)

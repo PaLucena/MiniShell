@@ -6,7 +6,7 @@
 /*   By: rdelicad <rdelicad@student.42.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/28 16:00:10 by rdelicad          #+#    #+#             */
-/*   Updated: 2023/10/30 14:45:47 by rdelicad         ###   ########.fr       */
+/*   Updated: 2023/10/31 12:18:25 by rdelicad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,15 +55,14 @@ void				ft_env(t_cmd *c);
 void				ft_export(t_cmd *c);
 void				equal_sign_env(t_cmd *c);
 void				no_equal_sign_env(t_cmd *c);
+void				normal_export(t_cmd *c);
+void				ft_putenv(t_cmd *c, char *key, char *value, int fd);
 
 /* utils_export.c */
+int					check_argv_exp(t_cmd *c);
 void				ft_value_zero(t_cmd *c, char *key, char *value, int fd);
 void				ft_value_sign(char *value, int fd);
-
-/* export.c */
-void				normal_export(t_cmd *c);
-void				equal_sign_env(t_cmd *c);
-void				no_equal_sign_env(t_cmd *c);
-void				ft_putenv(t_cmd *c, char *key, char *value, int fd);
+void				sorted_list_env(t_env **list_env);
+void				ft_swap_node(t_env *a, t_env *b);
 
 #endif
