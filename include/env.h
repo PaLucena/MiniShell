@@ -6,7 +6,7 @@
 /*   By: rdelicad <rdelicad@student.42.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/28 16:00:10 by rdelicad          #+#    #+#             */
-/*   Updated: 2023/11/01 12:38:59 by rdelicad         ###   ########.fr       */
+/*   Updated: 2023/11/01 17:28:32 by rdelicad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ void				ft_free_node(t_env *node);
 
 /* env.c */
 void				ft_env(t_cmd *c);
+void				env_finish_position(t_env **list);
 
 /* export.c */
 void				ft_export(t_cmd *c);
