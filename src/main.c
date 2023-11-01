@@ -6,7 +6,7 @@
 /*   By: rdelicad <rdelicad@student.42.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 19:15:28 by rdelicad          #+#    #+#             */
-/*   Updated: 2023/10/31 18:10:37 by rdelicad         ###   ########.fr       */
+/*   Updated: 2023/11/01 11:47:05 by rdelicad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,7 +137,7 @@ int main(int ac, char** av, char** envp)
 		{
 			if (i > 1)
 				c.argv_unset = args[1];
-			ft_unset(&c);
+			ft_unset(&c.list_env, c.argv_unset);
 		}
 		else
             ft_printf("Comando inválido.\n");

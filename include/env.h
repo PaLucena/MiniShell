@@ -6,7 +6,7 @@
 /*   By: rdelicad <rdelicad@student.42.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/28 16:00:10 by rdelicad          #+#    #+#             */
-/*   Updated: 2023/11/01 11:00:40 by rdelicad         ###   ########.fr       */
+/*   Updated: 2023/11/01 12:38:59 by rdelicad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,9 @@ void				no_value(t_cmd *c);
 int					check_spaces(char *str);
 
 /* unset.c */
-void				ft_unset(t_cmd *c);
+void				ft_unset(t_env **list, char *env);
+void				top_the_list(t_env **list, t_env *new);
+void				middle_the_list(t_env *new);
+void				finish_the_list(t_env *new);
 
 #endif
