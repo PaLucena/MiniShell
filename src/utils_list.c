@@ -6,9 +6,10 @@
 /*   By: rdelicad <rdelicad@student.42.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 18:48:10 by rdelicad          #+#    #+#             */
-/*   Updated: 2023/10/31 11:46:05 by rdelicad         ###   ########.fr       */
+/*   Updated: 2023/11/01 12:43:28 by rdelicad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #include "../include/env.h"
 
@@ -78,11 +79,15 @@ void	ft_add_new_env(t_cmd *c)
 		new_node->equal = 1;
 	else
 		new_node->equal = 0;
-	if (ft_strchr(c->argv_env, '=') && *new_node->value == '\0')
-		normal_export(c);
+	c->argv_env = NULL;
+	/* if (ft_strchr(c->argv_env, '=') && *new_node->value == '\0')
+	{
+		return ;
+		//normal_export(c);
+	}
 	else 
 	{
 		c->argv_env = NULL;
-		ft_export(c);
-	}
+		//ft_export(c);
+	} */
 }

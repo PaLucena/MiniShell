@@ -6,7 +6,7 @@
 /*   By: rdelicad <rdelicad@student.42.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/28 15:58:35 by rdelicad          #+#    #+#             */
-/*   Updated: 2023/10/31 12:01:28 by rdelicad         ###   ########.fr       */
+/*   Updated: 2023/11/01 11:00:18 by rdelicad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,11 +42,12 @@ void	equal_sign_env(t_cmd *c)
 	c->equal_sign = ft_strchr(c->argv_env, '=');
 	if (c->equal_sign != NULL)
 	{
-		c->key = ft_strldup(c->argv_env, c->equal_sign - c->argv_env);
-		c->value = ft_strdup(c->equal_sign + 1);
+		no_value(c);
+		yes_value(c);
 		ft_add_new_env(c);
 		free(c->key);
 		free(c->value);
+		c->argv_env = NULL;
 	}
 	else
 	{
@@ -62,25 +63,26 @@ void	normal_export(t_cmd *c)
 {
 	t_env	*curr;
 
-	ft_printf("---------- Comando ENV ------------\n");
+	/* ft_printf("---------- Comando ENV ------------\n");
 	ft_env(c);
 	ft_printf("---------- Comando EXPORT ------------\n");
-	ft_printf("\n");
+	ft_printf("\n"); */
 	sorted_list_env(&c->list_env);
 	curr = c->list_env;
+
 	while (curr != NULL)
 	{
-		ft_putenv(c, curr->key, curr->value, 1);
+		ft_putenv(curr->key, curr->value, curr->equal, 1);
 		curr = curr->next;
 	}
 	ft_printf("\n");
 }
 
-void	ft_putenv(t_cmd *c, char *key, char *value, int fd)
+void	ft_putenv(char *key, char *value, int equal, int fd)
 {
 	if (*value == '\0')
 	{
-		ft_value_zero(c, key, value, fd);
+		ft_value_zero(key, equal, fd);
 	}
 	else
 	{

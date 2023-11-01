@@ -6,7 +6,7 @@
 /*   By: rdelicad <rdelicad@student.42.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 17:53:05 by rdelicad          #+#    #+#             */
-/*   Updated: 2023/10/31 12:56:45 by rdelicad         ###   ########.fr       */
+/*   Updated: 2023/11/01 11:00:35 by rdelicad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,17 +35,16 @@ int	check_argv_exp(t_cmd *c)
 	return (1);
 }
 
-void	ft_value_zero(t_cmd *c, char *key, char *value, int fd)
+void	ft_value_zero(char *key, int equal, int fd)
 {
 	char	str[2] = "\"\"";
 
-	(void)value;
 	if (fd == 1)
 		write(1, "declare -x ", 11);
 	else
 		write(1, "declare -xr ", 12);
 	ft_putstr_fd(key, fd);
-	if (c->argv_env != NULL && ft_strchr(c->argv_env, '='))
+	if (equal == 1)
 	{
 		write(1, "=", 1);
 		write(1, str, 2);
