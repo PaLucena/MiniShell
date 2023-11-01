@@ -6,7 +6,7 @@
 /*   By: rdelicad <rdelicad@student.42.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/28 15:58:35 by rdelicad          #+#    #+#             */
-/*   Updated: 2023/10/31 19:45:59 by rdelicad         ###   ########.fr       */
+/*   Updated: 2023/11/01 11:00:18 by rdelicad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,17 +72,17 @@ void	normal_export(t_cmd *c)
 
 	while (curr != NULL)
 	{
-		ft_putenv(c, curr->key, curr->value, 1);
+		ft_putenv(curr->key, curr->value, curr->equal, 1);
 		curr = curr->next;
 	}
 	ft_printf("\n");
 }
 
-void	ft_putenv(t_cmd *c, char *key, char *value, int fd)
+void	ft_putenv(char *key, char *value, int equal, int fd)
 {
 	if (*value == '\0')
 	{
-		ft_value_zero(c, key, value, fd);
+		ft_value_zero(key, equal, fd);
 	}
 	else
 	{

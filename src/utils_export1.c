@@ -6,7 +6,7 @@
 /*   By: rdelicad <rdelicad@student.42.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 13:26:36 by rdelicad          #+#    #+#             */
-/*   Updated: 2023/10/31 19:42:25 by rdelicad         ###   ########.fr       */
+/*   Updated: 2023/11/01 10:33:13 by rdelicad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	no_value(t_cmd *c)
 	i = 0;
 	while (c->argv_env[i] != '=')
 		i++;
-	if (c->equal_sign[i + 1] == '\0')
+	if (c->argv_env[i + 1] == '\0')
 	{
 		c->key = ft_strldup(c->argv_env, c->equal_sign - c->argv_env);
 		c->value = ft_strdup("");
