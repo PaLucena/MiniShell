@@ -6,7 +6,7 @@
 /*   By: rdelicad <rdelicad@student.42.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 13:26:36 by rdelicad          #+#    #+#             */
-/*   Updated: 2023/11/02 10:53:49 by rdelicad         ###   ########.fr       */
+/*   Updated: 2023/11/02 11:00:45 by rdelicad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,12 +67,9 @@ void	check_env_repeated(t_cmd *c)
 				c->argv_env = NULL;
 				break ;
 			}
-			/* else if (curr->equal == 0 && !ft_strchr(c->argv_env, '='))
-			{ */
-				free(c->key);
-				free(c->value);
-				c->argv_env = NULL;
-			//}
+			free(c->key);
+			free(c->value);
+			c->argv_env = NULL;
 		}
 		curr = curr->next;
 	}
