@@ -6,7 +6,7 @@
 /*   By: rdelicad <rdelicad@student.42.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/28 15:58:35 by rdelicad          #+#    #+#             */
-/*   Updated: 2023/11/01 11:00:18 by rdelicad         ###   ########.fr       */
+/*   Updated: 2023/11/02 10:42:43 by rdelicad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,14 @@ void	ft_export(t_cmd *c)
 	{
 		if (check_argv_exp(c))
 		{
-			if (ft_strchr(c->argv_env, '='))
-				equal_sign_env(c);
-			else if (!ft_strchr(c->argv_env, '='))
-				no_equal_sign_env(c);
+			check_env_repeated(c);
+			if (c->argv_env != NULL)
+			{
+				if (ft_strchr(c->argv_env, '='))
+					equal_sign_env(c);
+				else if (!ft_strchr(c->argv_env, '='))
+					no_equal_sign_env(c);
+			}
 		}
 	}
 }

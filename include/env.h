@@ -6,7 +6,7 @@
 /*   By: rdelicad <rdelicad@student.42.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/28 16:00:10 by rdelicad          #+#    #+#             */
-/*   Updated: 2023/11/01 17:28:32 by rdelicad         ###   ########.fr       */
+/*   Updated: 2023/11/02 10:40:17 by rdelicad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,8 @@ void				ft_swap_node(t_env *a, t_env *b);
 void				yes_value(t_cmd *c);
 void				no_value(t_cmd *c);
 int					check_spaces(char *str);
+void				check_env_repeated(t_cmd *c);
+void				separate_env(t_cmd *c);
 
 /* unset.c */
 void				ft_unset(t_env **list, char *env);

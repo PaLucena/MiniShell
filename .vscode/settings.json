@@ -6,5 +6,7 @@
     "__config": "cpp",
     "__node_handle": "c",
     "ostream": "c"
-  }
+  },
+  "bitoAI.codeCompletion.enableAutoCompletion": true,
+  "bitoAI.codeCompletion.enableCommentToCode": true
 }
