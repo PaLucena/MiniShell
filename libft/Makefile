@@ -6,7 +6,7 @@
 #    By: rdelicad <rdelicad@student.42.com>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/18 19:17:24 by rdelicad          #+#    #+#              #
-#    Updated: 2023/10/28 15:52:19 by rdelicad         ###   ########.fr        #
+#    Updated: 2023/11/03 10:39:10 by rdelicad         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,7 +31,7 @@ CC        := gcc
 
 LIB		:= ar rcs
 
-CFLAGS    := -Wall -Wextra -Werror
+CFLAGS    := -g -Wall -Wextra -Werror
 
 # --- Files ---
 

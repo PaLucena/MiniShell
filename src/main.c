@@ -6,7 +6,7 @@
 /*   By: rdelicad <rdelicad@student.42.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 19:15:28 by rdelicad          #+#    #+#             */
-/*   Updated: 2023/11/01 17:36:18 by rdelicad         ###   ########.fr       */
+/*   Updated: 2023/11/03 10:51:28 by rdelicad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,21 @@ void	create_list_env(t_cmd *c, char **envp, int len_envp)
 	}
 }
 
+void	create_path(t_cmd *c)
+{
+	t_env	*curr;
+
+	curr = c->list_env;
+	while (curr)
+	{
+		if (ft_strcmp(curr->key, "PATH") == 0)
+		{
+			c->path = ft_split(curr->value, ':');
+		}
+		curr = curr->next;
+	}
+}
+
 /* int	main(int ac, char **av, char **envp)
 {
 	t_cmd	c;
@@ -98,6 +113,7 @@ int main(int ac, char** av, char** envp)
 	(void)av;
     init_struct(&c);
     create_list_env(&c, envp, len_envp(envp));
+	create_path(&c);
 
     char command[MAX_COMMAND_LENGTH];
     char* args[MAX_COMMAND_LENGTH];
@@ -144,6 +160,7 @@ int main(int ac, char** av, char** envp)
     }
 
     ft_free_list(c.list_env);
+	ft_matfree(c.path);
     //atexit(leaks);
     return 0;
 }

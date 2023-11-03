@@ -6,7 +6,7 @@
 /*   By: rdelicad <rdelicad@student.42.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/28 16:00:10 by rdelicad          #+#    #+#             */
-/*   Updated: 2023/11/02 10:40:17 by rdelicad         ###   ########.fr       */
+/*   Updated: 2023/11/03 10:51:15 by rdelicad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ typedef struct s_env
 typedef struct s_command
 {
 	t_env			*list_env;
+	char			**path;
 	char			*argv_env;
 	char			*argv_unset;
 	char			*key;
@@ -41,6 +42,7 @@ char				*ft_strldup(char const *s1, size_t n);
 void				init_struct(t_cmd *c);
 int					len_envp(char **envp);
 void				create_list_env(t_cmd *c, char **arr_env, int len_envp);
+void				create_path(t_cmd *c);
 
 /* utils_list.c */
 void				ft_lstadd_back_env(t_env **lst, t_env *new);
