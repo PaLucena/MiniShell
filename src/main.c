@@ -6,7 +6,7 @@
 /*   By: rdelicad <rdelicad@student.42.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 19:15:28 by rdelicad          #+#    #+#             */
-/*   Updated: 2023/11/03 10:51:28 by rdelicad         ###   ########.fr       */
+/*   Updated: 2023/11/03 12:12:00 by rdelicad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -146,8 +146,9 @@ int main(int ac, char** av, char** envp)
 		else if (!strcmp(args[0], "export")) 
 		{
             if (i > 1)
-                c.argv_env = args[1];
-            ft_export(&c);
+				argv_export(&c, args, i);
+			else
+            	ft_export(&c);
         }
 		else if (!strcmp(args[0], "unset"))
 		{
