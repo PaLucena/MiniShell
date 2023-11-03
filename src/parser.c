@@ -6,7 +6,7 @@
 /*   By: palucena <palucena@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 19:09:51 by palucena          #+#    #+#             */
-/*   Updated: 2023/10/31 16:21:57 by palucena         ###   ########.fr       */
+/*   Updated: 2023/11/02 17:33:33 by palucena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ t_ps	*p_new_node(t_ps *par, t_lx *lex)
 	i = 0;
 	rot = lex;
 	new = malloc(sizeof(t_ps));
-	new->infile = 0;
+	new->infile = -1;
 	new->outfile = 1;
 	while (rot && rot->token != PIPE)
 	{
@@ -55,7 +55,10 @@ int	p_open(t_lx *lex)
 	if (lex->next && lex->token == REDIR_IN)
 		fd = open(lex->next->content, 0444);
 	else if (lex->next && lex->token == REDIR_OUT)
+	{
 		fd = open(lex->next->content, O_CREAT | O_RDWR | O_TRUNC, 0777);
+		printf("fd_out es: %i\n", fd);
+	}
 	else if (lex->next && lex->token == REDIR_APPEND)
 		fd = open(lex->next->content, O_CREAT | O_RDWR | O_APPEND, 0777);
 	return (fd);
@@ -89,6 +92,8 @@ t_ps	*p_fill_ps(t_lx *lex, t_ps *par)
 			curr->infile = p_open(lex);
 		else if (lex->token == REDIR_OUT || lex->token == REDIR_APPEND)
 			curr->outfile = p_open(lex);
+		else if (lex->token == REDIR_HEREDOC)
+			curr->infile = 0;
 		else if (lex->token == CMD)
 			curr->cmd = lex->content;
 		if (lex->token == ARG)
@@ -106,6 +111,5 @@ t_ps	*p_fill_ps(t_lx *lex, t_ps *par)
 		else
 			break ;
 	}
-	printf("¿? %s\n", par->cmd);
 	return (par);
 }

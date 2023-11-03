@@ -6,7 +6,7 @@
 /*   By: palucena <palucena@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 13:30:18 by palucena          #+#    #+#             */
-/*   Updated: 2023/10/31 00:04:05 by palucena         ###   ########.fr       */
+/*   Updated: 2023/11/02 17:11:25 by palucena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int	l_get_token(char *actual, t_lx *prev, bool check)
 	}
 	else if (l_check_redir(actual) != 0)
 		return (l_check_redir(actual));
-	else if (prev->token == REDIR_IN)
+	else if (prev->token == REDIR_IN || prev->token == REDIR_HEREDOC)
 		return (REDIR_FILEIN);
 	else if (prev->token == REDIR_OUT || prev->token == REDIR_APPEND)
 		return (REDIR_FILEOUT);

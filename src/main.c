@@ -6,7 +6,7 @@
 /*   By: palucena <palucena@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 19:07:37 by palucena          #+#    #+#             */
-/*   Updated: 2023/10/31 16:19:52 by palucena         ###   ########.fr       */
+/*   Updated: 2023/11/02 18:34:56 by palucena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	print_select(t_lx *lex, t_ps *par, char **argv)
 	}
 }
 
-void	translate_input(char *input, char **argv)
+void	manage_input(char *input, char **argv)
 {
 	t_lx	*lex;
 	t_ps	*par;
@@ -72,7 +72,7 @@ int	main(int argc, char **argv, char **envp)
 		if (!input || ft_strcmp(input, "exit"))
 			break ;
 		if (!ft_strcmp(input, "\0"))
-			translate_input(input, argv);
+			manage_input(input, argv);
 		add_history(input);
 		free(input);
 	}
