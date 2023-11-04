@@ -6,7 +6,7 @@
 /*   By: rdelicad <rdelicad@student.42.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/28 16:00:10 by rdelicad          #+#    #+#             */
-/*   Updated: 2023/11/03 12:04:46 by rdelicad         ###   ########.fr       */
+/*   Updated: 2023/11/04 13:17:21 by rdelicad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ typedef struct s_command
 	char			*key;
 	char			*value;
 	char			*equal_sign;
+	char			*pwd;
 }					t_cmd;
 
 /* leaks.c */
@@ -85,5 +86,8 @@ void				ft_unset(t_env **list, char *env);
 void				top_the_list(t_env **list, t_env *new);
 void				middle_the_list(t_env *new);
 void				finish_the_list(t_env *new);
+
+/* pwd.c */
+void				ft_pwd(t_cmd *c);
 
 #endif

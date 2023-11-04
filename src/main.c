@@ -6,7 +6,7 @@
 /*   By: rdelicad <rdelicad@student.42.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 19:15:28 by rdelicad          #+#    #+#             */
-/*   Updated: 2023/11/03 12:12:00 by rdelicad         ###   ########.fr       */
+/*   Updated: 2023/11/04 13:19:32 by rdelicad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ void	init_struct(t_cmd *c)
 	c->key = NULL;
 	c->list_env = NULL;
 	c->value = NULL;
+	c->pwd = NULL;
 }
 
 int	len_envp(char **envp)
@@ -78,32 +79,6 @@ void	create_path(t_cmd *c)
 		curr = curr->next;
 	}
 }
-
-/* int	main(int ac, char **av, char **envp)
-{
-	t_cmd	c;
-
-	init_struct(&c);
-	create_list_env(&c, envp, len_envp(envp));
-	if (ac >= 2)
-	{
-		if (!ft_strcmp(av[1], "env"))
-			ft_env(&c);
-		else if (!ft_strcmp(av[1], "export"))
-		{
-			if (ac > 2)
-			{
-				c.argv_env = av[2];
-			}
-			ft_export(&c);
-		}
-		else
-			ft_printf("error");
-	}
-	ft_free_list(c.list_env);
-	//atexit(leaks);
-	return (0);
-} */
 #define MAX_COMMAND_LENGTH 100
 
 int main(int ac, char** av, char** envp) 
@@ -128,8 +103,8 @@ int main(int ac, char** av, char** envp)
         // Dividir el comando en argumentos
         char* token = strtok(command, " ");
         int i = 0;
-        while (token != NULL) {
             args[i] = token;
+        while (token != NULL) {
             token = strtok(NULL, " ");
             i++;
         }
@@ -156,12 +131,17 @@ int main(int ac, char** av, char** envp)
 				c.argv_unset = args[1];
 			ft_unset(&c.list_env, c.argv_unset);
 		}
+		else if (!strcmp(args[0], "pwd"))
+		{
+			ft_pwd(&c);
+		}
 		else
             ft_printf("Comando inválido.\n");
     }
 
     ft_free_list(c.list_env);
 	ft_matfree(c.path);
-    //atexit(leaks);
+	free(c.pwd);
+    atexit(leaks);
     return 0;
 }
