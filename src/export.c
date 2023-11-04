@@ -6,7 +6,7 @@
 /*   By: rdelicad <rdelicad@student.42.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/28 15:58:35 by rdelicad          #+#    #+#             */
-/*   Updated: 2023/11/01 11:00:18 by rdelicad         ###   ########.fr       */
+/*   Updated: 2023/11/03 12:03:37 by rdelicad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,17 +15,9 @@
 void	ft_export(t_cmd *c)
 {
 	if (c->argv_env == NULL)
-		normal_export(c);
+		print_export(c);
 	else
-	{
-		if (check_argv_exp(c))
-		{
-			if (ft_strchr(c->argv_env, '='))
-				equal_sign_env(c);
-			else if (!ft_strchr(c->argv_env, '='))
-				no_equal_sign_env(c);
-		}
-	}
+		add_var_export(c);
 }
 
 void	no_equal_sign_env(t_cmd *c)
@@ -59,14 +51,10 @@ void	equal_sign_env(t_cmd *c)
 	}
 }
 
-void	normal_export(t_cmd *c)
+void	print_export(t_cmd *c)
 {
 	t_env	*curr;
 
-	/* ft_printf("---------- Comando ENV ------------\n");
-	ft_env(c);
-	ft_printf("---------- Comando EXPORT ------------\n");
-	ft_printf("\n"); */
 	sorted_list_env(&c->list_env);
 	curr = c->list_env;
 

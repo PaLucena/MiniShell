@@ -6,7 +6,7 @@
 /*   By: rdelicad <rdelicad@student.42.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 19:15:28 by rdelicad          #+#    #+#             */
-/*   Updated: 2023/11/01 11:47:05 by rdelicad         ###   ########.fr       */
+/*   Updated: 2023/11/04 13:30:57 by rdelicad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ void	init_struct(t_cmd *c)
 	c->key = NULL;
 	c->list_env = NULL;
 	c->value = NULL;
+	c->pwd = NULL;
 }
 
 int	len_envp(char **envp)
@@ -64,31 +65,20 @@ void	create_list_env(t_cmd *c, char **envp, int len_envp)
 	}
 }
 
-/* int	main(int ac, char **av, char **envp)
+void	create_path(t_cmd *c)
 {
-	t_cmd	c;
+	t_env	*curr;
 
-	init_struct(&c);
-	create_list_env(&c, envp, len_envp(envp));
-	if (ac >= 2)
+	curr = c->list_env;
+	while (curr)
 	{
-		if (!ft_strcmp(av[1], "env"))
-			ft_env(&c);
-		else if (!ft_strcmp(av[1], "export"))
+		if (ft_strcmp(curr->key, "PATH") == 0)
 		{
-			if (ac > 2)
-			{
-				c.argv_env = av[2];
-			}
-			ft_export(&c);
+			c->path = ft_split(curr->value, ':');
 		}
-		else
-			ft_printf("error");
+		curr = curr->next;
 	}
-	ft_free_list(c.list_env);
-	//atexit(leaks);
-	return (0);
-} */
+}
 #define MAX_COMMAND_LENGTH 100
 
 int main(int ac, char** av, char** envp) 
@@ -98,6 +88,7 @@ int main(int ac, char** av, char** envp)
 	(void)av;
     init_struct(&c);
     create_list_env(&c, envp, len_envp(envp));
+	create_path(&c);
 
     char command[MAX_COMMAND_LENGTH];
     char* args[MAX_COMMAND_LENGTH];
@@ -112,8 +103,8 @@ int main(int ac, char** av, char** envp)
         // Dividir el comando en argumentos
         char* token = strtok(command, " ");
         int i = 0;
-        while (token != NULL) {
             args[i] = token;
+        while (token != NULL) {
             token = strtok(NULL, " ");
             i++;
         }
@@ -125,25 +116,12 @@ int main(int ac, char** av, char** envp)
         }
 
         // Verificar los comandos ingresados y llamar a las funciones correspondientes
-        if (!strcmp(args[0], "env")) 
-            ft_env(&c);
-		else if (!strcmp(args[0], "export")) 
-		{
-            if (i > 1)
-                c.argv_env = args[1];
-            ft_export(&c);
-        }
-		else if (!strcmp(args[0], "unset"))
-		{
-			if (i > 1)
-				c.argv_unset = args[1];
-			ft_unset(&c.list_env, c.argv_unset);
-		}
-		else
-            ft_printf("Comando inválido.\n");
+        ft_builtins(&c, args, i);
     }
 
     ft_free_list(c.list_env);
-    //atexit(leaks);
+	ft_matfree(c.path);
+	free(c.pwd);
+    atexit(leaks);
     return 0;
 }

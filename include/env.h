@@ -6,7 +6,7 @@
 /*   By: rdelicad <rdelicad@student.42.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/28 16:00:10 by rdelicad          #+#    #+#             */
-/*   Updated: 2023/11/01 12:38:59 by rdelicad         ###   ########.fr       */
+/*   Updated: 2023/11/04 13:34:00 by rdelicad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,13 @@ typedef struct s_env
 typedef struct s_command
 {
 	t_env			*list_env;
+	char			**path;
 	char			*argv_env;
 	char			*argv_unset;
 	char			*key;
 	char			*value;
 	char			*equal_sign;
+	char			*pwd;
 }					t_cmd;
 
 /* leaks.c */
@@ -41,6 +43,10 @@ char				*ft_strldup(char const *s1, size_t n);
 void				init_struct(t_cmd *c);
 int					len_envp(char **envp);
 void				create_list_env(t_cmd *c, char **arr_env, int len_envp);
+void				create_path(t_cmd *c);
+
+/* builtins.c */
+void				ft_builtins(t_cmd *c, char **args, int i);
 
 /* utils_list.c */
 void				ft_lstadd_back_env(t_env **lst, t_env *new);
@@ -51,12 +57,13 @@ void				ft_free_node(t_env *node);
 
 /* env.c */
 void				ft_env(t_cmd *c);
+void				env_finish_position(t_env **list);
 
 /* export.c */
 void				ft_export(t_cmd *c);
 void				equal_sign_env(t_cmd *c);
 void				no_equal_sign_env(t_cmd *c);
-void				normal_export(t_cmd *c);
+void				print_export(t_cmd *c);
 void				ft_putenv(char *key, char *value, int equal, int fd);
 
 /* utils_export.c */
@@ -70,11 +77,20 @@ void				ft_swap_node(t_env *a, t_env *b);
 void				yes_value(t_cmd *c);
 void				no_value(t_cmd *c);
 int					check_spaces(char *str);
+void				check_env_repeated(t_cmd *c);
+void				separate_env(t_cmd *c);
+
+/* utils_export2.c */
+void				argv_export(t_cmd *c, char **args, int i);
+void				add_var_export(t_cmd *c);
 
 /* unset.c */
 void				ft_unset(t_env **list, char *env);
 void				top_the_list(t_env **list, t_env *new);
 void				middle_the_list(t_env *new);
 void				finish_the_list(t_env *new);
+
+/* pwd.c */
+void				ft_pwd(t_cmd *c);
 
 #endif
