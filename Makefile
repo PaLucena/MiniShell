@@ -1,10 +1,10 @@
 NAME = minishell
 
 CC = gcc -g
-FLAGS = -Wall -Wextra -Werror -fsanitize=address
+FLAGS = -Wall -Wextra -Werror #-fsanitize=address
 
 SRC_PATH = src/
-SRC = main.c\
+SRC = main.c free.c\
 		lexer.c l_token.c\
 		parser.c
 OBJ_PATH = objs/

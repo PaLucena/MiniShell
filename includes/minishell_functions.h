@@ -6,7 +6,7 @@
 /*   By: palucena <palucena@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 11:11:25 by palucena          #+#    #+#             */
-/*   Updated: 2023/10/30 00:56:16 by palucena         ###   ########.fr       */
+/*   Updated: 2023/11/05 22:32:06 by palucena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,5 +28,9 @@ void	l_tokenizer(t_lx *lx);
 
 ////////// parser.c ////////// 
 t_ps	*p_fill_ps(t_lx *lex, t_ps *par);
+
+////////// free.c //////////
+void	free_lexer(t_lx *lex);
+void	free_parser(t_ps *par);
 
 #endif

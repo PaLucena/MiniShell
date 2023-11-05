@@ -6,7 +6,7 @@
 /*   By: palucena <palucena@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 19:07:37 by palucena          #+#    #+#             */
-/*   Updated: 2023/11/02 18:34:56 by palucena         ###   ########.fr       */
+/*   Updated: 2023/11/06 00:18:18 by palucena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,37 +43,57 @@ void	print_select(t_lx *lex, t_ps *par, char **argv)
 	}
 }
 
-void	manage_input(char *input, char **argv)
+void	ft_syntax_error(void)
+{
+	ft_printf("Syntax error\n");
+	exit(1);
+}
+
+t_ps	*manage_input(char *input, char **argv)
 {
 	t_lx	*lex;
 	t_ps	*par;
 
 	lex = l_fill_lx(input);
 	if (!lex)
-		return ; // error
+		return (NULL); // error
 	par = p_fill_ps(lex, NULL);
 	print_select(lex, par, argv);
+	// limpiar lexer
+	free_lexer(lex);
+	return (par);
+}
+
+void	ft_leaks(void)
+{
+	system("leaks -q minishell");
 }
 
 int	main(int argc, char **argv, char **envp)
 {
+	t_ps	*par;
 	char	*input;
-	char	*name;
-	char	*prompt;
 
+	atexit(ft_leaks);
 	(void)argc;
 	(void)envp; // este no
 	//ft_env(envp);
-	name = "minishell";
-	prompt = ft_strjoin(ft_strjoin("\033[36;1m", name), "$ \033[0m");
 	while (1)
 	{
-		input = readline(prompt);
-		if (!input || ft_strcmp(input, "exit"))
+		input = readline("\033[36;1mminishell$ \033[0m");
+		if (ft_strcmp(input, "exit"))
+		{
+			free(input);
 			break ;
-		if (!ft_strcmp(input, "\0"))
-			manage_input(input, argv);
+		}
 		add_history(input);
+		if (!ft_strcmp(input, "\0"))
+		{
+			par = manage_input(input, argv);
+			if (!par)
+				ft_syntax_error();
+			free_parser(par);
+		}
 		free(input);
 	}
 	return (0);
