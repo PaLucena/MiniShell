@@ -6,17 +6,11 @@
 /*   By: rdelicad <rdelicad@student.42.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 19:15:28 by rdelicad          #+#    #+#             */
-/*   Updated: 2023/11/04 13:30:57 by rdelicad         ###   ########.fr       */
+/*   Updated: 2023/11/04 15:38:09 by rdelicad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/env.h"
-#include <stdio.h>
-#include <stdlib.h>
-#include <unistd.h>
-#include <sys/types.h>
-#include <sys/wait.h>
-#include <string.h>
 
 void	init_struct(t_cmd *c)
 {
@@ -26,6 +20,7 @@ void	init_struct(t_cmd *c)
 	c->list_env = NULL;
 	c->value = NULL;
 	c->pwd = NULL;
+	c->input = NULL;
 }
 
 int	len_envp(char **envp)

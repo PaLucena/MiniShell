@@ -6,7 +6,7 @@
 #    By: rdelicad <rdelicad@student.42.com>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/18 19:17:24 by rdelicad          #+#    #+#              #
-#    Updated: 2023/11/03 10:39:10 by rdelicad         ###   ########.fr        #
+#    Updated: 2023/11/04 15:56:27 by rdelicad         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,6 +32,7 @@ CC        := gcc
 LIB		:= ar rcs
 
 CFLAGS    := -g -Wall -Wextra -Werror
+
 
 # --- Files ---
 
@@ -59,7 +60,7 @@ OBJS_DIR = obj
 
 $(NAME): $(OBJS_DIR) $(OBJS)
 	@echo "$(YELLOW)$(BOLD)Compiling libft...$(RESET)"
-	@$(LIB) $(NAME) $(OBJS) 
+	@$(LIB) $(NAME) $(OBJS)
 	@echo "$(GREEN)$(BOLD)Done.$(RESET)"
 
 $(OBJS_DIR):
