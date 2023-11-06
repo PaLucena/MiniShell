@@ -4,9 +4,10 @@ CC = gcc -g
 FLAGS = -Wall -Wextra -Werror #-fsanitize=address
 
 SRC_PATH = src/
-SRC = main.c free.c\
+SRC = main.c utils.c free.c\
 		lexer.c l_token.c\
-		parser.c
+		parser.c\
+		exec.c
 OBJ_PATH = objs/
 OBJ = $(addprefix $(OBJ_PATH), $(SRC:.c=.o))
 

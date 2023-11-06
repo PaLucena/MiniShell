@@ -6,7 +6,7 @@
 /*   By: palucena <palucena@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 19:07:37 by palucena          #+#    #+#             */
-/*   Updated: 2023/11/06 00:18:18 by palucena         ###   ########.fr       */
+/*   Updated: 2023/11/06 19:14:43 by palucena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,7 @@ int	main(int argc, char **argv, char **envp)
 			par = manage_input(input, argv);
 			if (!par)
 				ft_syntax_error();
+			//ft_execute(par);
 			free_parser(par);
 		}
 		free(input);

@@ -6,7 +6,7 @@
 /*   By: palucena <palucena@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 11:11:25 by palucena          #+#    #+#             */
-/*   Updated: 2023/11/05 22:32:06 by palucena         ###   ########.fr       */
+/*   Updated: 2023/11/06 18:13:52 by palucena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,14 @@ void	l_add_back(t_lx **lst, t_lx *new);
 t_lx	*l_new_node(char *str, int i);
 void	l_tokenizer(t_lx *lx);
 
-////////// parser.c ////////// 
+////////// parser.c //////////
 t_ps	*p_fill_ps(t_lx *lex, t_ps *par);
+
+////////// parser.c //////////
+void	ft_execute(t_ps *par);
+
+////////// utils.c //////////
+bool	check_builtin(char	*cmd);
 
 ////////// free.c //////////
 void	free_lexer(t_lx *lex);

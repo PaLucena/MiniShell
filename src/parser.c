@@ -6,7 +6,7 @@
 /*   By: palucena <palucena@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 19:09:51 by palucena          #+#    #+#             */
-/*   Updated: 2023/11/05 22:41:51 by palucena         ###   ########.fr       */
+/*   Updated: 2023/11/06 19:58:24 by palucena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,10 @@ t_ps	*p_new_node(t_ps *par, t_lx *lex)
 	i = 0;
 	rot = lex;
 	new = malloc(sizeof(t_ps));
-	new->infile = -1;
+	new->infile = 0;
 	new->outfile = 1;
 	while (rot && rot->token != PIPE)
 	{
-		if (rot->token == CMD)
-			new->cmd = malloc(sizeof(char) * (ft_strlen(rot->content) + 1));
 		if (rot->token == ARG)
 		{
 			while (rot && rot->token == ARG)
@@ -36,8 +34,7 @@ t_ps	*p_new_node(t_ps *par, t_lx *lex)
 			}
 			break ;
 		}
-		if (rot)
-			rot = rot->next;
+		rot = rot->next;
 	}
 	new->args = malloc(sizeof(char *) * (i + 1));
 	new->args[i] = NULL;
@@ -47,17 +44,47 @@ t_ps	*p_new_node(t_ps *par, t_lx *lex)
 	return (new);
 }
 
+int	ft_heredoc(char *limiter)
+{
+	pid_t	pid;
+	char	*str;
+	int		fd[2];
+
+	(void)limiter;
+	pipe(fd);
+	pid = fork();
+	if (pid == 0)
+	{
+		close(fd[0]);
+		while (1)
+		{
+			write(1, "> ", 2);
+			str = get_next_line(0);
+			ft_putstr_fd(str, fd[1]);
+			if (ft_strncmp(str, limiter, ft_strlen(str)) == 10)
+				exit(0);//printf("sale\n");
+			free(str);
+		}
+	}
+ 	else
+		waitpid(-1, NULL, 0);
+	close(fd[1]);
+	return (fd[0]);
+}
+
 int	p_open(t_lx *lex)
 {
 	int	fd;
 
-	fd = -2;
+	fd = -1;
 	if (lex->next && lex->token == REDIR_IN)
 		fd = open(lex->next->content, 0444);
 	else if (lex->next && lex->token == REDIR_OUT)
 		fd = open(lex->next->content, O_CREAT | O_RDWR | O_TRUNC, 0777);
 	else if (lex->next && lex->token == REDIR_APPEND)
 		fd = open(lex->next->content, O_CREAT | O_RDWR | O_APPEND, 0777);
+	else if (lex->next && lex->token == REDIR_HEREDOC)
+		fd = ft_heredoc(lex->next->content);
 	return (fd);
 }
 
@@ -68,8 +95,7 @@ t_lx	*p_fill_arg(t_lx *lex, t_ps *par)
 	i = -1;
 	while (lex && lex->token == ARG)
 	{
-		par->args[++i] = malloc(sizeof(char) * (ft_strlen(lex->content) + 1));
-		par->args[i] = ft_strdup(lex->content);
+		par->args[++i] = ft_strdup(lex->content);
 		lex = lex->next;
 	}
 	par->args[++i] = NULL;
@@ -85,12 +111,10 @@ t_ps	*p_fill_ps(t_lx *lex, t_ps *par)
 	par = curr;
 	while (lex)
 	{
-		if (lex->token == REDIR_IN)
+		if (lex->token == REDIR_IN || lex->token == REDIR_HEREDOC)
 			curr->infile = p_open(lex);
 		else if (lex->token == REDIR_OUT || lex->token == REDIR_APPEND)
 			curr->outfile = p_open(lex);
-		else if (lex->token == REDIR_HEREDOC)
-			curr->infile = 0;
 		else if (lex->token == CMD)
 			curr->cmd = ft_strdup(lex->content);
 		if (lex->token == ARG)
