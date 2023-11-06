@@ -6,7 +6,7 @@
 /*   By: rdelicad <rdelicad@student.42.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 19:15:28 by rdelicad          #+#    #+#             */
-/*   Updated: 2023/11/06 13:48:27 by rdelicad         ###   ########.fr       */
+/*   Updated: 2023/11/06 20:22:07 by rdelicad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,8 @@ int main(int ac, char** av, char** envp)
         fgets(command, MAX_COMMAND_LENGTH, stdin);
 
         // Eliminar el salto de línea final
-        command[strcspn(command, "\n")] = 0;
+        command[
+			strcspn(command, "\n")] = 0;
 
         // Dividir el comando en argumentos
         char* token = strtok(command, " ");
@@ -119,7 +120,6 @@ int main(int ac, char** av, char** envp)
 
     ft_free_list(c.list_env);
 	ft_matfree(c.path);
-	free(c.pwd);
     atexit(leaks);
     return 0;
 }
