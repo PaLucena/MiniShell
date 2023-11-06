@@ -6,7 +6,7 @@
 /*   By: rdelicad <rdelicad@student.42.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 19:15:28 by rdelicad          #+#    #+#             */
-/*   Updated: 2023/11/04 15:38:09 by rdelicad         ###   ########.fr       */
+/*   Updated: 2023/11/06 13:48:27 by rdelicad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,8 @@ int main(int ac, char** av, char** envp)
     char command[MAX_COMMAND_LENGTH];
     char* args[MAX_COMMAND_LENGTH];
 
-    while (1) {
+    while (1) 
+	{
         printf("minishell> ");
         fgets(command, MAX_COMMAND_LENGTH, stdin);
 
@@ -99,9 +100,11 @@ int main(int ac, char** av, char** envp)
         char* token = strtok(command, " ");
         int i = 0;
             args[i] = token;
-        while (token != NULL) {
-            token = strtok(NULL, " ");
+        while (token != NULL) 
+		{
+			args[i] = token;
             i++;
+            token = strtok(NULL, " ");
         }
         args[i] = NULL;
 
