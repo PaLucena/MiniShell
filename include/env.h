@@ -6,7 +6,7 @@
 /*   By: rdelicad <rdelicad@student.42.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/28 16:00:10 by rdelicad          #+#    #+#             */
-/*   Updated: 2023/11/06 19:35:10 by rdelicad         ###   ########.fr       */
+/*   Updated: 2023/11/07 18:14:04 by rdelicad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,13 +96,12 @@ void				ft_pwd(t_cmd *c);
 
 /* cd.c */
 void				ft_cd(t_cmd *c);
-void				type_cd(t_cmd *c);
 void				changer_pwd_env(t_cmd *c);
 void				changer_oldpwd_env(t_cmd *c, char *oldpwd);
 char				*get_pwd(t_cmd *c);
 
 /* utils.cd.c */
 char				*get_directory_path(t_cmd *c);
-char				*get_parent_directory(const char *path);
+char				*get_parent_directory(char *path);
 
 #endif

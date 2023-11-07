@@ -6,7 +6,7 @@
 /*   By: rdelicad <rdelicad@student.42.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/04 15:40:50 by rdelicad          #+#    #+#             */
-/*   Updated: 2023/11/06 20:14:31 by rdelicad         ###   ########.fr       */
+/*   Updated: 2023/11/07 17:40:07 by rdelicad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,12 @@
 
 void	ft_cd(t_cmd	*c)
 {
-	printf("%s\n", c->input);
 	c->pwd = get_pwd(c);
-	type_cd(c);
-	changer_oldpwd_env(c, c->pwd);
-	changer_pwd_env(c);
-}
-
-void	type_cd(t_cmd *c)
-{
 	c->input = get_directory_path(c);
 	if (chdir(c->input) != 0)
 		perror("Error al cambiar de directorio");
-	/* if (c->input != NULL)
-		free(c->input); */
+	changer_oldpwd_env(c, c->pwd);
+	changer_pwd_env(c);
 }
 
 void	changer_oldpwd_env(t_cmd *c, char *oldpwd)
