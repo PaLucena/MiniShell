@@ -6,7 +6,7 @@
 /*   By: palucena <palucena@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 19:07:37 by palucena          #+#    #+#             */
-/*   Updated: 2023/11/06 19:14:43 by palucena         ###   ########.fr       */
+/*   Updated: 2023/11/08 00:24:03 by palucena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,13 +71,14 @@ void	ft_leaks(void)
 
 int	main(int argc, char **argv, char **envp)
 {
-	t_ps	*par;
+	t_info	*info;
 	char	*input;
 
 	atexit(ft_leaks);
 	(void)argc;
 	(void)envp; // este no
 	//ft_env(envp);
+	info = malloc(sizeof(t_info));
 	while (1)
 	{
 		input = readline("\033[36;1mminishell$ \033[0m");
@@ -89,11 +90,11 @@ int	main(int argc, char **argv, char **envp)
 		add_history(input);
 		if (!ft_strcmp(input, "\0"))
 		{
-			par = manage_input(input, argv);
-			if (!par)
+			info->par = manage_input(input, argv);
+			if (!info->par)
 				ft_syntax_error();
-			//ft_execute(par);
-			free_parser(par);
+			ft_execute(info->par);
+			free_parser(info->par);
 		}
 		free(input);
 	}

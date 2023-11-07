@@ -6,7 +6,7 @@
 /*   By: palucena <palucena@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 10:44:14 by palucena          #+#    #+#             */
-/*   Updated: 2023/11/06 16:53:29 by palucena         ###   ########.fr       */
+/*   Updated: 2023/11/08 00:23:38 by palucena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,5 +41,13 @@ typedef struct s_ps
 	int			outfile;
 	struct s_ps	*next;
 }	t_ps;
+
+typedef struct s_info
+{
+	t_ps	*par;
+	char	**env;
+	int		status;
+	bool	exit;
+}	t_info;
 
 #endif

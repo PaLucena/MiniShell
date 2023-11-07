@@ -6,7 +6,7 @@
 /*   By: palucena <palucena@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 19:09:51 by palucena          #+#    #+#             */
-/*   Updated: 2023/11/06 19:58:24 by palucena         ###   ########.fr       */
+/*   Updated: 2023/11/07 23:56:06 by palucena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,7 +123,8 @@ t_ps	*p_fill_ps(t_lx *lex, t_ps *par)
 		{
 			lex = lex->next;
 			pipe(fd);
-			curr->outfile = fd[1];
+			if (curr->outfile == 1)
+				curr->outfile = fd[1];
 			curr = p_new_node(curr, lex);
 			curr->infile = fd[0];
 		}
