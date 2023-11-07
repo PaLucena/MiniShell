@@ -6,7 +6,7 @@
 /*   By: rdelicad <rdelicad@student.42.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 19:15:28 by rdelicad          #+#    #+#             */
-/*   Updated: 2023/10/30 15:06:12 by rdelicad         ###   ########.fr       */
+/*   Updated: 2023/11/06 20:22:07 by rdelicad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ void	init_struct(t_cmd *c)
 	c->key = NULL;
 	c->list_env = NULL;
 	c->value = NULL;
+	c->pwd = NULL;
+	c->input = NULL;
 }
 
 int	len_envp(char **envp)
@@ -58,28 +60,66 @@ void	create_list_env(t_cmd *c, char **envp, int len_envp)
 	}
 }
 
-int	main(int ac, char **av, char **envp)
+void	create_path(t_cmd *c)
 {
-	t_cmd	c;
+	t_env	*curr;
 
-	init_struct(&c);
-	create_list_env(&c, envp, len_envp(envp));
-	if (ac >= 2)
+	curr = c->list_env;
+	while (curr)
 	{
-		if (!ft_strcmp(av[1], "env"))
-			ft_env(&c);
-		else if (!ft_strcmp(av[1], "export"))
+		if (ft_strcmp(curr->key, "PATH") == 0)
 		{
-			if (ac > 2)
-			{
-				c.argv_env = av[2];
-			}
-			ft_export(&c);
+			c->path = ft_split(curr->value, ':');
 		}
-		else
-			ft_printf("error");
+		curr = curr->next;
 	}
-	ft_free_list(c.list_env);
-	//atexit(leaks);
-	return (0);
+}
+#define MAX_COMMAND_LENGTH 100
+
+int main(int ac, char** av, char** envp) 
+{
+    t_cmd c;
+	(void)ac;
+	(void)av;
+    init_struct(&c);
+    create_list_env(&c, envp, len_envp(envp));
+	create_path(&c);
+
+    char command[MAX_COMMAND_LENGTH];
+    char* args[MAX_COMMAND_LENGTH];
+
+    while (1) 
+	{
+        printf("minishell> ");
+        fgets(command, MAX_COMMAND_LENGTH, stdin);
+
+        // Eliminar el salto de línea final
+        command[
+			strcspn(command, "\n")] = 0;
+
+        // Dividir el comando en argumentos
+        char* token = strtok(command, " ");
+        int i = 0;
+            args[i] = token;
+        while (token != NULL) 
+		{
+			args[i] = token;
+            i++;
+            token = strtok(NULL, " ");
+        }
+        args[i] = NULL;
+
+        // Salir de la minishell si se ingresa "exit"
+        if (strcmp(args[0], "exit") == 0) {
+            break;
+        }
+
+        // Verificar los comandos ingresados y llamar a las funciones correspondientes
+        ft_builtins(&c, args, i);
+    }
+
+    ft_free_list(c.list_env);
+	ft_matfree(c.path);
+    atexit(leaks);
+    return 0;
 }

@@ -6,7 +6,7 @@
 #    By: rdelicad <rdelicad@student.42.com>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/18 19:17:24 by rdelicad          #+#    #+#              #
-#    Updated: 2023/10/28 20:16:17 by rdelicad         ###   ########.fr        #
+#    Updated: 2023/11/06 17:36:09 by rdelicad         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,6 +30,7 @@ NAME      := mini
 CC        := gcc
 
 CFLAGS    := -g -Wall -Wextra -Werror #-fsanitize=address
+LDFLAGS	  := -lreadline
 
 # --- Library ---
 
@@ -39,7 +40,8 @@ LIBFT_PATH	:= $(LIBFT_DIR)/libft.a
 # --- Files ---
 
 SRCS      := leaks.c main.c utils_list.c env.c export.c\
-			utils_export.c
+			utils_export.c utils_export1.c utils_export2.c unset.c pwd.c\
+			builtins.c cd.c utils.cd.c 
 
 OBJS = $(addprefix $(OBJS_DIR)/,$(SRCS:.c=.o))
 
@@ -50,7 +52,7 @@ OBJS_DIR = obj
 
 $(NAME): $(OBJS_DIR) $(OBJS) $(LIBFT_PATH)
 	@echo "$(YELLOW)$(BOLD)Compiling minishel...$(RESET)"
-	@$(CC) $(CFLAGS) $(OBJS) $(LIBFT_PATH) -o $(NAME)
+	@$(CC) $(CFLAGS) $(OBJS) $(LIBFT_PATH) -o $(NAME) $(LDFLAGS)
 	@echo "$(GREEN)$(BOLD)Done.$(RESET)"
 
 $(OBJS_DIR):
