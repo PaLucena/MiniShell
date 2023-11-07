@@ -6,7 +6,7 @@
 /*   By: rdelicad <rdelicad@student.42.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/28 16:00:10 by rdelicad          #+#    #+#             */
-/*   Updated: 2023/11/07 18:14:04 by rdelicad         ###   ########.fr       */
+/*   Updated: 2023/11/07 19:30:49 by rdelicad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ typedef struct s_command
 	char			**path;
 	char			*argv_env;
 	char			*argv_unset;
+	char			*argv_exit;
 	char			*key;
 	char			*value;
 	char			*equal_sign;
@@ -84,6 +85,7 @@ void				separate_env(t_cmd *c);
 /* utils_export2.c */
 void				argv_export(t_cmd *c, char **args, int i);
 void				add_var_export(t_cmd *c);
+void				eliminate_oldpwd_value(t_cmd *c);
 
 /* unset.c */
 void				ft_unset(t_env **list, char *env);
@@ -103,5 +105,8 @@ char				*get_pwd(t_cmd *c);
 /* utils.cd.c */
 char				*get_directory_path(t_cmd *c);
 char				*get_parent_directory(char *path);
+
+/* exit.c */
+void				ft_exit(t_cmd *c);
 
 #endif

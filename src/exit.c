@@ -1,41 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils_export2.c                                    :+:      :+:    :+:   */
+/*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rdelicad <rdelicad@student.42.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/03 11:25:47 by rdelicad          #+#    #+#             */
-/*   Updated: 2023/11/07 19:26:18 by rdelicad         ###   ########.fr       */
+/*   Created: 2023/11/07 19:27:20 by rdelicad          #+#    #+#             */
+/*   Updated: 2023/11/07 20:06:00 by rdelicad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/env.h"
 
-void	argv_export(t_cmd *c, char **args, int i)
+void	ft_exit(t_cmd *c)
 {
-	int j;
-
-	j = 1;
-	while (j < i)
+	if (c->argv_exit == NULL)
 	{
-		c->argv_env = args[j];
-		add_var_export(c);
-		j++;
+		ft_putstr_fd("exit", 1);
+		exit (0);
 	}
-}
-
-void	add_var_export(t_cmd *c)
-{
-	if (check_argv_exp(c))
-		{
-			check_env_repeated(c);
-			if (c->argv_env != NULL)
-			{
-				if (ft_strchr(c->argv_env, '='))
-					equal_sign_env(c);
-				else if (!ft_strchr(c->argv_env, '='))
-					no_equal_sign_env(c);
-			}
-		}
+	else if (c->argv_exit != NULL)
+	{
+		printf("%s\n", c->argv_exit);
+		if (ft_atoi(c->argv_exit) >= 0 && ft_atoi(c->argv_env) <= 255)
+			ft_putstr_fd("exit", ft_atoi(c->argv_exit));
+		exit (ft_atoi(c->argv_exit));
+	}
 }

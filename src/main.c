@@ -6,7 +6,7 @@
 /*   By: rdelicad <rdelicad@student.42.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 19:15:28 by rdelicad          #+#    #+#             */
-/*   Updated: 2023/11/06 20:22:07 by rdelicad         ###   ########.fr       */
+/*   Updated: 2023/11/07 19:57:06 by rdelicad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 void	init_struct(t_cmd *c)
 {
 	c->argv_env = NULL;
+	c->argv_exit = NULL;
+	c->argv_unset = NULL;
 	c->equal_sign = NULL;
 	c->key = NULL;
 	c->list_env = NULL;
@@ -110,9 +112,13 @@ int main(int ac, char** av, char** envp)
         args[i] = NULL;
 
         // Salir de la minishell si se ingresa "exit"
-        if (strcmp(args[0], "exit") == 0) {
-            break;
-        }
+        if (ft_strcmp(args[0], "exit") == 0)
+		{
+			if (i > 1)
+				c.argv_exit = args[1];
+			ft_exit(&c);
+			break;
+		}
 
         // Verificar los comandos ingresados y llamar a las funciones correspondientes
         ft_builtins(&c, args, i);
@@ -120,6 +126,6 @@ int main(int ac, char** av, char** envp)
 
     ft_free_list(c.list_env);
 	ft_matfree(c.path);
-    atexit(leaks);
+    //atexit(leaks);
     return 0;
 }
