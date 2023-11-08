@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell_functions.h                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: palucena <palucena@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: rdelicad <rdelicad@student.42.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 11:11:25 by palucena          #+#    #+#             */
-/*   Updated: 2023/11/08 12:02:57 by palucena         ###   ########.fr       */
+/*   Updated: 2023/11/08 13:13:50 by rdelicad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void				create_list_env(t_cmd *c, char **arr_env, int len_envp);
 void				create_path(t_cmd *c);
 
 /* builtins.c */
-void				ft_builtins(t_cmd *c, char **args, int i);
+void				ft_builtins(t_info *i);
 
 /* utils_list.c */
 void				ft_lstadd_back_env(t_env **lst, t_env *new);
@@ -84,9 +84,8 @@ void				check_env_repeated(t_cmd *c);
 void				separate_env(t_cmd *c);
 
 /* utils_export2.c */
-void				argv_export(t_cmd *c, char **args, int i);
+void				argv_export(t_info *i);
 void				add_var_export(t_cmd *c);
-void				eliminate_oldpwd_value(t_cmd *c);
 
 /* unset.c */
 void				ft_unset(t_env **list, char *env);

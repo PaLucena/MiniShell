@@ -38,7 +38,7 @@ void	ft_execute(t_info *info)
 		{
 			if (check_builtin(info->par->cmd))
 				ft_printf("Todavia no tengo built-ins 😭\n");
-			//	ft_builtins(info->c, info->par->args, i);
+			//	ft_builtins(info);
 			//	exit (0);
 			else
 				exec_cmd(info->par);

@@ -1,26 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils_export2.c                                    :+:      :+:    :+:   */
+/*   b_utils_export2.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rdelicad <rdelicad@student.42.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 11:25:47 by rdelicad          #+#    #+#             */
-/*   Updated: 2023/11/07 19:26:18 by rdelicad         ###   ########.fr       */
+/*   Updated: 2023/11/08 13:15:39 by rdelicad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/env.h"
+#include "minishell.h"
 
-void	argv_export(t_cmd *c, char **args, int i)
+void	argv_export(t_info *i)
 {
 	int j;
 
 	j = 1;
-	while (j < i)
+	while (i->par->args[j] != NULL)
 	{
-		c->argv_env = args[j];
-		add_var_export(c);
+		i->c->argv_env = i->par->args[j];
+		add_var_export(i->c);
 		j++;
 	}
 }
