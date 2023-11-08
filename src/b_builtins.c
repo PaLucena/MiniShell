@@ -6,7 +6,7 @@
 /*   By: rdelicad <rdelicad@student.42.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/04 13:25:14 by rdelicad          #+#    #+#             */
-/*   Updated: 2023/11/08 14:09:37 by rdelicad         ###   ########.fr       */
+/*   Updated: 2023/11/08 14:10:20 by rdelicad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	ft_builtins(t_info *i)
 	}
 	else if (ft_strcmp(i->par->cmd, "unset") == 0)
 	{
-		if (i > 1)
+		if (i->par->args != NULL)
 			i->c->argv_unset = i->par->args[0];
 		ft_unset(&i->c->list_env, i->c->argv_unset);
 	}
