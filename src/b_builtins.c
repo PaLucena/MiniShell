@@ -6,7 +6,7 @@
 /*   By: rdelicad <rdelicad@student.42.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/04 13:25:14 by rdelicad          #+#    #+#             */
-/*   Updated: 2023/11/08 13:13:37 by rdelicad         ###   ########.fr       */
+/*   Updated: 2023/11/08 14:09:37 by rdelicad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	ft_builtins(t_info *i)
 		ft_pwd(i->c);
 	else if (ft_strcmp(i->par->cmd, "cd") == 0)
 	{
-		if (i > 1)
+		if (i->par->args != NULL)
 			i->c->input = i->par->args[0];
 		ft_cd(i->c);
 	}
