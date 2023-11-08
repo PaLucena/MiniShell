@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell_functions.h                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rdelicad <rdelicad@student.42.com>         +#+  +:+       +#+        */
+/*   By: palucena <palucena@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 11:11:25 by palucena          #+#    #+#             */
-/*   Updated: 2023/11/08 14:13:28 by rdelicad         ###   ########.fr       */
+/*   Updated: 2023/11/08 15:00:04 by palucena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,13 +37,14 @@ bool	check_builtin(char	*cmd);
 ////////// free.c //////////
 void	free_lexer(t_lx *lex);
 void	free_parser(t_ps *par);
+void	ft_free(char **str);
 
 /* leaks.c */
 void				leaks(void);
 char				*ft_strldup(char const *s1, size_t n);
 
 /* b_env_init.c */
-void				init_struct(t_cmd *c);
+t_cmd				*init_struct(void);
 int					len_envp(char **envp);
 void				create_list_env(t_cmd *c, char **arr_env, int len_envp);
 void				create_path(t_cmd *c);

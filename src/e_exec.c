@@ -44,7 +44,7 @@ void	ft_execute(t_info *info)
 			if (pid == 0)
 				exec_cmd(info->par);
 			else
-				waitpid(-1, info->status, 0);
+				waitpid(-1, &info->status, 0);
 		}
 		ft_close(info->par);
 		aux = info->par;

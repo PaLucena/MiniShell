@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   b_leaks.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rdelicad <rdelicad@student.42.com>         +#+  +:+       +#+        */
+/*   By: palucena <palucena@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 16:41:40 by rdelicad          #+#    #+#             */
-/*   Updated: 2023/11/08 13:05:44 by rdelicad         ###   ########.fr       */
+/*   Updated: 2023/11/08 14:54:40 by palucena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	leaks(void)
 {
-	system ("leaks -q mini");
+	system ("leaks -q minishell");
 }
 
 char	*ft_strldup(char const *s1, size_t n)

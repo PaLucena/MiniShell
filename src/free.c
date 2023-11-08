@@ -6,13 +6,13 @@
 /*   By: palucena <palucena@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/05 22:01:12 by palucena          #+#    #+#             */
-/*   Updated: 2023/11/08 13:43:46 by palucena         ###   ########.fr       */
+/*   Updated: 2023/11/08 14:32:05 by palucena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void    ft_free(char **str)
+void	ft_free(char **str)
 {
 	char	**ptr;
 

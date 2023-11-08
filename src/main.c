@@ -6,7 +6,7 @@
 /*   By: palucena <palucena@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 19:07:37 by palucena          #+#    #+#             */
-/*   Updated: 2023/11/08 12:06:51 by palucena         ###   ########.fr       */
+/*   Updated: 2023/11/08 15:06:00 by palucena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,9 +64,12 @@ t_ps	*manage_input(char *input, char **argv)
 	return (par);
 }
 
-void	ft_leaks(void)
+void	init_info(t_info *info, char **envp)
 {
-	system("leaks -q minishell");
+	info->c = init_struct();
+	create_list_env(info->c, envp, len_envp(envp));
+	create_path(info->c);
+	info->env = info->c->list_env;
 }
 
 int	main(int argc, char **argv, char **envp)
@@ -74,14 +77,11 @@ int	main(int argc, char **argv, char **envp)
 	t_info	*info;
 	char	*input;
 
-	atexit(ft_leaks);
+	//atexit(leaks);
 	(void)argc;
 	(void)envp;
 	info = malloc(sizeof(t_info));
-	info->env = envp;
-	init_struct(info->c);
-	create_list_env(info->c, envp, len_envp(envp));
-	create_path(info->c);
+	init_info(info, envp);
 	while (1)
 	{
 		input = readline("\033[36;1mminishell$ \033[0m");

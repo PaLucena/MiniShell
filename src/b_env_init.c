@@ -6,14 +6,17 @@
 /*   By: palucena <palucena@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 12:01:55 by palucena          #+#    #+#             */
-/*   Updated: 2023/11/08 12:02:19 by palucena         ###   ########.fr       */
+/*   Updated: 2023/11/08 15:01:59 by palucena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	init_struct(t_cmd *c)
+t_cmd	*init_struct(void)
 {
+	t_cmd	*c;
+
+	c = malloc(sizeof(t_cmd));
 	c->argv_env = NULL;
 	c->argv_exit = NULL;
 	c->argv_unset = NULL;
@@ -23,6 +26,7 @@ void	init_struct(t_cmd *c)
 	c->value = NULL;
 	c->pwd = NULL;
 	c->input = NULL;
+	return (c);
 }
 
 int	len_envp(char **envp)
