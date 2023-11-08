@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: rdelicad <rdelicad@student.42.com>         +#+  +:+       +#+         #
+#    By: palucena <palucena@student.42malaga.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/18 19:17:24 by rdelicad          #+#    #+#              #
-#    Updated: 2023/11/04 15:56:27 by rdelicad         ###   ########.fr        #
+#    Updated: 2023/11/08 14:24:09 by palucena         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -59,7 +59,6 @@ OBJS_DIR = obj
 
 
 $(NAME): $(OBJS_DIR) $(OBJS)
-	@echo "$(YELLOW)$(BOLD)Compiling libft...$(RESET)"
 	@$(LIB) $(NAME) $(OBJS)
 	@echo "$(GREEN)$(BOLD)Done.$(RESET)"
 
@@ -75,12 +74,10 @@ bonus: $(OBJS)
 	$(LIB) $(NAME) $(OBJS)
 
 clean:
-	@echo "$(RED)$(BOLD)Cleaning objects from libft...$(RESET)"
 	@rm -f $(OBJS) 
 	@echo "$(GREEN)$(BOLD)Done.$(RESET)"
 
 fclean:
-	@echo "$(RED)$(BOLD)Cleaning all files from libft...$(RESET)"
 	@rm -f $(NAME) $(OBJS)
 	@echo "$(GREEN)$(BOLD)Done.$(RESET)"
 	

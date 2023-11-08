@@ -15,7 +15,7 @@
 
 void	exec_cmd(t_ps *par)
 {
-	
+	// cosas
 }
 
 void	ft_close(t_ps *par)
@@ -28,28 +28,28 @@ void	ft_close(t_ps *par)
 
 void	ft_execute(t_info *info)
 {
+	t_ps	*aux;
 	pid_t	pid;
-	int		status;
 
 	while (info->par)
 	{
-		pid = fork();
-		if (pid == 0)
-		{
-			if (check_builtin(info->par->cmd))
-				ft_printf("Todavia no tengo built-ins 😭\n");
-			//	ft_builtins(info);
-			//	exit (0);
-			else
-				exec_cmd(info->par);
-		}
+		if (info->exit)
+			break;
+		if (check_builtin(info->par->cmd))
+			ft_builtins(info);
+		//	ft_printf("Todavia no tengo built-ins 😭\n");
 		else
 		{
-			waitpid(-1, &status, 0);
-			if (status != 0)
-				printf("Algo anda mal\n");
+			pid = fork();
+			if (pid == 0)
+				exec_cmd(info->par);
+			else
+				waitpid(-1, info->status, 0);
 		}
 		ft_close(info->par);
+		aux = info->par;
 		info->par = info->par->next;
+		free(aux->cmd);
+		ft_free(aux->args);
 	}
 }

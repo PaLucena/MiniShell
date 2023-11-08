@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   b_builtins.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rdelicad <rdelicad@student.42.com>         +#+  +:+       +#+        */
+/*   By: palucena <palucena@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/04 13:25:14 by rdelicad          #+#    #+#             */
-/*   Updated: 2023/11/08 13:13:37 by rdelicad         ###   ########.fr       */
+/*   Updated: 2023/11/08 13:34:56 by palucena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	ft_builtins(t_info *i)
 	}
 	else if (ft_strcmp(i->par->cmd, "unset") == 0)
 	{
-		if (i > 1)
+		if (i->par->args[0])
 			i->c->argv_unset = i->par->args[0];
 		ft_unset(&i->c->list_env, i->c->argv_unset);
 	}
@@ -34,7 +34,7 @@ void	ft_builtins(t_info *i)
 		ft_pwd(i->c);
 	else if (ft_strcmp(i->par->cmd, "cd") == 0)
 	{
-		if (i > 1)
+		if (i->par->args[0])
 			i->c->input = i->par->args[0];
 		ft_cd(i->c);
 	}

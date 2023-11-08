@@ -6,7 +6,7 @@
 /*   By: palucena <palucena@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/05 22:01:12 by palucena          #+#    #+#             */
-/*   Updated: 2023/11/06 00:16:49 by palucena         ###   ########.fr       */
+/*   Updated: 2023/11/08 13:43:46 by palucena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,14 +43,12 @@ void	free_lexer(t_lx *lex)
 void	free_parser(t_ps *par)
 {
 	t_ps	*curr;
-	int		i;
 
 	while (par)
 	{
 		curr = par;
 		par = curr->next;
 		free(curr->cmd);
-		i = -1;
 		ft_free(curr->args);
 		free(curr);
 	}
