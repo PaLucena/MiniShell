@@ -6,7 +6,7 @@
 #    By: palucena <palucena@student.42malaga.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/18 19:17:24 by rdelicad          #+#    #+#              #
-#    Updated: 2023/11/08 14:24:09 by palucena         ###   ########.fr        #
+#    Updated: 2023/11/08 17:30:24 by palucena         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -60,7 +60,6 @@ OBJS_DIR = obj
 
 $(NAME): $(OBJS_DIR) $(OBJS)
 	@$(LIB) $(NAME) $(OBJS)
-	@echo "$(GREEN)$(BOLD)Done.$(RESET)"
 
 $(OBJS_DIR):
 	mkdir -p $@
@@ -75,12 +74,10 @@ bonus: $(OBJS)
 
 clean:
 	@rm -f $(OBJS) 
-	@echo "$(GREEN)$(BOLD)Done.$(RESET)"
 
 fclean:
 	@rm -f $(NAME) $(OBJS)
-	@echo "$(GREEN)$(BOLD)Done.$(RESET)"
-	
+
 
 re: fclean all
 

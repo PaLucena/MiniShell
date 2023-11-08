@@ -6,7 +6,7 @@
 /*   By: palucena <palucena@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 19:07:37 by palucena          #+#    #+#             */
-/*   Updated: 2023/11/08 15:06:00 by palucena         ###   ########.fr       */
+/*   Updated: 2023/11/08 17:16:43 by palucena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,10 +66,13 @@ t_ps	*manage_input(char *input, char **argv)
 
 void	init_info(t_info *info, char **envp)
 {
+	info->par = NULL;
 	info->c = init_struct();
 	create_list_env(info->c, envp, len_envp(envp));
 	create_path(info->c);
 	info->env = info->c->list_env;
+	info->status = 0;
+	info->exit = false;
 }
 
 int	main(int argc, char **argv, char **envp)
@@ -85,18 +88,18 @@ int	main(int argc, char **argv, char **envp)
 	while (1)
 	{
 		input = readline("\033[36;1mminishell$ \033[0m");
-		if (ft_strcmp(input, "exit"))
+		if (ft_strcmp(input, "exit") == 0)
 		{
 			free(input);
 			break ;
 		}
 		add_history(input);
-		if (!ft_strcmp(input, "\0"))
+		if (ft_strcmp(input, "\0") != 0)
 		{
 			info->par = manage_input(input, argv);
 			if (!info->par)
 				ft_syntax_error();
-			//ft_execute(info->par);
+			ft_execute(info, envp);
 			free_parser(info->par);
 		}
 		free(input);

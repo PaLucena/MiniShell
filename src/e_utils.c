@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   e_utils.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: palucena <palucena@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 17:18:22 by palucena          #+#    #+#             */
-/*   Updated: 2023/11/08 10:59:25 by palucena         ###   ########.fr       */
+/*   Updated: 2023/11/08 17:18:00 by palucena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,19 @@
 
 bool	check_builtin(char	*cmd)
 {
-	if (ft_strcmp(cmd, "echo"))
+	if (ft_strcmp(cmd, "echo") == 0)
 		return (true);
-	else if (ft_strcmp(cmd, "cd"))
+	else if (ft_strcmp(cmd, "cd") == 0)
 		return (true);
-	else if (ft_strcmp(cmd, "pwd"))
+	else if (ft_strcmp(cmd, "pwd") == 0)
 		return (true);
-	else if (ft_strcmp(cmd, "export"))
+	else if (ft_strcmp(cmd, "export") == 0)
 		return (true);
-	else if (ft_strcmp(cmd, "unset"))
+	else if (ft_strcmp(cmd, "unset") == 0)
 		return (true);
-	else if (ft_strcmp(cmd, "env"))
+	else if (ft_strcmp(cmd, "env") == 0)
 		return (true);
-	else if (ft_strcmp(cmd, "exit"))
+	else if (ft_strcmp(cmd, "exit") == 0)
 		return (true);
 	else
 		return (false);
