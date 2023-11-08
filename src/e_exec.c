@@ -15,7 +15,7 @@
 
 void	exec_cmd(t_ps *par)
 {
-	// cosas
+	(void)par;
 }
 
 void	ft_close(t_ps *par)
