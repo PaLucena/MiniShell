@@ -6,7 +6,7 @@
 /*   By: palucena <palucena@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 13:30:18 by palucena          #+#    #+#             */
-/*   Updated: 2023/11/02 17:11:25 by palucena         ###   ########.fr       */
+/*   Updated: 2023/11/08 00:35:14 by palucena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,16 +64,6 @@ void	l_add_back(t_lx **lst, t_lx *new)
 	}
 	else
 		*lst = new;
-}
-
-t_lx	*l_new_node(char *str, int i)
-{
-	t_lx	*lex;
-
-	lex = malloc(sizeof(t_lx));
-	lex->content = l_get_content(str, i);
-	lex->next = NULL;
-	return (lex);
 }
 
 void	l_tokenizer(t_lx *lex)

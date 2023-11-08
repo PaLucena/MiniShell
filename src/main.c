@@ -6,7 +6,7 @@
 /*   By: palucena <palucena@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 19:07:37 by palucena          #+#    #+#             */
-/*   Updated: 2023/11/08 00:24:03 by palucena         ###   ########.fr       */
+/*   Updated: 2023/11/08 01:19:10 by palucena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,9 +76,11 @@ int	main(int argc, char **argv, char **envp)
 
 	atexit(ft_leaks);
 	(void)argc;
-	(void)envp; // este no
-	//ft_env(envp);
+	(void)envp;
 	info = malloc(sizeof(t_info));
+	info->env = envp;
+	//ft_env(envp);
+	printf("hola %s\n", info->env[1]);
 	while (1)
 	{
 		input = readline("\033[36;1mminishell$ \033[0m");
@@ -93,10 +95,11 @@ int	main(int argc, char **argv, char **envp)
 			info->par = manage_input(input, argv);
 			if (!info->par)
 				ft_syntax_error();
-			ft_execute(info->par);
+			//ft_execute(info->par);
 			free_parser(info->par);
 		}
 		free(input);
 	}
+	free(info);
 	return (0);
 }

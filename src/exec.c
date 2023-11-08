@@ -6,11 +6,11 @@
 /*   By: palucena <palucena@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 17:16:17 by palucena          #+#    #+#             */
-/*   Updated: 2023/11/08 00:07:34 by palucena         ###   ########.fr       */
+/*   Updated: 2023/11/08 00:44:11 by palucena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+/* #include "minishell.h"
 
 void	exec_cmd(t_ps *par)
 {
@@ -52,3 +52,4 @@ void	ft_execute(t_ps *par)
 		par = par->next;
 	}
 }
+ */

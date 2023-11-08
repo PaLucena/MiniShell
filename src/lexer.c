@@ -6,15 +6,27 @@
 /*   By: palucena <palucena@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 10:45:41 by palucena          #+#    #+#             */
-/*   Updated: 2023/10/29 23:12:16 by palucena         ###   ########.fr       */
+/*   Updated: 2023/11/08 01:24:25 by palucena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+t_lx	*l_new_node(char *str, int i)
+{
+	t_lx	*lex;
+
+	lex = malloc(sizeof(t_lx));
+	lex->content = l_get_content(str, i);
+	lex->next = NULL;
+	return (lex);
+}
+
 char	*l_get_quote(char *str, int start)
 {
 	char	*quote;
+	char	*aux;
+	char	*mix;
 	int		i;
 
 	i = start + 1;
@@ -22,13 +34,17 @@ char	*l_get_quote(char *str, int start)
 		i++;
 	if (!str[i])
 		return (NULL);
-	if (start != 0 && str[start - 1] == ' ')
-		start--;
-	quote = ft_substr(str, start, i - start + 1);
-	if (quote[0] == ' ')
+	quote = ft_substr(str, start + 1, i - (start + 1));
+	if (str[++i] && str[i] != ' ')
 	{
-		quote[0] = str[start + 1];
-		quote[1] = str[start];
+		if (str[i] == 34 || str[i] == 39)
+			aux = l_get_quote(str, i);
+		else
+			aux = l_get_word(str, i);
+		mix = ft_strjoin(quote, aux);
+		free(quote);
+		free(aux);
+		return (mix);
 	}
 	return (quote);
 }
@@ -36,12 +52,22 @@ char	*l_get_quote(char *str, int start)
 char	*l_get_word(char *str, int start)
 {
 	char	*word;
+	char	*aux;
+	char	*mix;
 	int		i;
 
 	i = start;
 	while (str[i] && str[i] != ' ' && str[i] != 34 && str[i] != 39)
 		i++;
 	word = ft_substr(str, start, i - start);
+	if (str[i] == 34 || str[i] == 39)
+	{
+		aux = l_get_quote(str, i);
+		mix = ft_strjoin(word, aux);
+		free(word);
+		free(aux);
+		return (mix);
+	}
 	return (word);
 }
 
@@ -75,7 +101,8 @@ t_lx	*l_fill_lx(char *input)
 		curr = lex;
 		while (curr->next)
 			curr = curr->next;
-		i += ft_strlen(curr->content);
+		while (input[i] && input[i] != ' ')
+			i++;
 	}
 	if (lex == NULL)
 		return (0);
