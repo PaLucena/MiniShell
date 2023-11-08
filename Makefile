@@ -6,7 +6,7 @@
 #    By: rdelicad <rdelicad@student.42.com>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/18 19:17:24 by rdelicad          #+#    #+#              #
-#    Updated: 2023/11/07 19:28:07 by rdelicad         ###   ########.fr        #
+#    Updated: 2023/11/08 10:09:20 by rdelicad         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,9 +39,9 @@ LIBFT_PATH	:= $(LIBFT_DIR)/libft.a
 
 # --- Files ---
 
-SRCS      := leaks.c main.c utils_list.c env.c export.c\
-			utils_export.c utils_export1.c utils_export2.c unset.c pwd.c\
-			builtins.c cd.c utils.cd.c exit.c
+SRCS      := b_leaks.c b_main.c b_utils_list.c b_env.c b_export.c\
+			b_utils_export.c b_utils_export1.c b_utils_export2.c b_unset.c b_pwd.c\
+			b_builtins.c b_cd.c b_utils.cd.c b_exit.c
 
 OBJS = $(addprefix $(OBJS_DIR)/,$(SRCS:.c=.o))
 
