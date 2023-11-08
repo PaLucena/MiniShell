@@ -6,7 +6,7 @@
 /*   By: rdelicad <rdelicad@student.42.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 11:11:25 by palucena          #+#    #+#             */
-/*   Updated: 2023/11/08 13:13:50 by rdelicad         ###   ########.fr       */
+/*   Updated: 2023/11/08 14:13:28 by rdelicad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	l_tokenizer(t_lx *lx);
 t_ps	*p_fill_ps(t_lx *lex, t_ps *par);
 
 ////////// parser.c //////////
-void	ft_execute(t_ps *par);
+void	ft_execute(t_info *info);
 
 ////////// utils.c //////////
 bool	check_builtin(char	*cmd);

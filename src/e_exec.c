@@ -15,7 +15,7 @@
 
 void	exec_cmd(t_ps *par)
 {
-	
+	(void)par;
 }
 
 void	ft_close(t_ps *par)
@@ -37,9 +37,11 @@ void	ft_execute(t_info *info)
 		if (pid == 0)
 		{
 			if (check_builtin(info->par->cmd))
+			{
 				ft_printf("Todavia no tengo built-ins 😭\n");
-			//	ft_builtins(info);
-			//	exit (0);
+				ft_builtins(info);
+				exit (0);
+			}
 			else
 				exec_cmd(info->par);
 		}
