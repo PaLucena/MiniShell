@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   b_main.c                                           :+:      :+:    :+:   */
+/*   b_env_init.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: palucena <palucena@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/18 19:15:28 by rdelicad          #+#    #+#             */
-/*   Updated: 2023/11/08 10:59:31 by palucena         ###   ########.fr       */
+/*   Created: 2023/11/08 12:01:55 by palucena          #+#    #+#             */
+/*   Updated: 2023/11/08 12:02:19 by palucena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,57 +75,4 @@ void	create_path(t_cmd *c)
 		}
 		curr = curr->next;
 	}
-}
-#define MAX_COMMAND_LENGTH 100
-
-int main(int ac, char** av, char** envp) 
-{
-    t_cmd c;
-	(void)ac;
-	(void)av;
-    init_struct(&c);
-    create_list_env(&c, envp, len_envp(envp));
-	create_path(&c);
-
-    char command[MAX_COMMAND_LENGTH];
-    char* args[MAX_COMMAND_LENGTH];
-
-    while (1) 
-	{
-        printf("minishell> ");
-        fgets(command, MAX_COMMAND_LENGTH, stdin);
-
-        // Eliminar el salto de línea final
-        command[
-			strcspn(command, "\n")] = 0;
-
-        // Dividir el comando en argumentos
-        char* token = strtok(command, " ");
-        int i = 0;
-            args[i] = token;
-        while (token != NULL) 
-		{
-			args[i] = token;
-            i++;
-            token = strtok(NULL, " ");
-        }
-        args[i] = NULL;
-
-        // Salir de la minishell si se ingresa "exit"
-        if (ft_strcmp(args[0], "exit") == 0)
-		{
-			if (i > 1)
-				c.argv_exit = args[1];
-			ft_exit(&c);
-			break;
-		}
-
-        // Verificar los comandos ingresados y llamar a las funciones correspondientes
-        ft_builtins(&c, args, i);
-    }
-
-    ft_free_list(c.list_env);
-	ft_matfree(c.path);
-    //atexit(leaks);
-    return 0;
 }

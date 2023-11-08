@@ -1,47 +1,48 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   env.h                                              :+:      :+:    :+:   */
+/*   minishell_functions.h                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rdelicad <rdelicad@student.42.com>         +#+  +:+       +#+        */
+/*   By: palucena <palucena@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/28 16:00:10 by rdelicad          #+#    #+#             */
-/*   Updated: 2023/11/07 19:30:49 by rdelicad         ###   ########.fr       */
+/*   Created: 2023/10/19 11:11:25 by palucena          #+#    #+#             */
+/*   Updated: 2023/11/08 12:02:57 by palucena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ENV_
-# define ENV_
+#ifndef MINISHELL_FUNCTIONS_H
+# define MINISHELL_FUNCTIONS_H
 
-# include "../libft/include/libft.h"
+# include "minishell_structs.h"
 
-typedef struct s_env
-{
-	char			*key;
-	char			*value;
-	int				equal;
-	struct s_env	*next;
-}					t_env;
+////////// lexer.c //////////
+char	*l_get_quote(char *str, int start);
+char	*l_get_word(char *str, int start);
+char	*l_get_content(char *input, int i);
+t_lx	*l_fill_lx(char *input);
 
-typedef struct s_command
-{
-	t_env			*list_env;
-	char			**path;
-	char			*argv_env;
-	char			*argv_unset;
-	char			*argv_exit;
-	char			*key;
-	char			*value;
-	char			*equal_sign;
-	char			*pwd;
-	char			*input;
-}					t_cmd;
+////////// l_token.c /////////
+void	l_add_back(t_lx **lst, t_lx *new);
+void	l_tokenizer(t_lx *lx);
+
+////////// parser.c //////////
+t_ps	*p_fill_ps(t_lx *lex, t_ps *par);
+
+////////// parser.c //////////
+void	ft_execute(t_ps *par);
+
+////////// utils.c //////////
+bool	check_builtin(char	*cmd);
+
+////////// free.c //////////
+void	free_lexer(t_lx *lex);
+void	free_parser(t_ps *par);
 
 /* leaks.c */
 void				leaks(void);
 char				*ft_strldup(char const *s1, size_t n);
 
-/* main.c */
+/* b_env_init.c */
 void				init_struct(t_cmd *c);
 int					len_envp(char **envp);
 void				create_list_env(t_cmd *c, char **arr_env, int len_envp);

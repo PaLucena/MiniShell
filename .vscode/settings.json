@@ -1,4 +1,7 @@
 {
 	"bitoAI.codeCompletion.enableAutoCompletion": true,
-	"bitoAI.codeCompletion.enableCommentToCode": true
+	"bitoAI.codeCompletion.enableCommentToCode": true,
+	"files.associations": {
+		"minishell.h": "c"
+	}
 }

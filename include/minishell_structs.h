@@ -6,7 +6,7 @@
 /*   By: palucena <palucena@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 10:44:14 by palucena          #+#    #+#             */
-/*   Updated: 2023/11/08 00:23:38 by palucena         ###   ########.fr       */
+/*   Updated: 2023/11/08 11:56:14 by palucena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,28 @@ typedef enum e_oken
 	REDIR_FILEIN, //  7
 	REDIR_FILEOUT, //  8
 }	t_oken;
+
+typedef struct s_env
+{
+	char			*key;
+	char			*value;
+	int				equal;
+	struct s_env	*next;
+}					t_env;
+
+typedef struct s_command
+{
+	t_env			*list_env;
+	char			**path;
+	char			*argv_env;
+	char			*argv_unset;
+	char			*argv_exit;
+	char			*key;
+	char			*value;
+	char			*equal_sign;
+	char			*pwd;
+	char			*input;
+}					t_cmd;
 
 typedef struct s_lx
 {
@@ -45,6 +67,7 @@ typedef struct s_ps
 typedef struct s_info
 {
 	t_ps	*par;
+	t_cmd	*c;
 	char	**env;
 	int		status;
 	bool	exit;

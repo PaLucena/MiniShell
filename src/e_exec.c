@@ -1,3 +1,4 @@
+
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
@@ -10,7 +11,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-/* #include "minishell.h"
+#include "minishell.h"
 
 void	exec_cmd(t_ps *par)
 {
@@ -25,22 +26,22 @@ void	ft_close(t_ps *par)
 		close(par->outfile);
 }
 
-void	ft_execute(t_ps *par)
+void	ft_execute(t_info *info)
 {
 	pid_t	pid;
 	int		status;
 
-	while (par)
+	while (info->par)
 	{
 		pid = fork();
 		if (pid == 0)
 		{
-			if (check_builtin(par->cmd))
+			if (check_builtin(info->par->cmd))
 				ft_printf("Todavia no tengo built-ins 😭\n");
-			//	ft_builtins(par);
+			//	ft_builtins(info->c, info->par->args, i);
 			//	exit (0);
 			else
-				exec_cmd(par);
+				exec_cmd(info->par);
 		}
 		else
 		{
@@ -48,8 +49,7 @@ void	ft_execute(t_ps *par)
 			if (status != 0)
 				printf("Algo anda mal\n");
 		}
-		ft_close(par);
-		par = par->next;
+		ft_close(info->par);
+		info->par = info->par->next;
 	}
 }
- */

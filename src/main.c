@@ -6,7 +6,7 @@
 /*   By: palucena <palucena@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 19:07:37 by palucena          #+#    #+#             */
-/*   Updated: 2023/11/08 01:19:10 by palucena         ###   ########.fr       */
+/*   Updated: 2023/11/08 12:06:51 by palucena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,8 +79,9 @@ int	main(int argc, char **argv, char **envp)
 	(void)envp;
 	info = malloc(sizeof(t_info));
 	info->env = envp;
-	//ft_env(envp);
-	printf("hola %s\n", info->env[1]);
+	init_struct(info->c);
+	create_list_env(info->c, envp, len_envp(envp));
+	create_path(info->c);
 	while (1)
 	{
 		input = readline("\033[36;1mminishell$ \033[0m");
@@ -100,6 +101,9 @@ int	main(int argc, char **argv, char **envp)
 		}
 		free(input);
 	}
+	ft_free_list(info->c->list_env);
+	ft_matfree(info->c->path);
 	free(info);
 	return (0);
+	
 }

@@ -6,14 +6,14 @@
 /*   By: palucena <palucena@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 18:36:00 by palucena          #+#    #+#             */
-/*   Updated: 2023/10/25 00:44:06 by palucena         ###   ########.fr       */
+/*   Updated: 2023/11/08 10:54:48 by palucena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINISHELL_H
 # define MINISHELL_H
 
-# include "libft/libft.h"
+# include "libft/include/libft.h"
 # include "minishell_structs.h"
 # include "minishell_functions.h"
 
