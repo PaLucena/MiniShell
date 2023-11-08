@@ -6,7 +6,7 @@
 /*   By: rdelicad <rdelicad@student.42.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 19:27:20 by rdelicad          #+#    #+#             */
-/*   Updated: 2023/11/07 20:06:00 by rdelicad         ###   ########.fr       */
+/*   Updated: 2023/11/08 09:21:06 by rdelicad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,4 +26,5 @@ void	ft_exit(t_cmd *c)
 			ft_putstr_fd("exit", ft_atoi(c->argv_exit));
 		exit (ft_atoi(c->argv_exit));
 	}
+	
 }
