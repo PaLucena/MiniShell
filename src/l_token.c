@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   l_token.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: palucena <palucena@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: rdelicad <rdelicad@student.42.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 13:30:18 by palucena          #+#    #+#             */
-/*   Updated: 2023/11/08 18:21:28 by palucena         ###   ########.fr       */
+/*   Updated: 2023/11/09 13:38:34 by rdelicad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ void	l_tokenizer(t_lx *lex)
 	else
 		prev->token = l_check_redir(prev->content);
 	i = 1;
-	while (curr->content)
+	while (curr)
 	{
 		printf("token? %s\n", curr->content);
 		curr->token = l_get_token(curr->content, prev, cmd_door);

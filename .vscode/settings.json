@@ -3,5 +3,6 @@
 	"bitoAI.codeCompletion.enableCommentToCode": true,
 	"files.associations": {
 		"minishell.h": "c"
-	}
+	},
+	"editor.inlineSuggest.showToolbar": "onHover"
 }
