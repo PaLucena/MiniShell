@@ -6,7 +6,7 @@
 /*   By: rdelicad <rdelicad@student.42.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 11:11:25 by palucena          #+#    #+#             */
-/*   Updated: 2023/11/09 19:13:02 by rdelicad         ###   ########.fr       */
+/*   Updated: 2023/11/09 20:05:03 by rdelicad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,8 +61,9 @@ void	ft_free_list(t_env *list);
 void	ft_free_node(t_env *node);
 
 /* env.c */
-void	ft_env(t_cmd *c);
+void	ft_env(t_info *i);
 void	env_finish_position(t_env **list);
+void	env_argv(t_info *i);
 
 /* export.c */
 void	ft_export(t_cmd *c);
@@ -99,7 +100,7 @@ void	finish_the_list(t_env *new);
 void	ft_pwd(t_cmd *c);
 
 /* cd.c */
-void	ft_cd(t_cmd *c);
+void	ft_cd(t_info *i);
 void	changer_pwd_env(t_cmd *c);
 void	changer_oldpwd_env(t_cmd *c, char *oldpwd);
 char	*get_pwd(t_cmd *c);

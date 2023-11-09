@@ -6,7 +6,7 @@
 /*   By: rdelicad <rdelicad@student.42.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 12:01:55 by palucena          #+#    #+#             */
-/*   Updated: 2023/11/09 15:25:04 by rdelicad         ###   ########.fr       */
+/*   Updated: 2023/11/09 19:37:17 by rdelicad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ t_cmd	*init_struct(void)
 
 	c = malloc(sizeof(t_cmd));
 	c->argv_env = NULL;
-	c->argv_exit = NULL;
 	c->argv_unset = NULL;
 	c->equal_sign = NULL;
 	c->key = NULL;

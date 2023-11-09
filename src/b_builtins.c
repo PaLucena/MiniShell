@@ -6,7 +6,7 @@
 /*   By: rdelicad <rdelicad@student.42.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/04 13:25:14 by rdelicad          #+#    #+#             */
-/*   Updated: 2023/11/09 16:34:50 by rdelicad         ###   ########.fr       */
+/*   Updated: 2023/11/09 20:11:49 by rdelicad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,12 @@
 void	ft_builtins(t_info *i)
 {
 	if (ft_strcmp(i->par->cmd, "env") == 0) 
-		ft_env(i->c);
+	{
+		if (i->par->args[0] != NULL)
+			env_argv(i);
+		else
+			ft_env(i);
+	}
 	else if (!ft_strcmp(i->par->cmd, "export")) 
 	{
 		if (i->par->args[0] != NULL)
@@ -36,7 +41,7 @@ void	ft_builtins(t_info *i)
 	{
 		if (i->par->args != NULL)
 			i->c->input = i->par->args[0];
-		ft_cd(i->c);
+		ft_cd(i);
 	}
 	else if (ft_strcmp(i->par->cmd, "exit") == 0)
 		ft_exit(i);

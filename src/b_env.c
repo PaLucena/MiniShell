@@ -6,18 +6,18 @@
 /*   By: rdelicad <rdelicad@student.42.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 18:21:05 by rdelicad          #+#    #+#             */
-/*   Updated: 2023/11/08 13:05:32 by rdelicad         ###   ########.fr       */
+/*   Updated: 2023/11/09 20:10:43 by rdelicad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	ft_env(t_cmd *c)
+void	ft_env(t_info *i)
 {
 	t_env	*curr;
 
-	env_finish_position(&c->list_env);
-	curr = c->list_env;
+	env_finish_position(&i->c->list_env);
+	curr = i->c->list_env;
 	while (curr != NULL)
 	{
 		if (curr->equal == 1)
@@ -30,6 +30,7 @@ void	ft_env(t_cmd *c)
 		curr = curr->next;
 	}
 	ft_printf("\n");
+	i->status = 0;
 }
 
 void	env_finish_position(t_env **env)
@@ -53,5 +54,14 @@ void	env_finish_position(t_env **env)
 		prev = curr;
 		curr = curr->next;
 	}
+}
+
+void	env_argv(t_info *i)
+{
+	write (2, "env: ", 5);
+	write (2, i->par->args[0], ft_strlen(i->par->args[0]));
+	write (2, ": No such file or directory", 27);
+	write (2, "\n", 1);
+	i->status = 127;
 }
 

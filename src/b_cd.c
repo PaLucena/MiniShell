@@ -6,20 +6,27 @@
 /*   By: rdelicad <rdelicad@student.42.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/04 15:40:50 by rdelicad          #+#    #+#             */
-/*   Updated: 2023/11/08 13:05:27 by rdelicad         ###   ########.fr       */
+/*   Updated: 2023/11/09 19:55:59 by rdelicad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	ft_cd(t_cmd	*c)
+void	ft_cd(t_info *i)
 {
-	c->pwd = get_pwd(c);
-	c->input = get_directory_path(c);
-	if (chdir(c->input) != 0)
-		perror("Error al cambiar de directorio");
-	changer_oldpwd_env(c, c->pwd);
-	changer_pwd_env(c);
+	i->c->pwd = get_pwd(i->c);
+	i->c->input = get_directory_path(i->c);
+	if (chdir(i->c->input) != 0)
+	{
+		write (2, "cd: ", 4);
+		write (2, i->par->args[0], ft_strlen(i->par->args[0]));
+		write (2, ": No such file or directory", 27);
+		write (2, "\n", 1);
+		i->status = 1;
+	}
+	changer_oldpwd_env(i->c, i->c->pwd);
+	changer_pwd_env(i->c);
+	i->status = 0;
 }
 
 void	changer_oldpwd_env(t_cmd *c, char *oldpwd)
@@ -62,7 +69,7 @@ char	*get_pwd(t_cmd *c)
 	c->pwd = getcwd(NULL, 0);
 	if (c->pwd == NULL)
 	{
-		perror("Error al obtener el directorion en CD");
+		perror("error");
 	}
 	return (c->pwd);
 }
