@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: palucena <palucena@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: rdelicad <rdelicad@student.42.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 19:07:37 by palucena          #+#    #+#             */
-/*   Updated: 2023/11/08 17:16:43 by palucena         ###   ########.fr       */
+/*   Updated: 2023/11/09 16:53:29 by rdelicad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,11 +88,12 @@ int	main(int argc, char **argv, char **envp)
 	while (1)
 	{
 		input = readline("\033[36;1mminishell$ \033[0m");
-		if (ft_strcmp(input, "exit") == 0)
+		/* if (ft_strcmp(input, "exit") == 0)
 		{
+			ft_exit(info);
 			free(input);
 			break ;
-		}
+		} */
 		add_history(input);
 		if (ft_strcmp(input, "\0") != 0)
 		{
@@ -106,6 +107,7 @@ int	main(int argc, char **argv, char **envp)
 	}
 	ft_free_list(info->c->list_env);
 	ft_matfree(info->c->path);
+	free(info->c);
 	free(info);
 	return (0);
 	

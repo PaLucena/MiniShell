@@ -6,7 +6,7 @@
 /*   By: rdelicad <rdelicad@student.42.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 14:53:34 by rdelicad          #+#    #+#             */
-/*   Updated: 2023/11/04 15:35:23 by rdelicad         ###   ########.fr       */
+/*   Updated: 2023/11/09 16:41:25 by rdelicad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,7 @@ void				ft_swap(int *a, int *b);
 size_t				ft_strcspn(const char *s, const char *reject);
 void				ft_matfree(char **str);
 void				ft_error(int fd, char *msn);
+int					ft_str_isdigit(char *str);
 
 /*
 ** libft_Bonus
@@ -108,7 +109,7 @@ void				ft_lstdelone(t_list *lst, void (*del)(void *));
 void				ft_lstclear(t_list **lst, void (*del)(void *));
 void				ft_lstiter(t_list *lst, void (*f)(void *));
 t_list				*ft_lstmap(t_list *lst, void *(*f)(void *),
-						void (*del)(void *));
+					void (*del)(void *));
 void				ft_lstswap(t_list **stack);
 
 /**

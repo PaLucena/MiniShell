@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   b_builtins.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: palucena <palucena@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: rdelicad <rdelicad@student.42.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/04 13:25:14 by rdelicad          #+#    #+#             */
-/*   Updated: 2023/11/08 17:46:59 by palucena         ###   ########.fr       */
+/*   Updated: 2023/11/09 16:34:50 by rdelicad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,14 @@ void	ft_builtins(t_info *i)
 		ft_env(i->c);
 	else if (!ft_strcmp(i->par->cmd, "export")) 
 	{
-		if (i->par->args != NULL)
+		if (i->par->args[0] != NULL)
 			argv_export(i);
 		else
 			ft_export(i->c);
 	}
 	else if (ft_strcmp(i->par->cmd, "unset") == 0)
 	{
-		if (i->par->args != NULL)
+		if (i->par->args[0] != NULL)
 			i->c->argv_unset = i->par->args[0];
 		ft_unset(&i->c->list_env, i->c->argv_unset);
 	}
@@ -38,4 +38,6 @@ void	ft_builtins(t_info *i)
 			i->c->input = i->par->args[0];
 		ft_cd(i->c);
 	}
+	else if (ft_strcmp(i->par->cmd, "exit") == 0)
+		ft_exit(i);
 }
