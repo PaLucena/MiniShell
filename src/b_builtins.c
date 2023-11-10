@@ -6,7 +6,7 @@
 /*   By: rdelicad <rdelicad@student.42.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/04 13:25:14 by rdelicad          #+#    #+#             */
-/*   Updated: 2023/11/09 20:11:49 by rdelicad         ###   ########.fr       */
+/*   Updated: 2023/11/10 11:23:21 by rdelicad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	ft_builtins(t_info *i)
 		if (i->par->args[0] != NULL)
 			argv_export(i);
 		else
-			ft_export(i->c);
+			ft_export(i);
 	}
 	else if (ft_strcmp(i->par->cmd, "unset") == 0)
 	{

@@ -6,18 +6,24 @@
 /*   By: rdelicad <rdelicad@student.42.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/28 15:58:35 by rdelicad          #+#    #+#             */
-/*   Updated: 2023/11/08 13:05:41 by rdelicad         ###   ########.fr       */
+/*   Updated: 2023/11/10 11:23:08 by rdelicad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	ft_export(t_cmd *c)
+void	ft_export(t_info *i)
 {
-	if (c->argv_env == NULL)
-		print_export(c);
+	if (i->c->argv_env == NULL)
+	{
+		print_export(i->c);
+		i->status = 0;
+	}
 	else
-		add_var_export(c);
+	{
+		add_var_export(i->c);
+		i->status = 0;
+	}
 }
 
 void	no_equal_sign_env(t_cmd *c)

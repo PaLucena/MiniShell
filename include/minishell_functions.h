@@ -6,7 +6,7 @@
 /*   By: rdelicad <rdelicad@student.42.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 11:11:25 by palucena          #+#    #+#             */
-/*   Updated: 2023/11/09 20:05:03 by rdelicad         ###   ########.fr       */
+/*   Updated: 2023/11/10 11:22:44 by rdelicad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ void	env_finish_position(t_env **list);
 void	env_argv(t_info *i);
 
 /* export.c */
-void	ft_export(t_cmd *c);
+void	ft_export(t_info *i);
 void	equal_sign_env(t_cmd *c);
 void	no_equal_sign_env(t_cmd *c);
 void	print_export(t_cmd *c);

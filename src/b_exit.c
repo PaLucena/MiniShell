@@ -6,7 +6,7 @@
 /*   By: rdelicad <rdelicad@student.42.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 19:27:20 by rdelicad          #+#    #+#             */
-/*   Updated: 2023/11/09 20:48:36 by rdelicad         ###   ########.fr       */
+/*   Updated: 2023/11/10 11:18:32 by rdelicad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,26 +61,21 @@ void	exit_number(t_info *i)
 	unsigned int	num;
 
 	num = 0;
-	if (!ft_str_isdigit(i->par->args[0]))
+	if (ft_atol(i->par->args[0]) > INT_MAX
+		|| ft_atol(i->par->args[0]) < INT_MIN)
+		exit_no_digit(i);
+	else if (ft_atoi(i->par->args[0]) < 0 && ft_atoi(i->par->args[0]) > 255)
 	{
-		if (ft_atol(i->par->args[0]) > INT_MAX
-			|| ft_atol(i->par->args[0]) < INT_MIN)
-			exit_no_digit(i);
-		else if (ft_atoi(i->par->args[0]) < 0 && ft_atoi(i->par->args[0]) > 255)
-		{
-			num = abs(ft_atoi(i->par->args[0])) % 256;
-			ft_putstr_fd("exit", 1);
-			i->status = num;
-			exit(num);
-		}
-		else
-		{
-			ft_putstr_fd("exit", 1);
-			num = ft_atoi(i->par->args[0]);
-			i->status = num;
-			exit(num);
-		}
+		num = abs(ft_atoi(i->par->args[0])) % 256;
+		ft_putstr_fd("exit", 1);
+		i->status = num;
+		exit(num);
 	}
 	else
-		exit_no_digit(i);
+	{
+		ft_putstr_fd("exit", 1);
+		num = ft_atoi(i->par->args[0]);
+		i->status = num;
+		exit(num);
+	}
 }
