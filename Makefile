@@ -1,7 +1,7 @@
 NAME = minishell
 
 CC = gcc -g
-FLAGS = -Wall -Wextra -Werror #-fsanitize=address
+FLAGS = -Wall -Wextra -Werror -fsanitize=address
 
 SRC_PATH = src/
 SRC = b_leaks.c b_env_init.c b_utils_list.c b_env.c b_export.c\
@@ -10,7 +10,7 @@ SRC = b_leaks.c b_env_init.c b_utils_list.c b_env.c b_export.c\
 		main.c free.c\
 		l_lexer.c l_token.c\
 		p_parser.c\
-		e_exec.c e_utils.c
+		e_exec.c
 OBJ_PATH = objs/
 OBJ = $(addprefix $(OBJ_PATH), $(SRC:.c=.o))
 

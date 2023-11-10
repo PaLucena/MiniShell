@@ -2,7 +2,8 @@
 	"bitoAI.codeCompletion.enableAutoCompletion": true,
 	"bitoAI.codeCompletion.enableCommentToCode": true,
 	"files.associations": {
-		"minishell.h": "c"
+		"minishell.h": "c",
+		"errno.h": "c"
 	},
 	"editor.inlineSuggest.showToolbar": "onHover"
 }

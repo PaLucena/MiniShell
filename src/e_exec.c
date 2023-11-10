@@ -13,6 +13,26 @@
 
 #include "minishell.h"
 
+bool	check_builtin(char	*cmd)
+{
+	if (ft_strcmp(cmd, "echo") == 0)
+		return (true);
+	else if (ft_strcmp(cmd, "cd") == 0)
+		return (true);
+	else if (ft_strcmp(cmd, "pwd") == 0)
+		return (true);
+	else if (ft_strcmp(cmd, "export") == 0)
+		return (true);
+	else if (ft_strcmp(cmd, "unset") == 0)
+		return (true);
+	else if (ft_strcmp(cmd, "env") == 0)
+		return (true);
+	else if (ft_strcmp(cmd, "exit") == 0)
+		return (true);
+	else
+		return (false);
+}
+
 char	*find_path(char **path, char *cmd)
 {
 	char	*new_path;
@@ -38,7 +58,6 @@ void	exec_cmd(t_info *info, char **envp)
 	char	*cmd_path;
 	int		i;
 
-	printf("archivos: %i, %i\n", info->par->infile, info->par->outfile);
 	if (info->par->infile != 0)
 		dup2(info->par->infile, STDIN_FILENO);
 	if (info->par->outfile != 1)
@@ -82,7 +101,7 @@ void	ft_execute(t_info *info, char **envp)
 				exec_cmd(info, envp);
 			else
 				waitpid(-1, &info->status, 0);
-			if (info->status != 0)
+			if (info->status == 256)
 				printf("minishell: %s: command not found\n", info->par->cmd);
 		}
 		ft_close(info->par);

@@ -6,7 +6,7 @@
 /*   By: palucena <palucena@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 11:11:25 by palucena          #+#    #+#             */
-/*   Updated: 2023/11/08 16:13:41 by palucena         ###   ########.fr       */
+/*   Updated: 2023/11/10 10:00:40 by palucena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ t_ps	*p_fill_ps(t_lx *lex, t_ps *par);
 ////////// parser.c //////////
 void	ft_execute(t_info *info, char **envp);
 
-////////// utils.c //////////
+////////// exec.c //////////
 bool	check_builtin(char	*cmd);
 
 ////////// free.c //////////

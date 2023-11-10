@@ -6,7 +6,7 @@
 /*   By: palucena <palucena@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 19:09:51 by palucena          #+#    #+#             */
-/*   Updated: 2023/11/09 14:05:10 by palucena         ###   ########.fr       */
+/*   Updated: 2023/11/10 10:13:00 by palucena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,9 +60,9 @@ int	ft_heredoc(char *limiter)
 		{
 			write(1, "> ", 2);
 			str = get_next_line(0);
-			ft_putstr_fd(str, fd[1]);
 			if (ft_strncmp(str, limiter, ft_strlen(str)) == 10)
-				exit(0);//printf("sale\n");
+				exit(0);
+			ft_putstr_fd(str, fd[1]);
 			free(str);
 		}
 	}
