@@ -6,12 +6,25 @@
 /*   By: palucena <palucena@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/04 13:25:14 by rdelicad          #+#    #+#             */
-/*   Updated: 2023/11/10 11:05:48 by palucena         ###   ########.fr       */
+/*   Updated: 2023/11/10 14:28:42 by palucena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+void	ft_builtins2(t_info *i)
+{
+	if (ft_strcmp(i->par->cmd, "cd") == 0)
+	{
+		if (i->par->args != NULL)
+			i->c->input = i->par->args[0];
+		ft_cd(i);
+	}
+	else if (ft_strcmp(i->par->cmd, "echo") == 0)
+		ft_echo(i->par);
+	else if (ft_strcmp(i->par->cmd, "exit") == 0)
+		ft_exit(i);
+}
 	
 void	ft_builtins(t_info *i)
 {
@@ -37,12 +50,6 @@ void	ft_builtins(t_info *i)
 	}
 	else if (ft_strcmp(i->par->cmd, "pwd") == 0)
 		ft_pwd(i->c);
-	else if (ft_strcmp(i->par->cmd, "cd") == 0)
-	{
-		if (i->par->args != NULL)
-			i->c->input = i->par->args[0];
-		ft_cd(i);
-	}
-	else if (ft_strcmp(i->par->cmd, "exit") == 0)
-		ft_exit(i);
+	else
+		ft_builtins2(i);
 }

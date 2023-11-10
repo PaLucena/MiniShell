@@ -6,7 +6,7 @@
 /*   By: palucena <palucena@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 11:11:25 by palucena          #+#    #+#             */
-/*   Updated: 2023/11/10 11:06:39 by palucena         ###   ########.fr       */
+/*   Updated: 2023/11/10 14:29:17 by palucena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,18 @@
 # include "minishell_structs.h"
 
 ////////// lexer.c //////////
-char	*l_get_quote(char *str, int start);
-char	*l_get_word(char *str, int start);
-char	*l_get_content(char *input, int i);
-t_lx	*l_fill_lx(char *input);
+char	*l_get_quote(char *str, int start, t_env *env);
+char	*l_get_word(char *str, int start, t_env *env);
+char	*l_get_content(char *input, int i, t_env *env);
+t_lx	*l_fill_lx(char *input, t_env *env);
 
 ////////// l_token.c /////////
 void	l_add_back(t_lx **lst, t_lx *new);
 void	l_tokenizer(t_lx *lx);
+
+////////// l_env.c /////////
+bool	l_is_env(char *str, t_env *env);
+char	*l_get_env(char *str, t_env *env);
 
 ////////// parser.c //////////
 t_ps	*p_fill_ps(t_lx *lex, t_ps *par);
@@ -108,6 +112,9 @@ char	*get_pwd(t_cmd *c);
 /* utils.cd.c */
 char	*get_directory_path(t_cmd *c);
 char	*get_parent_directory(char *path);
+
+/* echo.c */
+void	ft_echo(t_ps *par);
 
 /* exit.c */
 void	ft_exit(t_info *i);

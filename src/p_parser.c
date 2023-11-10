@@ -6,7 +6,7 @@
 /*   By: palucena <palucena@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 19:09:51 by palucena          #+#    #+#             */
-/*   Updated: 2023/11/10 10:13:00 by palucena         ###   ########.fr       */
+/*   Updated: 2023/11/10 14:42:07 by palucena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,11 @@ t_ps	*p_new_node(t_ps *par, t_lx *lex)
 	{
 		if (rot->token == ARG)
 		{
-			while (rot && rot->token == ARG)
+			while (rot && rot->token != PIPE)
 			{
+				if (rot->token == ARG)
+					i++;
 				rot = rot->next;
-				i++;
 			}
 			break ;
 		}
