@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lexer.c                                            :+:      :+:    :+:   */
+/*   l_lexer.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: palucena <palucena@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 10:45:41 by palucena          #+#    #+#             */
-/*   Updated: 2023/11/08 01:24:25 by palucena         ###   ########.fr       */
+/*   Updated: 2023/11/09 13:49:51 by palucena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,9 +94,9 @@ t_lx	*l_fill_lx(char *input)
 	{
 		while (input[i] == ' ')
 			i++;
-		if (lex == NULL)
+		if (lex == NULL && input[i])
 			lex = l_new_node(input, i);
-		else
+		else if (input[i])
 			l_add_back(&lex, l_new_node(input, i));
 		curr = lex;
 		while (curr->next)

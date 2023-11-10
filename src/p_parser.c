@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser.c                                           :+:      :+:    :+:   */
+/*   p_parser.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: palucena <palucena@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 19:09:51 by palucena          #+#    #+#             */
-/*   Updated: 2023/11/07 23:56:06 by palucena         ###   ########.fr       */
+/*   Updated: 2023/11/09 14:05:10 by palucena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,9 +80,9 @@ int	p_open(t_lx *lex)
 	if (lex->next && lex->token == REDIR_IN)
 		fd = open(lex->next->content, 0444);
 	else if (lex->next && lex->token == REDIR_OUT)
-		fd = open(lex->next->content, O_CREAT | O_RDWR | O_TRUNC, 0777);
+		fd = open(lex->next->content, O_CREAT | O_RDWR | O_TRUNC, 0666);
 	else if (lex->next && lex->token == REDIR_APPEND)
-		fd = open(lex->next->content, O_CREAT | O_RDWR | O_APPEND, 0777);
+		fd = open(lex->next->content, O_CREAT | O_RDWR | O_APPEND, 0666);
 	else if (lex->next && lex->token == REDIR_HEREDOC)
 		fd = ft_heredoc(lex->next->content);
 	return (fd);

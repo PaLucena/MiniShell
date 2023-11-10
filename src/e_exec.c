@@ -38,10 +38,11 @@ void	exec_cmd(t_info *info, char **envp)
 	char	*cmd_path;
 	int		i;
 
+	printf("archivos: %i, %i\n", info->par->infile, info->par->outfile);
 	if (info->par->infile != 0)
 		dup2(info->par->infile, STDIN_FILENO);
-	if (info->par->outfile != 0)
-		dup2(info->par->infile, STDOUT_FILENO);
+	if (info->par->outfile != 1)
+		dup2(info->par->outfile, STDOUT_FILENO);
 	cmd_path = find_path(info->c->path, info->par->cmd);
 	i = 0;
 	while (info->par->args[i])
@@ -74,7 +75,6 @@ void	ft_execute(t_info *info, char **envp)
 			break;
 		if (check_builtin(info->par->cmd))
 			ft_builtins(info);
-		//	ft_printf("Todavia no tengo built-ins 😭\n");
 		else
 		{
 			pid = fork();
@@ -82,6 +82,8 @@ void	ft_execute(t_info *info, char **envp)
 				exec_cmd(info, envp);
 			else
 				waitpid(-1, &info->status, 0);
+			if (info->status != 0)
+				printf("minishell: %s: command not found\n", info->par->cmd);
 		}
 		ft_close(info->par);
 		aux = info->par;

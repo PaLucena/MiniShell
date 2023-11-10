@@ -6,7 +6,7 @@
 /*   By: palucena <palucena@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 19:07:37 by palucena          #+#    #+#             */
-/*   Updated: 2023/11/08 17:16:43 by palucena         ###   ########.fr       */
+/*   Updated: 2023/11/09 16:34:37 by palucena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	print_select(t_lx *lex, t_ps *par, char **argv)
 {
-	if (argv[1] && (ft_strcmp(argv[1], "-l") || ft_strcmp(argv[1], "-lp")))
+	if (argv[1] && (ft_strcmp(argv[1], "-l") == 0 || ft_strcmp(argv[1], "-lp")  == 0))
 	{
 		int	i = 0;
 		printf("\033[33;1m	----lexer----\033[0m\n\n");
@@ -25,7 +25,7 @@ void	print_select(t_lx *lex, t_ps *par, char **argv)
 		}
 		printf("\n\033[33;1m	 ----end----\033[0m\n");
 	}
-	if (argv[1] && (ft_strcmp(argv[1], "-p") || ft_strcmp(argv[1], "-lp")))
+	if (argv[1] && (ft_strcmp(argv[1], "-p")  == 0 || ft_strcmp(argv[1], "-lp")  == 0))
 	{
 		int	i = 0;
 		printf("\033[33;1m	----parser----\033[0m\n\n");
@@ -85,6 +85,8 @@ int	main(int argc, char **argv, char **envp)
 	(void)envp;
 	info = malloc(sizeof(t_info));
 	init_info(info, envp);
+	printf("\n\nWelcome to MiniShell ");
+	printf("(by \033[34;1m@rdelicad\033[0m & \033[34;1m@palucena\033[0m)\n");
 	while (1)
 	{
 		input = readline("\033[36;1mminishell$ \033[0m");
