@@ -6,7 +6,7 @@
 /*   By: rdelicad <rdelicad@student.42.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 11:25:47 by rdelicad          #+#    #+#             */
-/*   Updated: 2023/11/08 13:15:39 by rdelicad         ###   ########.fr       */
+/*   Updated: 2023/11/09 14:00:59 by rdelicad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	argv_export(t_info *i)
 {
 	int j;
 
-	j = 1;
+	j = 0;
 	while (i->par->args[j] != NULL)
 	{
 		i->c->argv_env = i->par->args[j];
