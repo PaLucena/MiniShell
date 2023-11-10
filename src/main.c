@@ -6,7 +6,7 @@
 /*   By: rdelicad <rdelicad@student.42.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 19:07:37 by palucena          #+#    #+#             */
-/*   Updated: 2023/11/09 19:22:26 by rdelicad         ###   ########.fr       */
+/*   Updated: 2023/11/10 11:44:13 by rdelicad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,10 +99,7 @@ int	main(int argc, char **argv, char **envp)
 		}
 		free(input);
 	}
-	ft_free_list(info->c->list_env);
-	ft_matfree(info->c->path);
-	free(info->c);
+	free_command(info);
 	free(info);
 	return (0);
-	
 }

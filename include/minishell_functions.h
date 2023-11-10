@@ -6,7 +6,7 @@
 /*   By: rdelicad <rdelicad@student.42.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 11:11:25 by palucena          #+#    #+#             */
-/*   Updated: 2023/11/10 11:22:44 by rdelicad         ###   ########.fr       */
+/*   Updated: 2023/11/10 11:42:54 by rdelicad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ void	ft_free(char **str);
 /* leaks.c */
 void	leaks(void);
 char	*ft_strldup(char const *s1, size_t n);
+void	free_command(t_info *i);
 
 /* b_env_init.c */
 t_cmd	*init_struct(void);
