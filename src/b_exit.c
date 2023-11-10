@@ -6,25 +6,81 @@
 /*   By: rdelicad <rdelicad@student.42.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 19:27:20 by rdelicad          #+#    #+#             */
-/*   Updated: 2023/11/08 13:05:37 by rdelicad         ###   ########.fr       */
+/*   Updated: 2023/11/09 20:48:36 by rdelicad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	ft_exit(t_cmd *c)
+void	ft_exit(t_info *i)
 {
-	if (c->argv_exit == NULL)
+	if (i->par->args[0] == NULL)
 	{
 		ft_putstr_fd("exit", 1);
-		exit (0);
+		i->status = 0;
+		exit(0);
 	}
-	else if (c->argv_exit != NULL)
+	else if (!ft_str_isdigit(i->par->args[0]))
 	{
-		printf("%s\n", c->argv_exit);
-		if (ft_atoi(c->argv_exit) >= 0 && ft_atoi(c->argv_env) <= 255)
-			ft_putstr_fd("exit", ft_atoi(c->argv_exit));
-		exit (ft_atoi(c->argv_exit));
+		if ((i->par->args[0][0] != '-' && i->par->args[0][0] != '+'))
+			exit_no_digit(i);
+		else
+			exit_number(i);
 	}
-	
+	else if (i->par->args[1] != NULL)
+		exit_many_arguments(i);
+	else if (i->par->args[0] != NULL)
+		exit_number(i);
+}
+
+void	exit_no_digit(t_info *i)
+{
+	ft_putstr_fd("exit", 1);
+	write(1, "\n", 1);
+	write(2, "exit: ", 6);
+	write(2, i->par->args[0], ft_strlen(i->par->args[0]));
+	write(2, ": numeric argument required", 27);
+	write(1, "\n", 1);
+	i->status = 255;
+	exit(255);
+}
+
+void	exit_many_arguments(t_info *i)
+{
+	ft_putstr_fd("exit", 1);
+	write(1, "\n", 1);
+	write(2, "exit: ", 6);
+	write(2, "too many arguments", 18);
+	write(1, "\n", 1);
+	i->status = 1;
+	exit(1);
+}
+
+void	exit_number(t_info *i)
+{
+	unsigned int	num;
+
+	num = 0;
+	if (!ft_str_isdigit(i->par->args[0]))
+	{
+		if (ft_atol(i->par->args[0]) > INT_MAX
+			|| ft_atol(i->par->args[0]) < INT_MIN)
+			exit_no_digit(i);
+		else if (ft_atoi(i->par->args[0]) < 0 && ft_atoi(i->par->args[0]) > 255)
+		{
+			num = abs(ft_atoi(i->par->args[0])) % 256;
+			ft_putstr_fd("exit", 1);
+			i->status = num;
+			exit(num);
+		}
+		else
+		{
+			ft_putstr_fd("exit", 1);
+			num = ft_atoi(i->par->args[0]);
+			i->status = num;
+			exit(num);
+		}
+	}
+	else
+		exit_no_digit(i);
 }

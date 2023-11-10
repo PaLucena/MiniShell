@@ -6,7 +6,7 @@
 /*   By: palucena <palucena@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 18:36:00 by palucena          #+#    #+#             */
-/*   Updated: 2023/11/10 10:45:04 by palucena         ###   ########.fr       */
+/*   Updated: 2023/11/10 11:04:55 by palucena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,5 +40,7 @@
 # include <stdlib.h>
 
 # include <errno.h>
+
+# include <limits.h>
 
 #endif
