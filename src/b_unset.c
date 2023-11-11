@@ -6,31 +6,35 @@
 /*   By: rdelicad <rdelicad@student.42.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 13:58:05 by rdelicad          #+#    #+#             */
-/*   Updated: 2023/11/08 13:05:52 by rdelicad         ###   ########.fr       */
+/*   Updated: 2023/11/11 17:12:27 by rdelicad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	ft_unset(t_env **list, char *env)
+void	ft_unset(t_info *i)
 {
 	t_env	*tmp;
 
-	tmp = *list;
+	if (i->par->args[0] == NULL)
+		return ;
+	tmp = i->c->list_env;
 	while (tmp)
 	{
-		if (ft_strcmp(tmp->key, env) == 0)
+		if (ft_strcmp(tmp->key, i->par->args[0]) == 0)
 		{
-			top_the_list(list, tmp);
-			break;
+			top_the_list(&i->c->list_env, tmp);
+			i->status = 0;
+			break ;
 		}
-		else if (ft_strcmp(tmp->next->key, env) == 0)
+		else if (ft_strcmp(tmp->next->key, i->par->args[0]) == 0)
 		{
 			if (tmp->next->next == NULL)
 				finish_the_list(tmp);
 			else
 				middle_the_list(tmp);
-			break;
+			i->status = 0;
+			break ;
 		}
 		tmp = tmp->next;
 	}
@@ -38,7 +42,6 @@ void	ft_unset(t_env **list, char *env)
 
 void	top_the_list(t_env **list, t_env *new)
 {
-	
 	free(new->key);
 	free(new->value);
 	*list = new->next;
