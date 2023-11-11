@@ -6,7 +6,7 @@
 /*   By: rdelicad <rdelicad@student.42.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 19:07:37 by palucena          #+#    #+#             */
-/*   Updated: 2023/11/09 19:22:26 by rdelicad         ###   ########.fr       */
+/*   Updated: 2023/11/11 18:34:13 by rdelicad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,7 @@ int	main(int argc, char **argv, char **envp)
 	(void)envp;
 	info = malloc(sizeof(t_info));
 	init_info(info, envp);
+	signal_manager(info);
 	while (1)
 	{
 		input = readline("\033[36;1mminishell$ \033[0m");
@@ -104,5 +105,4 @@ int	main(int argc, char **argv, char **envp)
 	free(info->c);
 	free(info);
 	return (0);
-	
 }
