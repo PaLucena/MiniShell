@@ -6,7 +6,7 @@
 /*   By: palucena <palucena@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 11:08:23 by palucena          #+#    #+#             */
-/*   Updated: 2023/11/10 14:44:36 by palucena         ###   ########.fr       */
+/*   Updated: 2023/11/12 22:26:02 by palucena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,6 @@ void	ft_echo(t_ps *par)
 		if (par->args[++i])
 			write(par->outfile, " ", 1);
 	}
-	if (par->args[0] && ft_strcmp(par->args[0], "-n") != 0)
+	if (!par->args[0] || (par->args[0] && ft_strcmp(par->args[0], "-n") != 0))
 		write(par->outfile, "\n", 1);
 }

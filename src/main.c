@@ -6,7 +6,7 @@
 /*   By: palucena <palucena@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 19:07:37 by palucena          #+#    #+#             */
-/*   Updated: 2023/11/10 14:56:43 by palucena         ###   ########.fr       */
+/*   Updated: 2023/11/12 22:49:02 by palucena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,12 +49,12 @@ void	ft_syntax_error(void)
 	exit(1);
 }
 
-t_ps	*manage_input(char *input, char **argv, t_env *env)
+t_ps	*manage_input(char *input, char **argv, t_info *info)
 {
 	t_lx	*lex;
 	t_ps	*par;
 
-	lex = l_fill_lx(input, env);
+	lex = l_fill_lx(input, info);
 	if (!lex)
 		return (NULL); // error
 	par = p_fill_ps(lex, NULL);
@@ -79,7 +79,7 @@ int	main(int argc, char **argv, char **envp)
 	t_info	*info;
 	char	*input;
 
-	//atexit(leaks);
+	atexit(leaks);
 	(void)argc;
 	(void)envp;
 	info = malloc(sizeof(t_info));
@@ -92,13 +92,12 @@ int	main(int argc, char **argv, char **envp)
 		add_history(input);
 		if (ft_strcmp(input, "\0") != 0)
 		{
-			info->par = manage_input(input, argv, info->c->list_env);
+			info->par = manage_input(input, argv, info);
 			if (!info->par)
 				ft_syntax_error();
 			ft_execute(info, envp);
 			free_parser(info->par);
 		}
-		printf("Status de salida: %i\n", info->status);
 		free(input);
 	}
 	ft_free_list(info->c->list_env);

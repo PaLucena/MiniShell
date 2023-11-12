@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: rdelicad <rdelicad@student.42.com>         +#+  +:+       +#+         #
+#    By: palucena <palucena@student.42malaga.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/18 19:17:24 by rdelicad          #+#    #+#              #
-#    Updated: 2023/11/09 16:44:48 by rdelicad         ###   ########.fr        #
+#    Updated: 2023/11/12 18:40:02 by palucena         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -48,7 +48,7 @@ SRCS := ft_bzero.c ft_isalnum.c ft_isalpha.c ft_isascii.c ft_isprint.c\
 		ft_lstclear_bonus.c ft_lstiter_bonus.c ft_lstmap_bonus.c ft_printf.c\
 		print_char.c print_hexa.c print_str.c get_next_line_bonus.c get_next_line.c\
 		get_next_line_utils.c ft_strcmp.c ft_atol.c ft_swap.c ft_lstswap.c\
-		ft_strcspn.c ft_matfree.c ft_error.c ft_str_isdigit.c
+		ft_strcspn.c ft_matfree.c ft_error.c ft_str_isdigit.c ft_frankestein.c
 
 OBJS = $(addprefix $(OBJS_DIR)/,$(SRCS:.c=.o))
 

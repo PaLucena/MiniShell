@@ -6,7 +6,7 @@
 /*   By: palucena <palucena@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 11:11:25 by palucena          #+#    #+#             */
-/*   Updated: 2023/11/12 16:59:32 by palucena         ###   ########.fr       */
+/*   Updated: 2023/11/12 18:07:17 by palucena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,18 +16,18 @@
 # include "minishell_structs.h"
 
 ////////// lexer.c //////////
-char	*l_get_quote(char *str, int start, t_env *env);
-char	*l_get_word(char *str, int start, t_env *env);
-char	*l_get_content(char *input, int i, t_env *env);
-t_lx	*l_fill_lx(char *input, t_env *env);
+char	*l_get_quote(char *str, int start, t_info *info);
+char	*l_get_word(char *str, int start, t_info *info);
+char	*l_get_content(char *input, int i, t_info *info);
+t_lx	*l_fill_lx(char *input, t_info *info);
 
 ////////// l_token.c /////////
 void	l_add_back(t_lx **lst, t_lx *new);
 void	l_tokenizer(t_lx *lx);
 
 ////////// l_env.c /////////
-bool	l_is_env(char *str, t_env *env);
-char	*l_get_env(char *str, t_env *env);
+bool	l_is_env(char *str, t_info *info);
+char	*l_get_env(char *str, t_info *info);
 
 ////////// parser.c //////////
 t_ps	*p_fill_ps(t_lx *lex, t_ps *par);

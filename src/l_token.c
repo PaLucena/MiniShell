@@ -6,7 +6,7 @@
 /*   By: palucena <palucena@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 13:30:18 by palucena          #+#    #+#             */
-/*   Updated: 2023/11/10 09:51:07 by palucena         ###   ########.fr       */
+/*   Updated: 2023/11/12 22:33:58 by palucena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	l_get_token(char *actual, t_lx *prev, bool check)
 
 	if (check)
 		cmd_door = true;
-	if (ft_strncmp(actual, "|", ft_strlen(actual)) == 0)
+	if (ft_strncmp(actual, "|", 1) == 0)
 	{
 		cmd_door = false;
 		return (PIPE);

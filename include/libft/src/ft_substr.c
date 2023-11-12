@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rdelicad <rdelicad@student.42.com>         +#+  +:+       +#+        */
+/*   By: palucena <palucena@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 21:34:05 by rdelicad          #+#    #+#             */
-/*   Updated: 2023/10/24 20:03:55 by rdelicad         ###   ########.fr       */
+/*   Updated: 2023/11/12 22:27:28 by palucena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	int			max;
 
 	slen = (int)ft_strlen(s);
-	if (s == NULL )
+	if (s == NULL)
 		return (NULL);
 	if (start >= slen)
 		return (ft_strdup(""));
