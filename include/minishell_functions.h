@@ -6,7 +6,7 @@
 /*   By: palucena <palucena@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 11:11:25 by palucena          #+#    #+#             */
-/*   Updated: 2023/11/12 18:07:17 by palucena         ###   ########.fr       */
+/*   Updated: 2023/11/13 00:23:22 by palucena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,11 +32,8 @@ char	*l_get_env(char *str, t_info *info);
 ////////// parser.c //////////
 t_ps	*p_fill_ps(t_lx *lex, t_ps *par);
 
-////////// parser.c //////////
-void	ft_execute(t_info *info, char **envp);
-
 ////////// exec.c //////////
-bool	check_builtin(char *cmd);
+void	ft_execute(t_info *info, char **envp);
 
 ////////// free.c //////////
 void	free_lexer(t_lx *lex);
@@ -55,6 +52,7 @@ void	create_path(t_cmd *c);
 void	changer_env_cmd(t_cmd *c);
 
 /* builtins.c */
+bool	check_builtin(char *cmd);
 void	ft_builtins(t_info *i);
 
 /* utils_list.c */
@@ -114,7 +112,7 @@ char	*get_directory_path(t_cmd *c);
 char	*get_parent_directory(char *path);
 
 /* echo.c */
-void	ft_echo(t_ps *par);
+void	ft_echo(t_info *info, char **args);
 
 /* exit.c */
 void	ft_exit(t_info *i);

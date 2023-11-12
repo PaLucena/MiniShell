@@ -6,13 +6,13 @@
 /*   By: palucena <palucena@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/12 18:39:35 by palucena          #+#    #+#             */
-/*   Updated: 2023/11/12 22:41:26 by palucena         ###   ########.fr       */
+/*   Updated: 2023/11/13 00:03:06 by palucena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/libft.h"
 
-void	ft_free_all(char *s1, char *s2, char *s3, char *s4)
+static void	ft_free_all(char *s1, char *s2, char *s3, char *s4)
 {
 	if (s1)
 		free(s1);
@@ -24,7 +24,7 @@ void	ft_free_all(char *s1, char *s2, char *s3, char *s4)
 		free(s4);
 }
 
-bool	check_status(char *str)
+static bool	check_status(char *str)
 {
 	int	i;
 
@@ -45,16 +45,14 @@ char	*ft_frankestein(char *base, char *limb, int start, int end)
 	char	*aux;
 	int		i;
 
-	pre = NULL;
 	post = NULL;
-	if (start > 0)
-		pre = ft_substr(base, 0, start);
+	pre = ft_substr(base, 0, start);
 	i = 0;
 	if (check_status(limb))
 		end = start + 1;
 	while (base[end + i])
 		i++;
-	if (i > 1)
+	if (i >= 1)
 		post = ft_substr(base, end, i);
 	if (pre)
 		aux = ft_strjoin(pre, limb);
@@ -64,6 +62,7 @@ char	*ft_frankestein(char *base, char *limb, int start, int end)
 		monster = ft_strjoin(aux, post);
 	else
 		monster = ft_strdup(aux);
+	printf("Start: %i\nEnd: %i\nBase: %s\nLimb: %s\nPre: %s\nPost: %s\nAux: %s\nMonster: %s\n", start, end, base, limb, pre, post, aux, monster);
 	ft_free_all(pre, aux, post, limb);
 	return (monster);
 }

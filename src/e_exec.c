@@ -13,32 +13,28 @@
 
 #include "minishell.h"
 
-bool	check_builtin(char	*cmd)
+static void	ft_error_msg(t_info *info)
 {
-	if (ft_strcmp(cmd, "echo") == 0)
-		return (true);
-	else if (ft_strcmp(cmd, "cd") == 0)
-		return (true);
-	else if (ft_strcmp(cmd, "pwd") == 0)
-		return (true);
-	else if (ft_strcmp(cmd, "export") == 0)
-		return (true);
-	else if (ft_strcmp(cmd, "unset") == 0)
-		return (true);
-	else if (ft_strcmp(cmd, "env") == 0)
-		return (true);
-	else if (ft_strcmp(cmd, "exit") == 0)
-		return (true);
-	else
-		return (false);
+	if (info->status == 256)
+		printf("minishell: %s: command not found\n", info->par->cmd);
+	else if (info->status == 11)
+		printf("minishell: %s: no such file or directory\n", info->par->cmd);
 }
 
-char	*find_path(char **path, char *cmd)
+char	*find_path(t_env *env, char *cmd)
 {
+	t_env	*curr;
+	char	**path;
 	char	*new_path;
 	char	*aux;
 	int		i;
 
+	curr = env;
+	while (ft_strcmp(curr->key, "PATH") != 0)
+		curr = curr->next;
+	if (!curr)
+		exit (127);
+	path = ft_split(curr->value, ':');
 	i = -1;
 	while (path[++i])
 	{
@@ -49,7 +45,7 @@ char	*find_path(char **path, char *cmd)
 			return (new_path);
 		free(new_path);
 	}
-	exit (1);
+	exit (127);
 }
 
 void	exec_cmd(t_info *info, char **envp)
@@ -62,7 +58,7 @@ void	exec_cmd(t_info *info, char **envp)
 		dup2(info->par->infile, STDIN_FILENO);
 	if (info->par->outfile != 1)
 		dup2(info->par->outfile, STDOUT_FILENO);
-	cmd_path = find_path(info->c->path, info->par->cmd);
+	cmd_path = find_path(info->c->list_env, info->par->cmd);
 	i = 0;
 	while (info->par->args[i])
 		i++;
@@ -101,8 +97,8 @@ void	ft_execute(t_info *info, char **envp)
 				exec_cmd(info, envp);
 			else
 				waitpid(-1, &info->status, 0);
-			if (info->status == 256)
-				printf("minishell: %s: command not found\n", info->par->cmd);
+			if (info->status != 0)
+				ft_error_msg(info);
 		}
 		ft_close(info->par);
 		aux = info->par;

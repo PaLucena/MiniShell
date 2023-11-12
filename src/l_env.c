@@ -6,11 +6,18 @@
 /*   By: palucena <palucena@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 13:03:29 by palucena          #+#    #+#             */
-/*   Updated: 2023/11/12 22:42:04 by palucena         ###   ########.fr       */
+/*   Updated: 2023/11/12 23:39:57 by palucena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+static bool	ft_stop(char c)
+{
+	if (c && c != 34 && c != 39 && c != '/' && c != ' ')
+		return (true);
+	return (false);
+}
 
 char	*check_keys(char *str, t_env *env, int status)
 {
@@ -48,7 +55,7 @@ char	*l_get_env(char *str, t_info *info)
 		if (new_str[i] == '$')
 		{
 			j = 1;
-			while (new_str[i + j + 1] && new_str[i + j + 1] != '$')
+			while (ft_stop(new_str[i + j + 1]))
 				j++;
 			aux = ft_substr(new_str, i + 1, j);
 			key = check_keys(aux, info->c->list_env, info->status);

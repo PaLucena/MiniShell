@@ -6,11 +6,31 @@
 /*   By: palucena <palucena@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/04 13:25:14 by rdelicad          #+#    #+#             */
-/*   Updated: 2023/11/12 22:25:54 by palucena         ###   ########.fr       */
+/*   Updated: 2023/11/13 00:22:10 by palucena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+bool	check_builtin(char	*cmd)
+{
+	if (ft_strcmp(cmd, "echo") == 0)
+		return (true);
+	else if (ft_strcmp(cmd, "cd") == 0)
+		return (true);
+	else if (ft_strcmp(cmd, "pwd") == 0)
+		return (true);
+	else if (ft_strcmp(cmd, "export") == 0)
+		return (true);
+	else if (ft_strcmp(cmd, "unset") == 0)
+		return (true);
+	else if (ft_strcmp(cmd, "env") == 0)
+		return (true);
+	else if (ft_strcmp(cmd, "exit") == 0)
+		return (true);
+	else
+		return (false);
+}
 
 void	ft_builtins2(t_info *i)
 {
@@ -21,7 +41,7 @@ void	ft_builtins2(t_info *i)
 		ft_cd(i);
 	}
 	else if (ft_strcmp(i->par->cmd, "echo") == 0)
-		ft_echo(i->par);
+		ft_echo(i, i->par->args);
 	else if (ft_strcmp(i->par->cmd, "exit") == 0)
 		ft_exit(i);
 }

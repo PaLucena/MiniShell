@@ -6,7 +6,7 @@
 /*   By: palucena <palucena@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 19:07:37 by palucena          #+#    #+#             */
-/*   Updated: 2023/11/12 22:49:02 by palucena         ###   ########.fr       */
+/*   Updated: 2023/11/12 23:24:32 by palucena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,9 +79,8 @@ int	main(int argc, char **argv, char **envp)
 	t_info	*info;
 	char	*input;
 
-	atexit(leaks);
+	//atexit(leaks);
 	(void)argc;
-	(void)envp;
 	info = malloc(sizeof(t_info));
 	init_info(info, envp);
 	printf("\n\nWelcome to MiniShell ");

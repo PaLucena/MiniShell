@@ -6,7 +6,7 @@
 /*   By: palucena <palucena@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 10:44:14 by palucena          #+#    #+#             */
-/*   Updated: 2023/11/12 23:01:35 by palucena         ###   ########.fr       */
+/*   Updated: 2023/11/13 00:07:47 by palucena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ typedef struct s_env
 	struct s_env	*next;
 }					t_env;
 
-typedef struct s_command
+typedef struct s_cmd
 {
 	t_env			*list_env;
 	char			**path;

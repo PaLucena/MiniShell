@@ -6,25 +6,26 @@
 /*   By: palucena <palucena@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 11:08:23 by palucena          #+#    #+#             */
-/*   Updated: 2023/11/12 22:26:02 by palucena         ###   ########.fr       */
+/*   Updated: 2023/11/13 00:14:33 by palucena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	ft_echo(t_ps *par)
+void	ft_echo(t_info *info, char **args)
 {
 	int	i;
 
 	i = 0;
-	if (par->args[0] && ft_strcmp(par->args[0], "-n") == 0)
+	if (args[0] && ft_strcmp(args[0], "-n") == 0)
 		i++;
-	while (par->args[i])
+	while (args[i])
 	{
-		ft_putstr_fd(par->args[i], par->outfile);
-		if (par->args[++i])
-			write(par->outfile, " ", 1);
+		ft_putstr_fd(args[i], info->par->outfile);
+		if (args[++i])
+			write(info->par->outfile, " ", 1);
 	}
-	if (!par->args[0] || (par->args[0] && ft_strcmp(par->args[0], "-n") != 0))
-		write(par->outfile, "\n", 1);
+	if (!args[0] || (args[0] && ft_strcmp(args[0], "-n") != 0))
+		write(info->par->outfile, "\n", 1);
+	info->status = 0;
 }
