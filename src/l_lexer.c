@@ -6,7 +6,7 @@
 /*   By: palucena <palucena@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 10:45:41 by palucena          #+#    #+#             */
-/*   Updated: 2023/11/10 14:27:45 by palucena         ###   ########.fr       */
+/*   Updated: 2023/11/11 19:25:44 by palucena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ char	*l_get_quote(char *str, int start, t_env *env)
 	if (!str[i])
 		return (NULL);
 	quote = ft_substr(str, start + 1, i - (start + 1));
-	if (l_is_env(quote, env))
+	if (l_is_env(quote, env) && str[start] != 39)
 		quote = l_get_env(quote, env);
 	if (str[++i] && str[i] != ' ')
 	{

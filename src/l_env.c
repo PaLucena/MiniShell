@@ -6,7 +6,7 @@
 /*   By: palucena <palucena@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 13:03:29 by palucena          #+#    #+#             */
-/*   Updated: 2023/11/10 15:13:17 by palucena         ###   ########.fr       */
+/*   Updated: 2023/11/11 20:44:43 by palucena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,4 +37,5 @@ char	*l_get_env(char *str, t_env *env)
 		}
 	}
 	return (NULL);
+
 }
