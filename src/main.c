@@ -6,7 +6,7 @@
 /*   By: palucena <palucena@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 19:07:37 by palucena          #+#    #+#             */
-/*   Updated: 2023/11/12 23:24:32 by palucena         ###   ########.fr       */
+/*   Updated: 2023/11/13 19:04:46 by palucena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,12 @@
 
 void	print_select(t_lx *lex, t_ps *par, char **argv)
 {
-	if (argv[1] && (ft_strcmp(argv[1], "-l") == 0 || ft_strcmp(argv[1], "-lp")  == 0))
+	int	i;
+	int	j;
+
+	if (argv[1] && (ft_strcmp(argv[1], "-l") == 0 || ft_strcmp(argv[1], "-lp") == 0))
 	{
-		int	i = 0;
+		i = 0;
 		printf("\033[33;1m	----lexer----\033[0m\n\n");
 		while (lex)
 		{
@@ -27,9 +30,8 @@ void	print_select(t_lx *lex, t_ps *par, char **argv)
 	}
 	if (argv[1] && (ft_strcmp(argv[1], "-p")  == 0 || ft_strcmp(argv[1], "-lp")  == 0))
 	{
-		int	i = 0;
+		i = 0;
 		printf("\033[33;1m	----parser----\033[0m\n\n");
-		int	j;
 		while (par)
 		{
 			j = -1;
@@ -59,7 +61,6 @@ t_ps	*manage_input(char *input, char **argv, t_info *info)
 		return (NULL); // error
 	par = p_fill_ps(lex, NULL);
 	print_select(lex, par, argv);
-	// limpiar lexer
 	free_lexer(lex);
 	return (par);
 }
@@ -79,7 +80,7 @@ int	main(int argc, char **argv, char **envp)
 	t_info	*info;
 	char	*input;
 
-	//atexit(leaks);
+	atexit(leaks);
 	(void)argc;
 	info = malloc(sizeof(t_info));
 	init_info(info, envp);
@@ -99,10 +100,6 @@ int	main(int argc, char **argv, char **envp)
 		}
 		free(input);
 	}
-	ft_free_list(info->c->list_env);
-	ft_matfree(info->c->path);
-	free(info->c);
-	free(info);
+	free_info(info);
 	return (0);
-	
 }

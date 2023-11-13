@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   l_lexer.c                                          :+:      :+:    :+:   */
+/*   l_start.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: palucena <palucena@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 10:45:41 by palucena          #+#    #+#             */
-/*   Updated: 2023/11/12 21:30:49 by palucena         ###   ########.fr       */
+/*   Updated: 2023/11/13 16:37:52 by palucena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,21 +51,21 @@ char	*l_get_quote(char *str, int start, t_info *info)
 	return (quote);
 }
 
-char	*l_get_word(char *str, int start, t_info *info)
+char	*l_get_word(char *s, int start, t_info *info)
 {
 	char	*word;
 	char	*aux;
 	char	*mix;
 	int		i;
 
-	i = start;
-	while (str[i] && str[i] != ' ' && str[i] != 34 && str[i] != 39)
+	i = start + 1;
+	while (s[i] && s[i] != ' ' && s[i] != 34 && s[i] != 39)
 		i++;
-	word = ft_substr(str, start, i - start);
+	word = ft_substr(s, start, i - start);
 	word = l_get_env(word, info);
-	if (str[i] == 34 || str[i] == 39)
+	if (s[i] == 34 || s[i] == 39)
 	{
-		aux = l_get_quote(str, i, info);
+		aux = l_get_quote(s, i, info);
 		mix = ft_strjoin(word, aux);
 		free(word);
 		free(aux);
@@ -107,8 +107,6 @@ t_lx	*l_fill_lx(char *input, t_info *info)
 		while (input[i] && input[i] != ' ')
 			i++;
 	}
-	if (lex == NULL)
-		return (0);
 	l_tokenizer(lex);
 	return (lex);
 }

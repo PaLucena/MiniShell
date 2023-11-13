@@ -6,7 +6,7 @@
 /*   By: palucena <palucena@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 13:30:18 by palucena          #+#    #+#             */
-/*   Updated: 2023/11/12 22:33:58 by palucena         ###   ########.fr       */
+/*   Updated: 2023/11/13 18:06:57 by palucena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,16 @@ int	l_check_redir(char *word)
 	return (0);
 }
 
+static int	pipe_options(char *actual)
+{
+	if (ft_strcmp(actual, "||") == 0)
+		return (PIPE);
+	else if (ft_strcmp(actual, "||") == 0)
+		return (OR);
+	printf("minishell: syntax error near unexpected token `|'\n");
+	return (-1);
+}
+
 int	l_get_token(char *actual, t_lx *prev, bool check)
 {
 	static bool	cmd_door = false;
@@ -34,8 +44,10 @@ int	l_get_token(char *actual, t_lx *prev, bool check)
 	if (ft_strncmp(actual, "|", 1) == 0)
 	{
 		cmd_door = false;
-		return (PIPE);
+		return (pipe_options(actual));
 	}
+	else if (ft_strcmp(actual, "&&") == 0)
+		return (AND);
 	else if (l_check_redir(actual) != 0)
 		return (l_check_redir(actual));
 	else if (prev->token == REDIR_IN || prev->token == REDIR_HEREDOC)

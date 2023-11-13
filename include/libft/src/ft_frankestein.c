@@ -6,7 +6,7 @@
 /*   By: palucena <palucena@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/12 18:39:35 by palucena          #+#    #+#             */
-/*   Updated: 2023/11/13 00:03:06 by palucena         ###   ########.fr       */
+/*   Updated: 2023/11/13 15:15:14 by palucena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ char	*ft_frankestein(char *base, char *limb, int start, int end)
 	pre = ft_substr(base, 0, start);
 	i = 0;
 	if (check_status(limb))
-		end = start + 1;
+		end = start + 2;
 	while (base[end + i])
 		i++;
 	if (i >= 1)
@@ -62,7 +62,6 @@ char	*ft_frankestein(char *base, char *limb, int start, int end)
 		monster = ft_strjoin(aux, post);
 	else
 		monster = ft_strdup(aux);
-	printf("Start: %i\nEnd: %i\nBase: %s\nLimb: %s\nPre: %s\nPost: %s\nAux: %s\nMonster: %s\n", start, end, base, limb, pre, post, aux, monster);
 	ft_free_all(pre, aux, post, limb);
 	return (monster);
 }

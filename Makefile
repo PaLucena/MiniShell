@@ -8,14 +8,16 @@ SRC = b_leaks.c b_env_init.c b_utils_list.c b_env.c b_export.c\
 		b_utils_export.c b_utils_export1.c b_utils_export2.c b_unset.c b_pwd.c\
 		b_builtins.c b_cd.c b_utils.cd.c b_echo.c b_exit.c\
 		main.c free.c\
-		l_lexer.c l_token.c l_env.c\
-		p_parser.c\
-		e_exec.c
+		l_start.c l_token.c l_env.c\
+		p_start.c p_utils.c\
+		exec.c
 OBJ_PATH = objs/
 OBJ = $(addprefix $(OBJ_PATH), $(SRC:.c=.o))
 
 INC = include
 LIB = include/libft/libft.a
+
+LREADLINE = -lreadline
 
 HEADERS	= -I ./include
 
@@ -34,7 +36,7 @@ RESET	:= \033[0m
 all: libft $(NAME)
 
 $(NAME): $(OBJ)
-	@ gcc $(FLAGS) $(OBJ) $(LIB) $(HEADERS) -lreadline -o $(NAME)
+	@ gcc $(FLAGS) $(OBJ) $(LIB) $(HEADERS) $(LREADLINE) -o $(NAME)
 	@ echo "\n\t\t$(GREEN)$(BOLD)----MiniShell compiled----\n$(RESET)"
 
 $(OBJ_PATH)%.o: $(SRC_PATH)%.c

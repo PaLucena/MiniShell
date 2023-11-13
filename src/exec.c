@@ -1,4 +1,3 @@
-
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
@@ -7,7 +6,7 @@
 /*   By: palucena <palucena@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 17:16:17 by palucena          #+#    #+#             */
-/*   Updated: 2023/11/08 00:44:11 by palucena         ###   ########.fr       */
+/*   Updated: 2023/11/13 15:37:08 by palucena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +14,11 @@
 
 static void	ft_error_msg(t_info *info)
 {
-	if (info->status == 256)
+/* 	if (info->status == 11)
 		printf("minishell: %s: command not found\n", info->par->cmd);
-	else if (info->status == 11)
-		printf("minishell: %s: no such file or directory\n", info->par->cmd);
+	else if (info->status == 256)
+		printf("minishell: %s: no such file or directory\n", info->par->cmd); */
+	printf("Exit status: %i\n", info->status);
 }
 
 char	*find_path(t_env *env, char *cmd)
@@ -87,7 +87,7 @@ void	ft_execute(t_info *info, char **envp)
 	while (info->par)
 	{
 		if (info->exit)
-			break;
+			break ;
 		if (check_builtin(info->par->cmd))
 			ft_builtins(info);
 		else
@@ -97,8 +97,7 @@ void	ft_execute(t_info *info, char **envp)
 				exec_cmd(info, envp);
 			else
 				waitpid(-1, &info->status, 0);
-			if (info->status != 0)
-				ft_error_msg(info);
+			ft_error_msg(info);
 		}
 		ft_close(info->par);
 		aux = info->par;

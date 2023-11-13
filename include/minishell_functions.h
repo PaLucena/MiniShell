@@ -6,7 +6,7 @@
 /*   By: palucena <palucena@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 11:11:25 by palucena          #+#    #+#             */
-/*   Updated: 2023/11/13 00:23:22 by palucena         ###   ########.fr       */
+/*   Updated: 2023/11/13 15:43:26 by palucena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # include "minishell_structs.h"
 
-////////// lexer.c //////////
+////////// l_start.c //////////
 char	*l_get_quote(char *str, int start, t_info *info);
 char	*l_get_word(char *str, int start, t_info *info);
 char	*l_get_content(char *input, int i, t_info *info);
@@ -29,8 +29,13 @@ void	l_tokenizer(t_lx *lx);
 bool	l_is_env(char *str, t_info *info);
 char	*l_get_env(char *str, t_info *info);
 
-////////// parser.c //////////
+////////// p_start.c //////////
 t_ps	*p_fill_ps(t_lx *lex, t_ps *par);
+
+////////// p_utils.c //////////
+int		ft_heredoc(char *limiter);
+int		p_open(t_lx *lex);
+t_lx	*p_fill_arg(char **args, t_lx *lex);
 
 ////////// exec.c //////////
 void	ft_execute(t_info *info, char **envp);
@@ -39,6 +44,7 @@ void	ft_execute(t_info *info, char **envp);
 void	free_lexer(t_lx *lex);
 void	free_parser(t_ps *par);
 void	ft_free(char **str);
+void	free_info(t_info *info);
 
 /* leaks.c */
 void	leaks(void);

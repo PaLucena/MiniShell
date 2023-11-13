@@ -6,7 +6,7 @@
 /*   By: palucena <palucena@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 13:03:29 by palucena          #+#    #+#             */
-/*   Updated: 2023/11/12 23:39:57 by palucena         ###   ########.fr       */
+/*   Updated: 2023/11/13 15:15:05 by palucena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static bool	ft_stop(char c)
 {
-	if (c && c != 34 && c != 39 && c != '/' && c != ' ')
+	if (c && c != '$' && c != 34 && c != 39 && c != '/' && c != ' ')
 		return (true);
 	return (false);
 }
@@ -39,13 +39,30 @@ char	*check_keys(char *str, t_env *env, int status)
 	return (NULL);
 }
 
+static char	*l_new_str(t_info *info, char *new_str, int i)
+{
+	char	*aux;
+	char	*key;
+	int		j;
+
+	j = 1;
+	while (ft_stop(new_str[i + j + 1]))
+		j++;
+	aux = ft_substr(new_str, i + 1, j);
+	key = check_keys(aux, info->c->list_env, info->status);
+	free(aux);
+	if (key)
+		new_str = ft_frankestein(new_str, key, i, i + j + 1);
+	else
+		return (NULL);
+	return (new_str);
+}
+
 char	*l_get_env(char *str, t_info *info)
 {
 	char	*new_str;
 	char	*aux;
-	char	*key;
 	int		i;
-	int		j;
 
 	i = -1;
 	new_str = ft_strdup(str);
@@ -54,19 +71,17 @@ char	*l_get_env(char *str, t_info *info)
 	{
 		if (new_str[i] == '$')
 		{
-			j = 1;
-			while (ft_stop(new_str[i + j + 1]))
-				j++;
-			aux = ft_substr(new_str, i + 1, j);
-			key = check_keys(aux, info->c->list_env, info->status);
-			if (key)
-				new_str = ft_frankestein(new_str, key, i, i + j + 1);
+			aux = l_new_str(info, new_str, i);
+			if (aux)
+			{
+				new_str = ft_strdup(aux);
+				free(aux);
+			}
 			else
 			{
 				new_str = ft_substr(new_str, 0, i);
 				break ;
 			}
-			free(aux);
 		}
 	}
 	return (new_str);
