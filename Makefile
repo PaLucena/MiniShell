@@ -19,6 +19,13 @@ LIB = include/libft/libft.a
 
 HEADERS	= -I ./include
 
+SYS = $(shel uname -s)
+
+ifeq ($(SYS), Darwin)
+	INCLUDES += -I /sgoinfre/goinfre/Perso/${USER}/readline/include
+	RL += -L /sgoinfre/goinfre/Perso/${USER}/readline/lib -lreadline
+endif
+
 #//= Colors =//#
 BOLD	:= \033[1m
 BLACK	:= \033[30;1m
@@ -34,12 +41,12 @@ RESET	:= \033[0m
 all: libft $(NAME)
 
 $(NAME): $(OBJ)
-	@ gcc $(FLAGS) $(OBJ) $(LIB) $(HEADERS) -lreadline -o $(NAME)
+	@ gcc $(FLAGS) $(OBJ) $(LIB) $(HEADERS) -o $(NAME) $(RL)
 	@ echo "\n\t\t$(GREEN)$(BOLD)----MiniShell compiled----\n$(RESET)"
 
 $(OBJ_PATH)%.o: $(SRC_PATH)%.c
 	@ mkdir -p  $(OBJ_PATH)
-	@ $(CC) $(FLAGS) -c $< -o $@ $(HEADERS)
+	@ $(CC) $(FLAGS) -c $< -o $@ $(HEADERS) $(INCLUDES)
 
 libft:
 	@ make -C $(INC)/libft

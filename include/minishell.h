@@ -6,7 +6,7 @@
 /*   By: rdelicad <rdelicad@student.42.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 18:36:00 by palucena          #+#    #+#             */
-/*   Updated: 2023/11/09 19:01:18 by rdelicad         ###   ########.fr       */
+/*   Updated: 2023/11/13 20:25:09 by rdelicad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@
 # include "minishell_structs.h"
 # include "minishell_functions.h"
 
-# include <readline/readline.h>
-# include <readline/history.h>
+# include "readline/readline.h"
+# include "readline/history.h"
 
 # include <stdio.h>
 # include <stdlib.h>
