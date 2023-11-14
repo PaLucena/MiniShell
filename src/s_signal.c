@@ -6,7 +6,7 @@
 /*   By: rdelicad <rdelicad@student.42.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/11 18:11:39 by rdelicad          #+#    #+#             */
-/*   Updated: 2023/11/13 20:39:21 by rdelicad         ###   ########.fr       */
+/*   Updated: 2023/11/14 19:01:21 by rdelicad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,28 +15,31 @@
 void	signal_manager(t_info *i)
 {
 	(void)i;
-	struct sigaction	action;
-
-	action.sa_sigaction = handler_sigusr;
-	action.sa_flags = 0;
-	sigaction(SIGINT, &action, NULL); //Ctrl + C
-	signal(SIGQUIT, SIG_IGN);//Ctrl + \/
-	
+	signal(SIGINT, handler_sigusr);
+	signal(SIGQUIT, SIG_IGN);
 }
 
-void	handler_sigusr(int signum, siginfo_t *info, void *context)
+void	handler_sigusr(int signum)
 {
-	(void)context;
-	(void)info;
-
 	if (signum == SIGINT)
 	{
-		return;
 		rl_on_new_line();
 		rl_redisplay();
-		write(1, "   \n", 1);
+		write (1, "   \n", 4);
+		rl_replace_line("", 0);
 		rl_on_new_line();
-		//rl_replace_line("", 0);
 		rl_redisplay();
 	}
+}
+
+void	control_d(t_info *i)
+{
+	rl_on_new_line();
+	rl_redisplay();
+	ft_putstr_fd("exit\n", 1);
+	ft_free_list(i->c->list_env);
+	ft_matfree(i->c->path);
+	free(i->c);
+	free(i);
+	exit (0);
 }

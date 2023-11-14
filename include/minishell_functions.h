@@ -6,7 +6,7 @@
 /*   By: rdelicad <rdelicad@student.42.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 11:11:25 by palucena          #+#    #+#             */
-/*   Updated: 2023/11/11 18:31:39 by rdelicad         ###   ########.fr       */
+/*   Updated: 2023/11/14 16:14:28 by rdelicad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,6 +117,7 @@ void	exit_number(t_info *i);
 
 /* signal.c */
 void	signal_manager(t_info *i);
-void	handler_sigusr(int signum, siginfo_t *info, void *context);
+void	handler_sigusr(int signum);
+void	control_d(t_info *i);
 
 #endif

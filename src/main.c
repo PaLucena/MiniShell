@@ -6,7 +6,7 @@
 /*   By: rdelicad <rdelicad@student.42.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 19:07:37 by palucena          #+#    #+#             */
-/*   Updated: 2023/11/11 18:34:13 by rdelicad         ###   ########.fr       */
+/*   Updated: 2023/11/14 16:24:02 by rdelicad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,8 @@ int	main(int argc, char **argv, char **envp)
 	while (1)
 	{
 		input = readline("\033[36;1mminishell$ \033[0m");
+		if (!input)
+			control_d(info);
 		add_history(input);
 		if (ft_strcmp(input, "\0") != 0)
 		{

@@ -17,14 +17,13 @@ OBJ = $(addprefix $(OBJ_PATH), $(SRC:.c=.o))
 INC = include
 LIB = include/libft/libft.a
 
-HEADERS	= -I ./include
+HEADERS	= -I ./include -I ~/.brew/opt/readline/include
 
 SYS = $(shel uname -s)
 
-ifeq ($(SYS), Darwin)
-	INCLUDES += -I /sgoinfre/goinfre/Perso/${USER}/readline/include
-	RL += -L /sgoinfre/goinfre/Perso/${USER}/readline/lib -lreadline
-endif
+#ifeq ($(SYS), Darwin)
+INCLUDES = -L ~/.brew/opt/readline/lib -lreadline 
+#endif
 
 #//= Colors =//#
 BOLD	:= \033[1m
@@ -41,12 +40,12 @@ RESET	:= \033[0m
 all: libft $(NAME)
 
 $(NAME): $(OBJ)
-	@ gcc $(FLAGS) $(OBJ) $(LIB) $(HEADERS) -o $(NAME) $(RL)
+	@ gcc $(FLAGS) $(OBJ) $(LIB) $(HEADERS) $(INCLUDES) -o $(NAME)
 	@ echo "\n\t\t$(GREEN)$(BOLD)----MiniShell compiled----\n$(RESET)"
 
 $(OBJ_PATH)%.o: $(SRC_PATH)%.c
 	@ mkdir -p  $(OBJ_PATH)
-	@ $(CC) $(FLAGS) -c $< -o $@ $(HEADERS) $(INCLUDES)
+	@ $(CC) $(FLAGS) -c $< -o $@ $(HEADERS) 
 
 libft:
 	@ make -C $(INC)/libft
