@@ -6,7 +6,7 @@
 /*   By: rdelicad <rdelicad@student.42.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 17:35:34 by rdelicad          #+#    #+#             */
-/*   Updated: 2023/11/11 16:57:30 by rdelicad         ###   ########.fr       */
+/*   Updated: 2023/11/14 19:48:32 by rdelicad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,28 +14,29 @@
 
 char	*get_directory_path(t_info *i)
 {
-	t_env	*curr;
-	char	*parent_dir;
-
-	curr = i->c->list_env;
-	while (curr)
+	i->c->curr = i->c->list_env;
+	while (i->c->curr)
 	{
-		if ((ft_strcmp(curr->key, "HOME") == 0) && i->par->args[0] == 0)
-			return (curr->value);
-		else if (i->par->args[0] != NULL && (ft_strcmp(curr->key, "HOME") == 0)
+		if ((ft_strcmp(i->c->curr->key, "HOME") == 0) && i->par->args[0] == 0)
+			return (i->c->curr->value);
+		else if (i->par->args[0] != NULL \
+		&& (ft_strcmp(i->c->curr->key, "HOME") == 0)
 			&& (ft_strcmp(i->par->args[0], "~") == 0))
-			return (curr->value);
-		else if (i->par->args[0] != NULL && (ft_strcmp(curr->key, "OLDPWD") == 0)
-			&& (ft_strcmp(i->par->args[0], "-") == 0))
-			return (curr->value);
-		else if (i->par->args[0] != NULL && ft_strcmp(i->par->args[0], "/") == 0)
+			return (i->c->curr->value);
+		else if (i->par->args[0] != NULL \
+		&& (ft_strcmp(i->c->curr->key, "OLDPWD") == 0) \
+		&& (ft_strcmp(i->par->args[0], "-") == 0))
+			return (i->c->curr->value);
+		else if (i->par->args[0] != NULL \
+		&& ft_strcmp(i->par->args[0], "/") == 0)
 			return ("/");
-		else if (i->par->args[0] != NULL && ft_strcmp(i->par->args[0], "..") == 0)
+		else if (i->par->args[0] != NULL \
+		&& ft_strcmp(i->par->args[0], "..") == 0)
 		{
-			parent_dir = get_parent_directory(i->c->pwd);
-			return (parent_dir);
+			i->c->parent_dir = get_parent_directory(i->c->pwd);
+			return (i->c->parent_dir);
 		}
-		curr = curr->next;
+		i->c->curr = i->c->curr->next;
 	}
 	return (i->par->args[0]);
 }

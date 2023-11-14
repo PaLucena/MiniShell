@@ -6,7 +6,7 @@
 /*   By: rdelicad <rdelicad@student.42.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 10:44:14 by palucena          #+#    #+#             */
-/*   Updated: 2023/11/09 19:37:09 by rdelicad         ###   ########.fr       */
+/*   Updated: 2023/11/14 19:36:08 by rdelicad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ typedef struct s_env
 typedef struct s_command
 {
 	t_env			*list_env;
+	t_env			*curr;
+	char			*parent_dir;
 	char			**path;
 	char			*argv_env;
 	char			*argv_unset;
@@ -45,6 +47,7 @@ typedef struct s_command
 	char			*equal_sign;
 	char			*pwd;
 	char			*input;
+	
 }					t_cmd;
 
 typedef struct s_lx

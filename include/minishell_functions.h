@@ -6,7 +6,7 @@
 /*   By: rdelicad <rdelicad@student.42.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 11:11:25 by palucena          #+#    #+#             */
-/*   Updated: 2023/11/14 16:14:28 by rdelicad         ###   ########.fr       */
+/*   Updated: 2023/11/14 19:28:13 by rdelicad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,6 +107,7 @@ char	*get_pwd(t_cmd *c);
 
 /* utils.cd.c */
 char	*get_directory_path(t_info *i);
+char	*type_format(t_info *i, t_env *curr);
 char	*get_parent_directory(char *path);
 
 /* exit.c */

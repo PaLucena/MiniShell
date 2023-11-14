@@ -7,5 +7,5 @@
 		"minishell.h": "c",
 		"libft.h": "c"
 	},
-	"editor.inlineSuggest.showToolbar": "onHover"
+	"editor.inlineSuggest.showToolbar": "always"
 }

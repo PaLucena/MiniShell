@@ -6,7 +6,7 @@
 /*   By: rdelicad <rdelicad@student.42.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/28 15:58:35 by rdelicad          #+#    #+#             */
-/*   Updated: 2023/11/08 13:05:41 by rdelicad         ###   ########.fr       */
+/*   Updated: 2023/11/14 19:14:15 by rdelicad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,6 @@ void	print_export(t_cmd *c)
 
 	sorted_list_env(&c->list_env);
 	curr = c->list_env;
-
 	while (curr != NULL)
 	{
 		ft_putenv(curr->key, curr->value, curr->equal, 1);
