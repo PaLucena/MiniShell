@@ -6,7 +6,7 @@
 /*   By: palucena <palucena@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 19:07:37 by palucena          #+#    #+#             */
-/*   Updated: 2023/11/14 16:27:30 by palucena         ###   ########.fr       */
+/*   Updated: 2023/11/15 19:15:06 by palucena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,31 +75,35 @@ void	init_info(t_info *info, char **envp)
 	info->exit = false;
 }
 
+static void	ft_minishell(t_info *info, char **argv, char **envp)
+{
+	char	*input;
+
+	input = readline("\033[36;1mminishell$ \033[0m");
+	add_history(input);
+	if (ft_strcmp(input, "\0") != 0)
+	{
+		info->par = manage_input(input, argv, info);
+		if (!info->par)
+			ft_error_msg(info, 1);
+		ft_execute(info, envp);
+		free_parser(info->par);
+	}
+	free(input);
+}
 int	main(int argc, char **argv, char **envp)
 {
 	t_info	*info;
-	char	*input;
 
 	//atexit(leaks);
 	(void)argc;
+	ft_putstr_fd("\n\nWelcome to MiniShell ", 1);
+	ft_putstr_fd("(by \033[34;1m@rdelicad\033[0m &", 1);
+	ft_putstr_fd(" \033[34;1m@palucena\033[0m)\n", 1);
 	info = malloc(sizeof(t_info));
 	init_info(info, envp);
-	printf("\n\nWelcome to MiniShell ");
-	printf("(by \033[34;1m@rdelicad\033[0m & \033[34;1m@palucena\033[0m)\n");
 	while (1)
-	{
-		input = readline("\033[36;1mminishell$ \033[0m");
-		add_history(input);
-		if (ft_strcmp(input, "\0") != 0)
-		{
-			info->par = manage_input(input, argv, info);
-			if (!info->par)
-				ft_syntax_error();
-			ft_execute(info, envp);
-			free_parser(info->par);
-		}
-		free(input);
-	}
+		ft_minishell(info, argv, envp);
 	free_info(info);
 	return (0);
 }

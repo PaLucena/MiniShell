@@ -6,7 +6,7 @@
 /*   By: palucena <palucena@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 13:30:18 by palucena          #+#    #+#             */
-/*   Updated: 2023/11/15 16:54:41 by palucena         ###   ########.fr       */
+/*   Updated: 2023/11/15 19:21:21 by palucena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,8 +68,24 @@ void	l_add_back(t_lx **lst, t_lx *new)
 		*lst = new;
 }
 
-int	l_check_tokens(t_lx *lexer)
+int	l_check_tokens(t_lx *lex)
 {
+	t_lx	*curr;
+
+	curr = lex;
+	while (curr)
+	{
+		if (curr->token == -1)
+			return (-1);
+		if (!curr->next)
+			break ;
+		curr = curr ->next;
+	}
+	if (curr->token == PIPE)
+		return (-1);
+	else if (curr->token >= 3 && curr->token <= 6)
+		return (-2);
+	return (0);
 	//comprobar todos los tokens por si alguno es -1 o si el ultimo es algo incorrecto;
 }
 
