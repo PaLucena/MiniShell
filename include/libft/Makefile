@@ -6,7 +6,7 @@
 #    By: palucena <palucena@student.42malaga.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/18 19:17:24 by rdelicad          #+#    #+#              #
-#    Updated: 2023/11/12 18:40:02 by palucena         ###   ########.fr        #
+#    Updated: 2023/11/14 16:16:22 by palucena         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -62,7 +62,7 @@ $(NAME): $(OBJS_DIR) $(OBJS)
 	@$(LIB) $(NAME) $(OBJS)
 
 $(OBJS_DIR):
-	mkdir -p $@
+	@mkdir -p $@
 
 $(OBJS) : obj/%.o: src/%.c
 	@$(CC) $(CFLAGS) -c $< -o $@
@@ -70,13 +70,13 @@ $(OBJS) : obj/%.o: src/%.c
 all: $(NAME)
 
 bonus: $(OBJS)
-	$(LIB) $(NAME) $(OBJS)
+	@$(LIB) $(NAME) $(OBJS)
 
 clean:
 	@rm -f $(OBJS) 
 
 fclean:
-	@rm -f $(NAME) $(OBJS)
+	@rm -fr $(NAME) $(OBJS_DIR)
 
 
 re: fclean all

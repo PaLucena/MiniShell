@@ -17,26 +17,32 @@ OBJ = $(addprefix $(OBJ_PATH), $(SRC:.c=.o))
 INC = include
 LIB = include/libft/libft.a
 
-LREADLINE = -lreadline
+#LREADLINE = -lreadline
 
-HEADERS	= -I ./include
+HEADERS = -I ./include -I /Users/${USER}/.brew/opt/readline/include
+
+SYS = $(shel uname -s)
+
+#ifeq ($(SYS), Darwin)
+INCLUDES = -L /Users/${USER}/.brew/opt/readline/lib -lreadline
+#endif
 
 #//= Colors =//#
-BOLD	:= \033[1m
-BLACK	:= \033[30;1m
-RED		:= \033[31;1m
-GREEN	:= \033[32;1m
-YELLOW	:= \033[33;1m
-BLUE	:= \033[34;1m
-MAGENTA	:= \033[35;1m
-CYAN	:= \033[36;1m
-WHITE	:= \033[37;1m
-RESET	:= \033[0m
+BOLD    := \033[1m
+BLACK   := \033[30;1m
+RED     := \033[31;1m
+GREEN   := \033[32;1m
+YELLOW  := \033[33;1m
+BLUE    := \033[34;1m
+MAGENTA := \033[35;1m
+CYAN    := \033[36;1m
+WHITE   := \033[37;1m
+RESET   := \033[0m
 
 all: libft $(NAME)
 
 $(NAME): $(OBJ)
-	@ gcc $(FLAGS) $(OBJ) $(LIB) $(HEADERS) $(LREADLINE) -o $(NAME)
+	@ gcc $(FLAGS) $(OBJ) $(LIB) $(HEADERS) $(INCLUDES) -o $(NAME)
 	@ echo "\n\t\t$(GREEN)$(BOLD)----MiniShell compiled----\n$(RESET)"
 
 $(OBJ_PATH)%.o: $(SRC_PATH)%.c

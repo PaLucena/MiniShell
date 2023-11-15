@@ -6,7 +6,7 @@
 /*   By: palucena <palucena@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 13:30:18 by palucena          #+#    #+#             */
-/*   Updated: 2023/11/13 18:06:57 by palucena         ###   ########.fr       */
+/*   Updated: 2023/11/15 16:54:41 by palucena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,29 +25,19 @@ int	l_check_redir(char *word)
 	return (0);
 }
 
-static int	pipe_options(char *actual)
-{
-	if (ft_strcmp(actual, "||") == 0)
-		return (PIPE);
-	else if (ft_strcmp(actual, "||") == 0)
-		return (OR);
-	printf("minishell: syntax error near unexpected token `|'\n");
-	return (-1);
-}
-
 int	l_get_token(char *actual, t_lx *prev, bool check)
 {
 	static bool	cmd_door = false;
 
 	if (check)
 		cmd_door = true;
-	if (ft_strncmp(actual, "|", 1) == 0)
+	if (ft_strcmp(actual, "|") == 0)
 	{
 		cmd_door = false;
-		return (pipe_options(actual));
+		if (prev->token == PIPE)
+			return (-1);
+		return (PIPE);
 	}
-	else if (ft_strcmp(actual, "&&") == 0)
-		return (AND);
 	else if (l_check_redir(actual) != 0)
 		return (l_check_redir(actual));
 	else if (prev->token == REDIR_IN || prev->token == REDIR_HEREDOC)
@@ -78,12 +68,16 @@ void	l_add_back(t_lx **lst, t_lx *new)
 		*lst = new;
 }
 
-void	l_tokenizer(t_lx *lex)
+int	l_check_tokens(t_lx *lexer)
+{
+	//comprobar todos los tokens por si alguno es -1 o si el ultimo es algo incorrecto;
+}
+
+int	l_tokenizer(t_lx *lex, int i)
 {
 	bool	cmd_door;
 	t_lx	*curr;
 	t_lx	*prev;
-	int		i;
 
 	curr = lex->next;
 	prev = lex;
@@ -95,7 +89,6 @@ void	l_tokenizer(t_lx *lex)
 	}
 	else
 		prev->token = l_check_redir(prev->content);
-	i = 1;
 	while (curr)
 	{
 		curr->token = l_get_token(curr->content, prev, cmd_door);
@@ -104,4 +97,5 @@ void	l_tokenizer(t_lx *lex)
 		curr = curr->next;
 		i++;
 	}
+	return (l_check_tokens(lex));
 }

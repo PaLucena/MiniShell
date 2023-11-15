@@ -6,7 +6,7 @@
 /*   By: palucena <palucena@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 10:44:14 by palucena          #+#    #+#             */
-/*   Updated: 2023/11/13 16:39:08 by palucena         ###   ########.fr       */
+/*   Updated: 2023/11/15 15:37:48 by palucena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,6 @@ typedef enum e_oken
 	REDIR_APPEND, //  6 >>
 	REDIR_FILEIN, //  7
 	REDIR_FILEOUT, //  8
-	OR, //  9
-	AND, //  10
 }	t_oken;
 
 typedef struct s_env

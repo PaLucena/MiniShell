@@ -6,7 +6,7 @@
 /*   By: palucena <palucena@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 19:07:37 by palucena          #+#    #+#             */
-/*   Updated: 2023/11/13 19:04:46 by palucena         ###   ########.fr       */
+/*   Updated: 2023/11/14 16:27:30 by palucena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ int	main(int argc, char **argv, char **envp)
 	t_info	*info;
 	char	*input;
 
-	atexit(leaks);
+	//atexit(leaks);
 	(void)argc;
 	info = malloc(sizeof(t_info));
 	init_info(info, envp);

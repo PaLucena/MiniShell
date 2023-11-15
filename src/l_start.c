@@ -6,7 +6,7 @@
 /*   By: palucena <palucena@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 10:45:41 by palucena          #+#    #+#             */
-/*   Updated: 2023/11/13 16:37:52 by palucena         ###   ########.fr       */
+/*   Updated: 2023/11/15 16:55:34 by palucena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,8 @@ char	*l_get_word(char *s, int start, t_info *info)
 	int		i;
 
 	i = start + 1;
-	while (s[i] && s[i] != ' ' && s[i] != 34 && s[i] != 39)
+	while (s[i] && s[i] != ' ' && s[i] != 34 && s[i] != 39
+		&& s[i] != '|' && s[i] != '<' && s[i] != '>')
 		i++;
 	word = ft_substr(s, start, i - start);
 	word = l_get_env(word, info);
@@ -107,6 +108,7 @@ t_lx	*l_fill_lx(char *input, t_info *info)
 		while (input[i] && input[i] != ' ')
 			i++;
 	}
-	l_tokenizer(lex);
+	if (l_tokenizer(lex, 1) == -1);
+		ft_error_msg(); // crear funcion con mensaje de syntax error + free de todo + exit (1?)
 	return (lex);
 }
