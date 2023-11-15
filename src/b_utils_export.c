@@ -6,7 +6,7 @@
 /*   By: rdelicad <rdelicad@student.42.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 17:53:05 by rdelicad          #+#    #+#             */
-/*   Updated: 2023/11/14 20:05:15 by rdelicad         ###   ########.fr       */
+/*   Updated: 2023/11/15 16:49:03 by rdelicad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,9 @@ int	check_argv_exp(t_cmd *c)
 
 void	ft_value_zero(char *key, int equal, int fd)
 {
-	char	*str;
+	char	str[2];
 
-	str[2] = "\"\"";
+	ft_strlcpy(str, "\"\"", 3);
 	if (fd == 1)
 		write(1, "declare -x ", 11);
 	else
