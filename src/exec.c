@@ -6,23 +6,11 @@
 /*   By: palucena <palucena@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 17:16:17 by palucena          #+#    #+#             */
-/*   Updated: 2023/11/14 16:42:11 by palucena         ###   ########.fr       */
+/*   Updated: 2023/11/16 16:38:52 by palucena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-static void	ft_error_msg(t_info *info)
-{
- 	if (info->status == 127)
-		printf("minishell: %s: command not found\n", info->par->cmd);
-	else if (info->status == 11)
-	{
-		printf("minishell: %s: no such file or directory\n", info->par->cmd);
-		info->status = 127;
-	}
-	printf("Exit status: %i\n", info->status);
-}
 
 char	*find_path(t_env *env, char *cmd)
 {
@@ -102,7 +90,7 @@ void	ft_execute(t_info *info, char **envp)
 				waitpid(-1, &info->status, 0);
 			if (WIFEXITED(info->status))
 				info->status = WEXITSTATUS(info->status);
-			ft_error_msg(info);
+			ft_error_msg(info, NULL);
 		}
 		ft_close(info->par);
 		aux = info->par;

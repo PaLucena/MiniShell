@@ -10,7 +10,7 @@ SRC = b_leaks.c b_env_init.c b_utils_list.c b_env.c b_export.c\
 		main.c free.c\
 		l_start.c l_token.c l_env.c\
 		p_start.c p_utils.c\
-		exec.c
+		exec.c error.c
 OBJ_PATH = objs/
 OBJ = $(addprefix $(OBJ_PATH), $(SRC:.c=.o))
 

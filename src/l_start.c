@@ -6,7 +6,7 @@
 /*   By: palucena <palucena@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 10:45:41 by palucena          #+#    #+#             */
-/*   Updated: 2023/11/15 19:22:57 by palucena         ###   ########.fr       */
+/*   Updated: 2023/11/16 16:39:32 by palucena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,7 +108,7 @@ t_lx	*l_fill_lx(char *input, t_info *info)
 		while (input[i] && input[i] != ' ')
 			i++;
 	}
-	if (l_tokenizer(lex, 1) != 0);
+	if (l_tokenizer(lex, 1) != 0)
 	{
 		ft_error_msg(info, l_check_tokens(lex)); // crear funcion con mensaje de syntax error
 		return (NULL);
