@@ -6,7 +6,7 @@
 /*   By: rdelicad <rdelicad@student.42.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 11:11:25 by palucena          #+#    #+#             */
-/*   Updated: 2023/11/16 16:14:51 by rdelicad         ###   ########.fr       */
+/*   Updated: 2023/11/16 17:49:52 by rdelicad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,5 +124,8 @@ void	exit_number(t_info *i);
 void	signal_manager(t_info *i);
 void	handler_sigusr(int signum);
 void	control_d(t_info *i);
+
+/* search_path.c */
+int		search_path(t_info *i);
 
 #endif
