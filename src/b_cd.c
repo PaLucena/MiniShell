@@ -6,7 +6,7 @@
 /*   By: rdelicad <rdelicad@student.42.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/04 15:40:50 by rdelicad          #+#    #+#             */
-/*   Updated: 2023/11/14 19:10:06 by rdelicad         ###   ########.fr       */
+/*   Updated: 2023/11/16 17:36:27 by rdelicad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,9 @@ void	ft_cd(t_info *i)
 {
 	i->c->pwd = get_pwd(i->c);
 	i->c->input = get_directory_path(i);
-	if (chdir(i->c->input) != 0)
+	if (chdir(i->c->input) != 0 \
+	&& i->c->input != NULL && ft_strcmp(i->c->input, "~") != 0 \
+	&& ft_strcmp(i->c->input, "-") != 0)
 	{
 		write (2, "cd: ", 4);
 		write (2, i->par->args[0], ft_strlen(i->par->args[0]));
@@ -24,8 +26,16 @@ void	ft_cd(t_info *i)
 		write (2, "\n", 1);
 		i->status = 1;
 	}
-	else
+	else if (i->c->input == NULL || ft_strcmp(i->c->input, "~") == 0)
+	{
+		env_error("HOME");
 		i->status = 0;
+	}
+	else if (ft_strcmp(i->c->input, "-") == 0)
+	{
+		env_error("OLDPWD");
+		i->status = 0;
+	}
 	changer_oldpwd_env(i->c, i->c->pwd);
 	changer_pwd_env(i->c);
 }
@@ -73,4 +83,20 @@ char	*get_pwd(t_cmd *c)
 		perror("error");
 	}
 	return (c->pwd);
+}
+
+int	clear_env(t_info *i)
+{
+	t_env	*curr;
+
+	curr = i->c->list_env;
+	while (i->c->curr)
+	{
+		if (!(ft_strcmp(curr->key, "HOME") == 0))
+		{
+			return (0);
+		}
+		curr = curr->next;
+	}
+	return (1);
 }
