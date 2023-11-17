@@ -6,7 +6,7 @@
 /*   By: rdelicad <rdelicad@student.42.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/11 18:11:39 by rdelicad          #+#    #+#             */
-/*   Updated: 2023/11/14 19:12:05 by rdelicad         ###   ########.fr       */
+/*   Updated: 2023/11/17 15:38:55 by rdelicad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,16 @@ void	handler_sigusr(int signum)
 {
 	if (signum == SIGINT)
 	{
+		/* rl_redisplay();
+		rl_replace_line("", 0);
+		ft_putstr_fd("   \n", 1);
+		rl_redisplay();
+		rl_on_new_line(); */
+		//rl_redisplay();
+		//rl_clear_history();
 		rl_on_new_line();
 		rl_redisplay();
-		write (1, "   \n", 4);
+		ft_putstr_fd("   \n", 1);
 		rl_replace_line("", 0);
 		rl_on_new_line();
 		rl_redisplay();
