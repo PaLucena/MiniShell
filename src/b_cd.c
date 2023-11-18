@@ -6,7 +6,7 @@
 /*   By: rdelicad <rdelicad@student.42.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/04 15:40:50 by rdelicad          #+#    #+#             */
-/*   Updated: 2023/11/18 13:12:52 by rdelicad         ###   ########.fr       */
+/*   Updated: 2023/11/18 14:02:19 by rdelicad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	ft_cd(t_info *i)
 {
 	i->c->pwd = get_pwd(i->c);
 	i->c->input = get_directory_path(i);
-	if (i->c->input != NULL && ft_strcmp(i->c->input, "-") == 0)
+	if (ft_strcmp(i->c->input, "") == 0 || ft_strcmp(i->c->input, "-") == 0)
 		check_oldpwd(i);
 	else if (chdir(i->c->input) != 0 \
 	&& i->c->input != NULL && ft_strcmp(i->c->input, "~") != 0 \
@@ -34,8 +34,11 @@ void	ft_cd(t_info *i)
 		env_error("HOME");
 		i->status = 0;
 	}
-	changer_oldpwd_env(i->c, i->c->pwd);
-	changer_pwd_env(i->c);
+	else
+	{
+		changer_oldpwd_env(i->c, i->c->pwd);
+		changer_pwd_env(i->c);
+	}
 }
 
 void	changer_oldpwd_env(t_cmd *c, char *oldpwd)

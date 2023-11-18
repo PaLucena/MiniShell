@@ -6,7 +6,7 @@
 /*   By: rdelicad <rdelicad@student.42.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 19:07:37 by palucena          #+#    #+#             */
-/*   Updated: 2023/11/18 11:34:09 by rdelicad         ###   ########.fr       */
+/*   Updated: 2023/11/18 14:15:07 by rdelicad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ int	main(int argc, char **argv, char **envp)
 	t_info	*info;
 	char	*input;
 
-	atexit(leaks);
+	//atexit(leaks);
 	(void)argc;
 	(void)envp;
 	info = malloc(sizeof(t_info));

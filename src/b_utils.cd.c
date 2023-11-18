@@ -6,7 +6,7 @@
 /*   By: rdelicad <rdelicad@student.42.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 17:35:34 by rdelicad          #+#    #+#             */
-/*   Updated: 2023/11/18 12:22:12 by rdelicad         ###   ########.fr       */
+/*   Updated: 2023/11/18 14:01:18 by rdelicad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,9 @@ int	no_clear_home(t_info *i, char *key)
 void	check_oldpwd(t_info *i)
 {
 	t_env	*curr;
+	bool	found;
 
+	found = false;
 	curr = i->c->list_env;
 	while (curr)
 	{
@@ -84,8 +86,16 @@ void	check_oldpwd(t_info *i)
 			{
 				env_error("OLDPWD");
 				i->status = 1;
+				break;
 			}
 		}
+		else
+			found = true;
 		curr = curr->next;
+	}
+	if (!found)
+	{
+		env_error("OLDPWD");
+		i->status = 1;
 	}
 }

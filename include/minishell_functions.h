@@ -6,7 +6,7 @@
 /*   By: rdelicad <rdelicad@student.42.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 11:11:25 by palucena          #+#    #+#             */
-/*   Updated: 2023/11/18 12:17:10 by rdelicad         ###   ########.fr       */
+/*   Updated: 2023/11/18 14:55:09 by rdelicad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,9 +93,9 @@ void	add_var_export(t_cmd *c);
 
 /* unset.c */
 void	ft_unset(t_info *i);
-void	top_the_list(t_env **list, t_env *new);
-void	middle_the_list(t_env *new);
-void	finish_the_list(t_env *new);
+int		top_the_list(t_info *i);
+int		middle_the_list(t_info *i);
+int		finish_the_list(t_info *i);
 
 /* pwd.c */
 void	ft_pwd(t_cmd *c);
