@@ -6,7 +6,7 @@
 /*   By: rdelicad <rdelicad@student.42.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 17:35:34 by rdelicad          #+#    #+#             */
-/*   Updated: 2023/11/16 17:34:37 by rdelicad         ###   ########.fr       */
+/*   Updated: 2023/11/18 12:22:12 by rdelicad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,3 +71,21 @@ int	no_clear_home(t_info *i, char *key)
 		return (0);
 }
 
+void	check_oldpwd(t_info *i)
+{
+	t_env	*curr;
+
+	curr = i->c->list_env;
+	while (curr)
+	{
+		if (ft_strcmp(curr->key, "OLDPWD") == 0)
+		{
+			if (ft_strcmp(curr->value, "") == 0)
+			{
+				env_error("OLDPWD");
+				i->status = 1;
+			}
+		}
+		curr = curr->next;
+	}
+}

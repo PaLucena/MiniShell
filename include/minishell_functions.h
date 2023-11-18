@@ -6,7 +6,7 @@
 /*   By: rdelicad <rdelicad@student.42.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 11:11:25 by palucena          #+#    #+#             */
-/*   Updated: 2023/11/17 14:54:33 by rdelicad         ###   ########.fr       */
+/*   Updated: 2023/11/18 12:17:10 by rdelicad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ void	ft_free_node(t_env *node);
 void	ft_env(t_info *i);
 void	env_finish_position(t_env **list);
 void	env_argv(t_info *i);
+void	clear_value_oldpwd(t_cmd *c);
 
 /* export.c */
 void	ft_export(t_cmd *c);
@@ -74,7 +75,7 @@ void	ft_putenv(char *key, char *value, int equal, int fd);
 
 /* utils_export.c */
 int		check_argv_exp(t_cmd *c);
-void	ft_value_zero(char *key, int equal, int fd);
+void	ft_value_zero(char *key, char *value, int equal, int fd);
 void	ft_value_sign(char *value, int fd);
 void	sorted_list_env(t_env **list_env);
 void	ft_swap_node(t_env *a, t_env *b);
@@ -110,6 +111,7 @@ int		clear_env(t_info *i);
 char	*get_directory_path(t_info *i);
 char	*get_parent_directory(char *path);
 void	env_error(char *env);
+void	check_oldpwd(t_info *i);
 
 /* b_clear_env_cd.c */
 int		no_clear_home(t_info *i, char *key);

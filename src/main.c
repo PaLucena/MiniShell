@@ -6,7 +6,7 @@
 /*   By: rdelicad <rdelicad@student.42.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 19:07:37 by palucena          #+#    #+#             */
-/*   Updated: 2023/11/15 16:49:50 by rdelicad         ###   ########.fr       */
+/*   Updated: 2023/11/18 11:34:09 by rdelicad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,7 @@ void	init_info(t_info *info, char **envp)
 	info->c = init_struct();
 	create_list_env(info->c, envp, len_envp(envp));
 	create_path(info->c);
+	clear_value_oldpwd(info->c);
 	info->env = info->c->list_env;
 	info->status = 0;
 	info->exit = false;

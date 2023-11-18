@@ -6,7 +6,7 @@
 /*   By: rdelicad <rdelicad@student.42.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/04 15:40:50 by rdelicad          #+#    #+#             */
-/*   Updated: 2023/11/16 17:36:27 by rdelicad         ###   ########.fr       */
+/*   Updated: 2023/11/18 13:12:52 by rdelicad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,13 @@ void	ft_cd(t_info *i)
 {
 	i->c->pwd = get_pwd(i->c);
 	i->c->input = get_directory_path(i);
-	if (chdir(i->c->input) != 0 \
+	if (i->c->input != NULL && ft_strcmp(i->c->input, "-") == 0)
+		check_oldpwd(i);
+	else if (chdir(i->c->input) != 0 \
 	&& i->c->input != NULL && ft_strcmp(i->c->input, "~") != 0 \
 	&& ft_strcmp(i->c->input, "-") != 0)
 	{
+		printf("%s\n", i->c->input);
 		write (2, "cd: ", 4);
 		write (2, i->par->args[0], ft_strlen(i->par->args[0]));
 		write (2, ": No such file or directory", 27);
@@ -29,11 +32,6 @@ void	ft_cd(t_info *i)
 	else if (i->c->input == NULL || ft_strcmp(i->c->input, "~") == 0)
 	{
 		env_error("HOME");
-		i->status = 0;
-	}
-	else if (ft_strcmp(i->c->input, "-") == 0)
-	{
-		env_error("OLDPWD");
 		i->status = 0;
 	}
 	changer_oldpwd_env(i->c, i->c->pwd);

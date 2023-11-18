@@ -6,14 +6,12 @@
 /*   By: rdelicad <rdelicad@student.42.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 10:44:14 by palucena          #+#    #+#             */
-/*   Updated: 2023/11/17 16:58:01 by rdelicad         ###   ########.fr       */
+/*   Updated: 2023/11/18 12:06:17 by rdelicad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINISHELL_STRUCTS_H
 # define MINISHELL_STRUCTS_H
-
-int	g_input = 0;
 
 typedef enum e_oken
 {
