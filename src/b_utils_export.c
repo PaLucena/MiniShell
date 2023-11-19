@@ -6,7 +6,7 @@
 /*   By: rdelicad <rdelicad@student.42.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 17:53:05 by rdelicad          #+#    #+#             */
-/*   Updated: 2023/11/08 13:03:35 by rdelicad         ###   ########.fr       */
+/*   Updated: 2023/11/18 12:06:05 by rdelicad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,16 +35,16 @@ int	check_argv_exp(t_cmd *c)
 	return (1);
 }
 
-void	ft_value_zero(char *key, int equal, int fd)
+void	ft_value_zero(char *key, char *value, int equal, int fd)
 {
-	char	str[2] = "\"\"";
+	char	str[2];
 
+	ft_strlcpy(str, "\"\"", 3);
 	if (fd == 1)
 		write(1, "declare -x ", 11);
-	else
-		write(1, "declare -xr ", 12);
 	ft_putstr_fd(key, fd);
-	if (equal == 1)
+	if (equal == 1 && (ft_strcmp(key, "OLDPWD") == 0
+		&& ft_strcmp(value, "") != 0))
 	{
 		write(1, "=", 1);
 		write(1, str, 2);
@@ -65,7 +65,6 @@ void	sorted_list_env(t_env **list_env)
 	t_env	*curr;
 	int		swap;
 
-	// t_env	*last;
 	curr = NULL;
 	if ((*list_env) == NULL || (*list_env)->next == NULL)
 		return ;
@@ -74,7 +73,6 @@ void	sorted_list_env(t_env **list_env)
 	{
 		swap = 0;
 		curr = (*list_env);
-		// last = NULL;
 		while (curr->next != NULL)
 		{
 			if (ft_strcmp(curr->key, curr->next->key) > 0)
@@ -82,7 +80,6 @@ void	sorted_list_env(t_env **list_env)
 				ft_swap_node(curr, curr->next);
 				swap = 1;
 			}
-			// last = curr;
 			curr = curr->next;
 		}
 	}

@@ -6,7 +6,7 @@
 /*   By: rdelicad <rdelicad@student.42.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 11:25:47 by rdelicad          #+#    #+#             */
-/*   Updated: 2023/11/09 14:00:59 by rdelicad         ###   ########.fr       */
+/*   Updated: 2023/11/14 20:07:19 by rdelicad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	argv_export(t_info *i)
 {
-	int j;
+	int	j;
 
 	j = 0;
 	while (i->par->args[j] != NULL)
@@ -28,14 +28,14 @@ void	argv_export(t_info *i)
 void	add_var_export(t_cmd *c)
 {
 	if (check_argv_exp(c))
+	{
+		check_env_repeated(c);
+		if (c->argv_env != NULL)
 		{
-			check_env_repeated(c);
-			if (c->argv_env != NULL)
-			{
-				if (ft_strchr(c->argv_env, '='))
-					equal_sign_env(c);
-				else if (!ft_strchr(c->argv_env, '='))
-					no_equal_sign_env(c);
-			}
+			if (ft_strchr(c->argv_env, '='))
+				equal_sign_env(c);
+			else if (!ft_strchr(c->argv_env, '='))
+				no_equal_sign_env(c);
 		}
+	}
 }

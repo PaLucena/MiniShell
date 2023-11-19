@@ -6,7 +6,7 @@
 /*   By: palucena <palucena@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 10:44:14 by palucena          #+#    #+#             */
-/*   Updated: 2023/11/15 15:37:48 by palucena         ###   ########.fr       */
+/*   Updated: 2023/11/19 18:05:56 by palucena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ typedef struct s_env
 typedef struct s_cmd
 {
 	t_env			*list_env;
+	t_env			*curr;
+	char			*parent_dir;
 	char			**path;
 	char			*argv_env;
 	char			*argv_unset;
@@ -45,6 +47,7 @@ typedef struct s_cmd
 	char			*equal_sign;
 	char			*pwd;
 	char			*input;
+	
 }					t_cmd;
 
 typedef struct s_lx

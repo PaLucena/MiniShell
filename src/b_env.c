@@ -6,7 +6,7 @@
 /*   By: rdelicad <rdelicad@student.42.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 18:21:05 by rdelicad          #+#    #+#             */
-/*   Updated: 2023/11/09 20:10:43 by rdelicad         ###   ########.fr       */
+/*   Updated: 2023/11/18 12:12:55 by rdelicad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,10 @@ void	ft_env(t_info *i)
 	curr = i->c->list_env;
 	while (curr != NULL)
 	{
-		if (curr->equal == 1)
+		if (ft_strcmp(curr->key, "OLDPWD") == 0
+			&& ft_strcmp(curr->value, "") == 0)
+			curr = curr->next;
+		else if (curr->equal == 1)
 		{
 			ft_putstr_fd(curr->key, 1);
 			ft_putstr_fd("=", 1);
@@ -65,3 +68,18 @@ void	env_argv(t_info *i)
 	i->status = 127;
 }
 
+void	clear_value_oldpwd(t_cmd *c)
+{
+	t_env	*curr;
+
+	curr = c->list_env;
+	while (curr)
+	{
+		if (ft_strcmp(curr->key, "OLDPWD") == 0)
+		{
+			free(curr->value);
+			curr->value = ft_strdup("");
+		}
+		curr = curr->next;
+	}
+}

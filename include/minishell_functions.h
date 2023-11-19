@@ -6,7 +6,7 @@
 /*   By: palucena <palucena@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 11:11:25 by palucena          #+#    #+#             */
-/*   Updated: 2023/11/16 16:39:41 by palucena         ###   ########.fr       */
+/*   Updated: 2023/11/19 18:04:10 by palucena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,7 @@ void	ft_free_node(t_env *node);
 void	ft_env(t_info *i);
 void	env_finish_position(t_env **list);
 void	env_argv(t_info *i);
+void	clear_value_oldpwd(t_cmd *c);
 
 /* export.c */
 void	ft_export(t_cmd *c);
@@ -86,7 +87,7 @@ void	ft_putenv(char *key, char *value, int equal, int fd);
 
 /* utils_export.c */
 int		check_argv_exp(t_cmd *c);
-void	ft_value_zero(char *key, int equal, int fd);
+void	ft_value_zero(char *key, char *value, int equal, int fd);
 void	ft_value_sign(char *value, int fd);
 void	sorted_list_env(t_env **list_env);
 void	ft_swap_node(t_env *a, t_env *b);
@@ -103,10 +104,10 @@ void	argv_export(t_info *i);
 void	add_var_export(t_cmd *c);
 
 /* unset.c */
-void	ft_unset(t_env **list, char *env);
-void	top_the_list(t_env **list, t_env *new);
-void	middle_the_list(t_env *new);
-void	finish_the_list(t_env *new);
+void	ft_unset(t_info *i);
+int		top_the_list(t_info *i);
+int		middle_the_list(t_info *i);
+int		finish_the_list(t_info *i);
 
 /* pwd.c */
 void	ft_pwd(t_cmd *c);
@@ -116,9 +117,10 @@ void	ft_cd(t_info *i);
 void	changer_pwd_env(t_cmd *c);
 void	changer_oldpwd_env(t_cmd *c, char *oldpwd);
 char	*get_pwd(t_cmd *c);
+int		clear_env(t_info *i);
 
 /* utils.cd.c */
-char	*get_directory_path(t_cmd *c);
+char	*get_directory_path(t_info *i);
 char	*get_parent_directory(char *path);
 
 /* echo.c */
@@ -129,5 +131,13 @@ void	ft_exit(t_info *i);
 void	exit_no_digit(t_info *i);
 void	exit_many_arguments(t_info *i);
 void	exit_number(t_info *i);
+
+/* signal.c */
+void	signal_manager(t_info *i);
+void	handler_sigusr(int signum);
+void	control_d(t_info *i);
+
+/* search_path.c */
+int		search_path(t_info *i);
 
 #endif

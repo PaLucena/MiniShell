@@ -6,7 +6,7 @@
 /*   By: rdelicad <rdelicad@student.42.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 12:01:55 by palucena          #+#    #+#             */
-/*   Updated: 2023/11/09 19:37:17 by rdelicad         ###   ########.fr       */
+/*   Updated: 2023/11/14 19:41:10 by rdelicad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ t_cmd	*init_struct(void)
 	c->value = NULL;
 	c->pwd = NULL;
 	c->input = NULL;
+	c->curr = NULL;
+	c->parent_dir = NULL;
 	return (c);
 }
 
@@ -83,7 +85,7 @@ void	create_path(t_cmd *c)
 
 void	changer_env_cmd(t_cmd *c)
 {
-	t_env *curr;
+	t_env	*curr;
 
 	curr = c->list_env;
 	while (curr)

@@ -6,7 +6,7 @@
 /*   By: palucena <palucena@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/04 13:25:14 by rdelicad          #+#    #+#             */
-/*   Updated: 2023/11/13 00:22:10 by palucena         ###   ########.fr       */
+/*   Updated: 2023/11/19 18:07:03 by palucena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,14 +48,14 @@ void	ft_builtins2(t_info *i)
 	
 void	ft_builtins(t_info *i)
 {
-	if (ft_strcmp(i->par->cmd, "env") == 0) 
+	if (ft_strcmp(i->par->cmd, "env") == 0)
 	{
 		if (i->par->args[0] != NULL)
 			env_argv(i);
 		else
 			ft_env(i);
 	}
-	else if (!ft_strcmp(i->par->cmd, "export")) 
+	else if (!ft_strcmp(i->par->cmd, "export"))
 	{
 		if (i->par->args[0] != NULL)
 			argv_export(i);
@@ -63,11 +63,7 @@ void	ft_builtins(t_info *i)
 			ft_export(i->c);
 	}
 	else if (ft_strcmp(i->par->cmd, "unset") == 0)
-	{
-		if (i->par->args[0] != NULL)
-			i->c->argv_unset = i->par->args[0];
-		ft_unset(&i->c->list_env, i->c->argv_unset);
-	}
+		ft_unset(i);
 	else if (ft_strcmp(i->par->cmd, "pwd") == 0)
 		ft_pwd(i->c);
 	else

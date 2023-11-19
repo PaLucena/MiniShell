@@ -2,9 +2,10 @@
 	"bitoAI.codeCompletion.enableAutoCompletion": true,
 	"bitoAI.codeCompletion.enableCommentToCode": true,
 	"files.associations": {
+		"*.excalidraw": "json",
+		"*.excalidrawlib": "json",
 		"minishell.h": "c",
-		"errno.h": "c",
 		"libft.h": "c"
 	},
-	"editor.inlineSuggest.showToolbar": "onHover"
+	"editor.inlineSuggest.showToolbar": "always"
 }

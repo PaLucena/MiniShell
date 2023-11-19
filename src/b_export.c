@@ -6,7 +6,7 @@
 /*   By: rdelicad <rdelicad@student.42.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/28 15:58:35 by rdelicad          #+#    #+#             */
-/*   Updated: 2023/11/08 13:05:41 by rdelicad         ###   ########.fr       */
+/*   Updated: 2023/11/18 12:06:46 by rdelicad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,6 @@ void	print_export(t_cmd *c)
 
 	sorted_list_env(&c->list_env);
 	curr = c->list_env;
-
 	while (curr != NULL)
 	{
 		ft_putenv(curr->key, curr->value, curr->equal, 1);
@@ -70,14 +69,14 @@ void	ft_putenv(char *key, char *value, int equal, int fd)
 {
 	if (*value == '\0')
 	{
-		ft_value_zero(key, equal, fd);
+		//imprimir oldpwd sin el signo = y sin value, si value = '\0'
+		
+		ft_value_zero(key, value, equal, fd);
 	}
 	else
 	{
 		if (fd == 1)
 			write(1, "declare -x ", 11);
-		else
-			write(1, "declare -xr ", 12);
 		ft_putstr_fd(key, fd);
 		write(1, "=", 1);
 		if (!ft_strchr(value, 34))

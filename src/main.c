@@ -6,7 +6,7 @@
 /*   By: palucena <palucena@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 19:07:37 by palucena          #+#    #+#             */
-/*   Updated: 2023/11/16 16:23:11 by palucena         ###   ########.fr       */
+/*   Updated: 2023/11/19 18:05:12 by palucena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,8 @@ void	init_info(t_info *info, char **envp)
 	info->c = init_struct();
 	create_list_env(info->c, envp, len_envp(envp));
 	create_path(info->c);
+	clear_value_oldpwd(info->c);
+	info->env = info->c->list_env;
 	info->status = 0;
 	info->exit = false;
 }
@@ -85,6 +87,8 @@ static void	ft_minishell(t_info *info, char **argv, char **envp)
 	while (1)
 	{
 		input = readline("\033[36;1mminishell$ \033[0m");
+		if (!input)
+			control_d(info);
 		add_history(input);
 		if (ft_strcmp(input, "\0") != 0)
 		{

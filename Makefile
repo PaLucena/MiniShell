@@ -6,25 +6,26 @@ FLAGS = -Wall -Wextra -Werror #-fsanitize=address
 SRC_PATH = src/
 SRC = b_leaks.c b_env_init.c b_utils_list.c b_env.c b_export.c\
 		b_utils_export.c b_utils_export1.c b_utils_export2.c b_unset.c b_pwd.c\
-		b_builtins.c b_cd.c b_utils.cd.c b_echo.c b_exit.c\
+		b_builtins.c b_cd.c b_utils.cd.c b_exit.c\
+		s_signal.c\
 		main.c free.c\
 		l_start.c l_token.c l_env.c\
 		p_start.c p_utils.c\
-		exec.c error.c
+		exec.c error.c\
+		search_path.c\
+
 OBJ_PATH = objs/
 OBJ = $(addprefix $(OBJ_PATH), $(SRC:.c=.o))
 
 INC = include
 LIB = include/libft/libft.a
 
-#LREADLINE = -lreadline
-
-HEADERS = -I ./include -I /Users/${USER}/.brew/opt/readline/include
+HEADERS	= -I ./include -I ~/.brew/opt/readline/include
 
 SYS = $(shel uname -s)
 
 #ifeq ($(SYS), Darwin)
-INCLUDES = -L /Users/${USER}/.brew/opt/readline/lib -lreadline
+INCLUDES = -L ~/.brew/opt/readline/lib -lreadline 
 #endif
 
 #//= Colors =//#
@@ -47,7 +48,7 @@ $(NAME): $(OBJ)
 
 $(OBJ_PATH)%.o: $(SRC_PATH)%.c
 	@ mkdir -p  $(OBJ_PATH)
-	@ $(CC) $(FLAGS) -c $< -o $@ $(HEADERS)
+	@ $(CC) $(FLAGS) -c $< -o $@ $(HEADERS) 
 
 libft:
 	@ make -C $(INC)/libft
