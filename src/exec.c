@@ -6,7 +6,7 @@
 /*   By: palucena <palucena@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 17:16:17 by palucena          #+#    #+#             */
-/*   Updated: 2023/11/16 16:38:52 by palucena         ###   ########.fr       */
+/*   Updated: 2023/11/19 20:03:49 by palucena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ char	*find_path(t_env *env, char *cmd)
 			return (new_path);
 		free(new_path);
 	}
-	exit (127);
+	return (cmd);
 }
 
 void	exec_cmd(t_info *info, char **envp)
@@ -60,6 +60,7 @@ void	exec_cmd(t_info *info, char **envp)
 		cmd_arg[i + 1] = info->par->args[i];
 	cmd_arg[i + 1] = NULL;
 	execve(cmd_path, cmd_arg, envp);
+	exit (127);
 }
 
 void	ft_close(t_ps *par)
@@ -77,8 +78,6 @@ void	ft_execute(t_info *info, char **envp)
 
 	while (info->par)
 	{
-		if (info->exit)
-			break ;
 		if (check_builtin(info->par->cmd))
 			ft_builtins(info);
 		else
@@ -90,7 +89,7 @@ void	ft_execute(t_info *info, char **envp)
 				waitpid(-1, &info->status, 0);
 			if (WIFEXITED(info->status))
 				info->status = WEXITSTATUS(info->status);
-			ft_error_msg(info, NULL);
+			ft_error_msg(info, 0);
 		}
 		ft_close(info->par);
 		aux = info->par;

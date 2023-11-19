@@ -6,7 +6,7 @@
 /*   By: palucena <palucena@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 10:45:41 by palucena          #+#    #+#             */
-/*   Updated: 2023/11/16 16:39:32 by palucena         ###   ########.fr       */
+/*   Updated: 2023/11/19 20:37:19 by palucena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ char	*l_get_quote(char *str, int start, t_info *info)
 	return (quote);
 }
 
-char	*l_get_word(char *s, int start, t_info *info)
+char	*l_get_word(char *str, int start, t_info *info)
 {
 	char	*word;
 	char	*aux;
@@ -59,14 +59,13 @@ char	*l_get_word(char *s, int start, t_info *info)
 	int		i;
 
 	i = start + 1;
-	while (s[i] && s[i] != ' ' && s[i] != 34 && s[i] != 39
-		&& s[i] != '|' && s[i] != '<' && s[i] != '>')
+	while (str[i] && !l_is_finished(str[start], str[i]))
 		i++;
-	word = ft_substr(s, start, i - start);
+	word = ft_substr(str, start, i - start);
 	word = l_get_env(word, info);
-	if (s[i] == 34 || s[i] == 39)
+	if (str[i] == 34 || str[i] == 39)
 	{
-		aux = l_get_quote(s, i, info);
+		aux = l_get_quote(str, i, info);
 		mix = ft_strjoin(word, aux);
 		free(word);
 		free(aux);
@@ -110,7 +109,7 @@ t_lx	*l_fill_lx(char *input, t_info *info)
 	}
 	if (l_tokenizer(lex, 1) != 0)
 	{
-		ft_error_msg(info, l_check_tokens(lex)); // crear funcion con mensaje de syntax error
+		ft_error_msg(info, l_check_tokens(lex));
 		return (NULL);
 	}
 	return (lex);

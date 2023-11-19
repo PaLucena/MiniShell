@@ -6,11 +6,23 @@
 /*   By: palucena <palucena@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 13:03:29 by palucena          #+#    #+#             */
-/*   Updated: 2023/11/13 15:15:05 by palucena         ###   ########.fr       */
+/*   Updated: 2023/11/19 20:44:43 by palucena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+bool	l_is_finished(char start, char curr)
+{
+	if (curr != ' ' && curr != 34 && curr != 39)
+	{
+		if (curr != '|' && curr != '<' && curr != '>')
+			return (false);
+		else if (curr == start)
+			return (false);
+	}
+	return (true);
+}
 
 static bool	ft_stop(char c)
 {

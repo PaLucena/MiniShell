@@ -6,7 +6,7 @@
 /*   By: palucena <palucena@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 19:07:37 by palucena          #+#    #+#             */
-/*   Updated: 2023/11/19 18:09:45 by palucena         ###   ########.fr       */
+/*   Updated: 2023/11/19 20:12:34 by palucena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,12 +45,6 @@ void	print_select(t_lx *lex, t_ps *par, char **argv)
 	}
 }
 
-void	ft_syntax_error(void)
-{
-	ft_printf("Syntax error\n");
-	exit(1);
-}
-
 t_ps	*manage_input(char *input, char **argv, t_info *info)
 {
 	t_lx	*lex;
@@ -72,9 +66,7 @@ void	init_info(t_info *info, char **envp)
 	create_list_env(info->c, envp, len_envp(envp));
 	create_path(info->c);
 	clear_value_oldpwd(info->c);
-	info->env = info->c->list_env;
 	info->status = 0;
-	info->exit = false;
 }
 
 static void	ft_minishell(t_info *info, char **argv, char **envp)
@@ -111,6 +103,7 @@ int	main(int argc, char **argv, char **envp)
 	(void)argc;
 	info = malloc(sizeof(t_info));
 	init_info(info, envp);
+	signal_manager(info);
 	ft_minishell(info, argv, envp);
 	free_info(info);
 	return (0);

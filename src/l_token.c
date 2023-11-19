@@ -6,7 +6,7 @@
 /*   By: palucena <palucena@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 13:30:18 by palucena          #+#    #+#             */
-/*   Updated: 2023/11/16 16:40:12 by palucena         ###   ########.fr       */
+/*   Updated: 2023/11/19 21:24:47 by palucena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,15 +77,25 @@ int	l_check_tokens(t_lx *lex)
 	{
 		if (curr->token == -1)
 			return (-1);
+		else if (curr->next && curr->token >= 3 && curr->token <= 6
+			&& curr->next->token >= 2 && curr->token <= 6)
+			return (3);
+		else if (curr->content[0] && curr->content[0] == '|'
+			&& curr->content[1] == '|')
+			return (0);
+		else if (curr->content[0] && curr->content[1] && curr->content[2]
+			&& ((curr->content[0] == '<' && curr->content[2] == '<')
+			|| (curr->content[0] == '>' && curr->content[2] == '>')))
+			return (3);
 		if (!curr->next)
 			break ;
 		curr = curr ->next;
 	}
-	else if (curr->token >= 2 && curr->token <= 6)
+	if (curr->token >= 2 && curr->token <= 6)
 		return (curr->token);
 	return (0);
-	//comprobar todos los tokens por si alguno es -1 o si el ultimo es algo incorrecto;
 }
+	// Me he pasado de frenada con las redirecciones
 
 int	l_tokenizer(t_lx *lex, int i)
 {

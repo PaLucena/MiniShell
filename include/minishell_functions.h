@@ -6,7 +6,7 @@
 /*   By: palucena <palucena@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 11:11:25 by palucena          #+#    #+#             */
-/*   Updated: 2023/11/19 18:09:14 by palucena         ###   ########.fr       */
+/*   Updated: 2023/11/19 20:27:37 by palucena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ void	l_add_back(t_lx **lst, t_lx *new);
 int		l_tokenizer(t_lx *lx, int i);
 
 ////////// l_env.c /////////
+bool	l_is_finished(char start, char curr);
 bool	l_is_env(char *str, t_info *info);
 char	*l_get_env(char *str, t_info *info);
 
@@ -72,6 +73,13 @@ t_env	*ft_lstnew_env(char *key, char *value);
 void	ft_add_new_env(t_cmd *c);
 void	ft_free_list(t_env *list);
 void	ft_free_node(t_env *node);
+
+/* utils_cd.c*/
+char	*get_directory_path(t_info *i);
+char	*get_parent_directory(char *path);
+void	env_error(char *env);
+int		no_clear_home(t_info *i, char *key);
+void	check_oldpwd(t_info *i);
 
 /* env.c */
 void	ft_env(t_info *i);

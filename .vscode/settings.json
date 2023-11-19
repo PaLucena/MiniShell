@@ -5,7 +5,8 @@
 		"*.excalidraw": "json",
 		"*.excalidrawlib": "json",
 		"minishell.h": "c",
-		"libft.h": "c"
+		"libft.h": "c",
+		"minishell_structs.h": "c"
 	},
 	"editor.inlineSuggest.showToolbar": "always"
 }
