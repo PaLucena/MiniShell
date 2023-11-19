@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rdelicad <rdelicad@student.42.com>         +#+  +:+       +#+        */
+/*   By: palucena <palucena@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 14:53:34 by rdelicad          #+#    #+#             */
-/*   Updated: 2023/11/09 16:41:25 by rdelicad         ###   ########.fr       */
+/*   Updated: 2023/11/12 18:45:34 by palucena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,7 @@ size_t				ft_strcspn(const char *s, const char *reject);
 void				ft_matfree(char **str);
 void				ft_error(int fd, char *msn);
 int					ft_str_isdigit(char *str);
+char				*ft_frankestein(char *base, char *limb, int start, int end);
 
 /*
 ** libft_Bonus

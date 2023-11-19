@@ -6,38 +6,39 @@
 /*   By: rdelicad <rdelicad@student.42.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 17:35:34 by rdelicad          #+#    #+#             */
-/*   Updated: 2023/11/08 13:06:06 by rdelicad         ###   ########.fr       */
+/*   Updated: 2023/11/18 14:01:18 by rdelicad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-char	*get_directory_path(t_cmd *c)
+char	*get_directory_path(t_info *i)
 {
-	t_env	*curr;
-	char	*parent_dir;
-
-	curr = c->list_env;
-	while (curr)
+	i->c->curr = i->c->list_env;
+	while (i->c->curr)
 	{
-		if ((ft_strcmp(curr->key, "HOME") == 0) && c->input == NULL)
-			return (curr->value);
-		else if (c->input != NULL && (ft_strcmp(curr->key, "HOME") == 0)
-			&& (ft_strcmp(c->input, "~") == 0))
-			return (curr->value);
-		else if (c->input != NULL && (ft_strcmp(curr->key, "OLDPWD") == 0)
-			&& (ft_strcmp(c->input, "-") == 0))
-			return (curr->value);
-		else if (c->input != NULL && ft_strcmp(c->input, "/") == 0)
+		if (i->par->args[0] != NULL && ft_strcmp(i->par->args[0], "/") == 0)
 			return ("/");
-		else if (c->input != NULL && ft_strcmp(c->input, "..") == 0)
+		else if (i->par->args[0] != NULL && ft_strcmp(i->par->args[0], "..") \
+		== 0)
 		{
-			parent_dir = get_parent_directory(c->pwd);
-			return (parent_dir);
+			i->c->parent_dir = get_parent_directory(i->c->pwd);
+			return (i->c->parent_dir);
 		}
-		curr = curr->next;
+		else if ((ft_strcmp(i->c->curr->key, "HOME") == 0) && i->par->args[0] \
+		== 0)
+			return(i->c->curr->value);
+		else if (i->par->args[0] != NULL \
+		&& (ft_strcmp(i->c->curr->key, "HOME") == 0) \
+		&& (ft_strcmp(i->par->args[0], "~") == 0))
+			return (i->c->curr->value);
+		else if (i->par->args[0] != NULL \
+		&& (ft_strcmp(i->c->curr->key, "OLDPWD") == 0) \
+		&& (ft_strcmp(i->par->args[0], "-") == 0))
+			return (i->c->curr->value);
+		i->c->curr = i->c->curr->next;
 	}
-	return (NULL);
+	return (i->par->args[0]);
 }
 
 char	*get_parent_directory(char *path)
@@ -48,4 +49,53 @@ char	*get_parent_directory(char *path)
 	if (last_slash != NULL)
 		*last_slash = '\0';
 	return (path);
+}
+
+void	env_error(char *env)
+{
+	write (1, "cd: ", 4);
+	write (1, env, ft_strlen(env));
+	write (1, " not set\n", 9);
+}
+
+int	no_clear_home(t_info *i, char *key)
+{
+	if (ft_strcmp(key, "HOME") == 0)
+	{
+		if (clear_env(i))
+			return (0);
+		else
+			return (1);
+	}
+	else
+		return (0);
+}
+
+void	check_oldpwd(t_info *i)
+{
+	t_env	*curr;
+	bool	found;
+
+	found = false;
+	curr = i->c->list_env;
+	while (curr)
+	{
+		if (ft_strcmp(curr->key, "OLDPWD") == 0)
+		{
+			if (ft_strcmp(curr->value, "") == 0)
+			{
+				env_error("OLDPWD");
+				i->status = 1;
+				break;
+			}
+		}
+		else
+			found = true;
+		curr = curr->next;
+	}
+	if (!found)
+	{
+		env_error("OLDPWD");
+		i->status = 1;
+	}
 }

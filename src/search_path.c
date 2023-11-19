@@ -1,25 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   b_pwd.c                                            :+:      :+:    :+:   */
+/*   search_path.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rdelicad <rdelicad@student.42.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/04 00:27:17 by rdelicad          #+#    #+#             */
-/*   Updated: 2023/11/14 19:11:12 by rdelicad         ###   ########.fr       */
+/*   Created: 2023/11/16 17:48:25 by rdelicad          #+#    #+#             */
+/*   Updated: 2023/11/16 18:01:26 by rdelicad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	ft_pwd(t_cmd *c)
+int	search_path(t_info *i)
 {
-	c->pwd = getcwd(NULL, 0);
-	if (c->pwd == NULL)
+	t_env	*curr;
+
+	curr = i->c->list_env;
+	while (curr)
 	{
-		perror("Error al obtener pwd");
-		return ;
+		if (ft_strcmp(curr->key, "PATH") != 0)
+			return (0);
 	}
-	printf("%s\n", c->pwd);
-	free(c->pwd);
+	return (1);
 }

@@ -7,39 +7,48 @@ SRC_PATH = src/
 SRC = b_leaks.c b_env_init.c b_utils_list.c b_env.c b_export.c\
 		b_utils_export.c b_utils_export1.c b_utils_export2.c b_unset.c b_pwd.c\
 		b_builtins.c b_cd.c b_utils.cd.c b_exit.c\
+		s_signal.c\
 		main.c free.c\
-		l_lexer.c l_token.c\
-		p_parser.c\
-		e_exec.c e_utils.c
+		l_start.c l_token.c l_env.c\
+		p_start.c p_utils.c\
+		exec.c error.c\
+		search_path.c\
+
 OBJ_PATH = objs/
 OBJ = $(addprefix $(OBJ_PATH), $(SRC:.c=.o))
 
 INC = include
 LIB = include/libft/libft.a
 
-HEADERS	= -I ./include
+HEADERS	= -I ./include -I ~/.brew/opt/readline/include
+
+SYS = $(shel uname -s)
+
+#ifeq ($(SYS), Darwin)
+INCLUDES = -L ~/.brew/opt/readline/lib -lreadline 
+#endif
 
 #//= Colors =//#
-BOLD	:= \033[1m
-BLACK	:= \033[30;1m
-RED		:= \033[31;1m
-GREEN	:= \033[32;1m
-YELLOW	:= \033[33;1m
-BLUE	:= \033[34;1m
-MAGENTA	:= \033[35;1m
-CYAN	:= \033[36;1m
-WHITE	:= \033[37;1m
-RESET	:= \033[0m
+BOLD    := \033[1m
+BLACK   := \033[30;1m
+RED     := \033[31;1m
+GREEN   := \033[32;1m
+YELLOW  := \033[33;1m
+BLUE    := \033[34;1m
+MAGENTA := \033[35;1m
+CYAN    := \033[36;1m
+WHITE   := \033[37;1m
+RESET   := \033[0m
 
 all: libft $(NAME)
 
 $(NAME): $(OBJ)
-	@ gcc $(FLAGS) $(OBJ) $(LIB) $(HEADERS) -lreadline -o $(NAME)
+	@ gcc $(FLAGS) $(OBJ) $(LIB) $(HEADERS) $(INCLUDES) -o $(NAME)
 	@ echo "\n\t\t$(GREEN)$(BOLD)----MiniShell compiled----\n$(RESET)"
 
 $(OBJ_PATH)%.o: $(SRC_PATH)%.c
 	@ mkdir -p  $(OBJ_PATH)
-	@ $(CC) $(FLAGS) -c $< -o $@ $(HEADERS)
+	@ $(CC) $(FLAGS) -c $< -o $@ $(HEADERS) 
 
 libft:
 	@ make -C $(INC)/libft

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   l_token.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rdelicad <rdelicad@student.42.com>         +#+  +:+       +#+        */
+/*   By: palucena <palucena@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 13:30:18 by palucena          #+#    #+#             */
-/*   Updated: 2023/11/09 13:38:34 by rdelicad         ###   ########.fr       */
+/*   Updated: 2023/11/16 16:40:12 by palucena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,11 @@ int	l_get_token(char *actual, t_lx *prev, bool check)
 
 	if (check)
 		cmd_door = true;
-	if (ft_strncmp(actual, "|", ft_strlen(actual)) == 0)
+	if (ft_strcmp(actual, "|") == 0)
 	{
 		cmd_door = false;
+		if (prev->token == PIPE)
+			return (-1);
 		return (PIPE);
 	}
 	else if (l_check_redir(actual) != 0)
@@ -66,12 +68,30 @@ void	l_add_back(t_lx **lst, t_lx *new)
 		*lst = new;
 }
 
-void	l_tokenizer(t_lx *lex)
+int	l_check_tokens(t_lx *lex)
+{
+	t_lx	*curr;
+
+	curr = lex;
+	while (curr)
+	{
+		if (curr->token == -1)
+			return (-1);
+		if (!curr->next)
+			break ;
+		curr = curr ->next;
+	}
+	else if (curr->token >= 2 && curr->token <= 6)
+		return (curr->token);
+	return (0);
+	//comprobar todos los tokens por si alguno es -1 o si el ultimo es algo incorrecto;
+}
+
+int	l_tokenizer(t_lx *lex, int i)
 {
 	bool	cmd_door;
 	t_lx	*curr;
 	t_lx	*prev;
-	int		i;
 
 	curr = lex->next;
 	prev = lex;
@@ -83,14 +103,13 @@ void	l_tokenizer(t_lx *lex)
 	}
 	else
 		prev->token = l_check_redir(prev->content);
-	i = 1;
 	while (curr)
 	{
-		printf("token? %s\n", curr->content);
 		curr->token = l_get_token(curr->content, prev, cmd_door);
 		cmd_door = false;
 		prev = curr;
 		curr = curr->next;
 		i++;
 	}
+	return (l_check_tokens(lex));
 }
