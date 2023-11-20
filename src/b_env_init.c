@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   b_env_init.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rdelicad <rdelicad@student.42.com>         +#+  +:+       +#+        */
+/*   By: palucena <palucena@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 12:01:55 by palucena          #+#    #+#             */
-/*   Updated: 2023/11/14 19:41:10 by rdelicad         ###   ########.fr       */
+/*   Updated: 2023/11/20 16:13:36 by palucena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,21 +66,6 @@ void	create_list_env(t_cmd *c, char **envp, int len_envp)
 		i++;
 	}
 	changer_env_cmd(c);
-}
-
-void	create_path(t_cmd *c)
-{
-	t_env	*curr;
-
-	curr = c->list_env;
-	while (curr)
-	{
-		if (ft_strcmp(curr->key, "PATH") == 0)
-		{
-			c->path = ft_split(curr->value, ':');
-		}
-		curr = curr->next;
-	}
 }
 
 void	changer_env_cmd(t_cmd *c)

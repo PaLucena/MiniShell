@@ -6,30 +6,11 @@
 /*   By: palucena <palucena@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 13:03:29 by palucena          #+#    #+#             */
-/*   Updated: 2023/11/19 20:44:43 by palucena         ###   ########.fr       */
+/*   Updated: 2023/11/20 17:12:59 by palucena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-bool	l_is_finished(char start, char curr)
-{
-	if (curr != ' ' && curr != 34 && curr != 39)
-	{
-		if (curr != '|' && curr != '<' && curr != '>')
-			return (false);
-		else if (curr == start)
-			return (false);
-	}
-	return (true);
-}
-
-static bool	ft_stop(char c)
-{
-	if (c && c != '$' && c != 34 && c != 39 && c != '/' && c != ' ')
-		return (true);
-	return (false);
-}
 
 char	*check_keys(char *str, t_env *env, int status)
 {
@@ -57,8 +38,10 @@ static char	*l_new_str(t_info *info, char *new_str, int i)
 	char	*key;
 	int		j;
 
-	j = 1;
-	while (ft_stop(new_str[i + j + 1]))
+	j = 2;
+	while (new_str[i + j] && new_str[i + j] != '$' && new_str[i + j] != 34
+		&& new_str[i + j] != 39 && new_str[i + j] != '/'
+		&& new_str[i + j] != ' ')
 		j++;
 	aux = ft_substr(new_str, i + 1, j);
 	key = check_keys(aux, info->c->list_env, info->status);

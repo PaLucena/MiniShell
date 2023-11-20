@@ -6,7 +6,7 @@
 /*   By: palucena <palucena@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 19:07:37 by palucena          #+#    #+#             */
-/*   Updated: 2023/11/19 20:12:34 by palucena         ###   ########.fr       */
+/*   Updated: 2023/11/20 16:14:48 by palucena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ t_ps	*manage_input(char *input, char **argv, t_info *info)
 
 	lex = l_fill_lx(input, info);
 	if (!lex)
-		return (NULL); // error
+		return (NULL);
 	par = p_fill_ps(lex, NULL);
 	print_select(lex, par, argv);
 	free_lexer(lex);
@@ -64,7 +64,6 @@ void	init_info(t_info *info, char **envp)
 	info->par = NULL;
 	info->c = init_struct();
 	create_list_env(info->c, envp, len_envp(envp));
-	create_path(info->c);
 	clear_value_oldpwd(info->c);
 	info->status = 0;
 }
@@ -101,6 +100,7 @@ int	main(int argc, char **argv, char **envp)
 
 	//atexit(leaks);
 	(void)argc;
+	g_signal_detector = 0;
 	info = malloc(sizeof(t_info));
 	init_info(info, envp);
 	signal_manager(info);

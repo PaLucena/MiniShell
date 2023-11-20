@@ -6,7 +6,7 @@
 /*   By: palucena <palucena@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 11:11:25 by palucena          #+#    #+#             */
-/*   Updated: 2023/11/19 20:27:37 by palucena         ###   ########.fr       */
+/*   Updated: 2023/11/20 17:31:40 by palucena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,14 @@ void	l_add_back(t_lx **lst, t_lx *new);
 int		l_tokenizer(t_lx *lx, int i);
 
 ////////// l_env.c /////////
-bool	l_is_finished(char start, char curr);
 bool	l_is_env(char *str, t_info *info);
 char	*l_get_env(char *str, t_info *info);
+
+////////// l_utils.c /////////
+bool	l_is_finished(char start, char curr);
+int		l_get_next_i(char *str, int i);
+int		l_check_tokens(t_lx *lex);
+bool	l_check_syntax(char *str, t_info *info);
 
 ////////// p_start.c //////////
 t_ps	*p_fill_ps(t_lx *lex, t_ps *par);

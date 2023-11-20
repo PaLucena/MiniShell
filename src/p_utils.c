@@ -6,7 +6,7 @@
 /*   By: palucena <palucena@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 15:27:49 by palucena          #+#    #+#             */
-/*   Updated: 2023/11/19 20:19:31 by palucena         ###   ########.fr       */
+/*   Updated: 2023/11/20 10:55:44 by palucena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ t_lx	*p_fill_arg(char **args, t_lx *lex)
 
 	curr = lex;
 	i = -1;
-	while (curr)
+	while (curr && curr->token != PIPE)
 	{
 		if (curr->token == ARG)
 			args[++i] = ft_strdup(curr->content);
