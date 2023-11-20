@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   s_signal.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rdelicad <rdelicad@student.42.com>         +#+  +:+       +#+        */
+/*   By: rdelicad <rdelicad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/11 18:11:39 by rdelicad          #+#    #+#             */
-/*   Updated: 2023/11/17 15:38:55 by rdelicad         ###   ########.fr       */
+/*   Updated: 2023/11/20 19:29:32 by rdelicad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,19 +23,16 @@ void	handler_sigusr(int signum)
 {
 	if (signum == SIGINT)
 	{
-		/* rl_redisplay();
+		rl_redisplay();
 		rl_replace_line("", 0);
 		ft_putstr_fd("   \n", 1);
-		rl_redisplay();
-		rl_on_new_line(); */
-		//rl_redisplay();
-		//rl_clear_history();
-		rl_on_new_line();
+		
+		/* rl_on_new_line();
 		rl_redisplay();
 		ft_putstr_fd("   \n", 1);
 		rl_replace_line("", 0);
 		rl_on_new_line();
-		rl_redisplay();
+		rl_redisplay(); */
 	}
 }
 

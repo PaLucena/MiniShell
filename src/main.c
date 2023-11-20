@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: palucena <palucena@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: rdelicad <rdelicad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 19:07:37 by palucena          #+#    #+#             */
-/*   Updated: 2023/11/19 20:12:34 by palucena         ###   ########.fr       */
+/*   Updated: 2023/11/20 20:13:32 by rdelicad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,7 @@ static void	ft_minishell(t_info *info, char **argv, char **envp)
 		input = readline("\033[36;1mminishell$ \033[0m");
 		if (!input)
 			control_d(info);
+		shell_level_detected(info, input);
 		add_history(input);
 		if (ft_strcmp(input, "\0") != 0)
 		{

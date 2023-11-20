@@ -8,5 +8,6 @@
 		"libft.h": "c",
 		"minishell_structs.h": "c"
 	},
-	"editor.inlineSuggest.showToolbar": "always"
+	"editor.inlineSuggest.showToolbar": "always",
+	"cmake.configureOnOpen": false
 }
