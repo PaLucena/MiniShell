@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell_functions.h                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: palucena <palucena@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: rdelicad <rdelicad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 11:11:25 by palucena          #+#    #+#             */
-/*   Updated: 2023/11/19 20:27:37 by palucena         ###   ########.fr       */
+/*   Updated: 2023/11/20 17:47:14 by rdelicad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -148,5 +148,10 @@ void	control_d(t_info *i);
 
 /* search_path.c */
 int		search_path(t_info *i);
+
+/* shell_level.c */
+void	shell_level_detected(t_info *i, t_ps *c);
+void	shell_level_up(t_info *i);
+void	shell_level_down(t_info *i);
 
 #endif

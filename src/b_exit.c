@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   b_exit.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: palucena <palucena@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: rdelicad <rdelicad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 19:27:20 by rdelicad          #+#    #+#             */
-/*   Updated: 2023/11/19 18:08:57 by palucena         ###   ########.fr       */
+/*   Updated: 2023/11/20 17:10:15 by rdelicad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ void	ft_exit(t_info *i)
 	if (i->par->args[0] == NULL)
 	{
 		ft_putstr_fd("exit", 1);
+		write(1, "\n", 1);
 		i->status = 0;
 		exit(0);
 	}
