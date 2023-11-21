@@ -6,7 +6,7 @@
 /*   By: palucena <palucena@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 10:44:14 by palucena          #+#    #+#             */
-/*   Updated: 2023/11/20 16:14:24 by palucena         ###   ########.fr       */
+/*   Updated: 2023/11/21 13:48:20 by palucena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,13 @@
 # define MINISHELL_STRUCTS_H
 
 int	g_signal_detector;
+
+typedef enum e_sig_detect
+{
+	BASE = 0,
+	HEREDOC,
+	MID_CMD,
+}	t_sig_detect;
 
 typedef enum e_oken
 {

@@ -6,7 +6,7 @@
 /*   By: palucena <palucena@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 11:11:25 by palucena          #+#    #+#             */
-/*   Updated: 2023/11/20 17:31:40 by palucena         ###   ########.fr       */
+/*   Updated: 2023/11/21 15:53:39 by palucena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ t_lx	*p_fill_arg(char **args, t_lx *lex);
 void	ft_error_msg(t_info *info, int e);
 
 ////////// exec.c //////////
-void	ft_execute(t_info *info, char **envp);
+void	ft_execute(t_info *info);
 
 ////////// free.c //////////
 void	free_lexer(t_lx *lex);
@@ -65,8 +65,8 @@ void	free_command(t_info *i);
 t_cmd	*init_struct(void);
 int		len_envp(char **envp);
 void	create_list_env(t_cmd *c, char **arr_env, int len_envp);
-void	create_path(t_cmd *c);
 void	changer_env_cmd(t_cmd *c);
+void	ft_shell_lvl(t_env *list_env);
 
 /* builtins.c */
 bool	check_builtin(char *cmd);

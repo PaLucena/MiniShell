@@ -6,7 +6,7 @@
 /*   By: palucena <palucena@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 19:07:37 by palucena          #+#    #+#             */
-/*   Updated: 2023/11/20 16:14:48 by palucena         ###   ########.fr       */
+/*   Updated: 2023/11/21 15:01:26 by palucena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,11 +64,12 @@ void	init_info(t_info *info, char **envp)
 	info->par = NULL;
 	info->c = init_struct();
 	create_list_env(info->c, envp, len_envp(envp));
+	ft_shell_lvl(info->c->list_env);
 	clear_value_oldpwd(info->c);
 	info->status = 0;
 }
 
-static void	ft_minishell(t_info *info, char **argv, char **envp)
+static void	ft_minishell(t_info *info, char **argv)
 {
 	char	*input;
 
@@ -86,7 +87,7 @@ static void	ft_minishell(t_info *info, char **argv, char **envp)
 			info->par = manage_input(input, argv, info);
 			if (info->par)
 			{
-				ft_execute(info, envp);
+				ft_execute(info);
 				free_parser(info->par);	
 			}
 		}
@@ -100,11 +101,11 @@ int	main(int argc, char **argv, char **envp)
 
 	//atexit(leaks);
 	(void)argc;
-	g_signal_detector = 0;
+	g_signal_detector = BASE;
 	info = malloc(sizeof(t_info));
 	init_info(info, envp);
 	signal_manager(info);
-	ft_minishell(info, argv, envp);
+	ft_minishell(info, argv);
 	free_info(info);
 	return (0);
 }

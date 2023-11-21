@@ -6,7 +6,7 @@
 /*   By: palucena <palucena@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 15:27:49 by palucena          #+#    #+#             */
-/*   Updated: 2023/11/20 10:55:44 by palucena         ###   ########.fr       */
+/*   Updated: 2023/11/21 13:48:01 by palucena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ int	ft_heredoc(char *limiter)
 	(void)limiter;
 	pipe(fd);
 	pid = fork();
+	g_signal_detector = HEREDOC;
 	if (pid == 0)
 	{
 		close(fd[0]);
@@ -52,7 +53,10 @@ int	p_open(t_lx *lex)
 	else if (lex->next && lex->token == REDIR_APPEND)
 		fd = open(lex->next->content, O_CREAT | O_RDWR | O_APPEND, 0666);
 	else if (lex->next && lex->token == REDIR_HEREDOC)
+	{
 		fd = ft_heredoc(lex->next->content);
+		g_signal_detector = BASE;
+	}
 	return (fd);
 }
 

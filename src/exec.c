@@ -6,7 +6,7 @@
 /*   By: palucena <palucena@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 17:16:17 by palucena          #+#    #+#             */
-/*   Updated: 2023/11/19 20:03:49 by palucena         ###   ########.fr       */
+/*   Updated: 2023/11/21 15:58:24 by palucena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ char	*find_path(t_env *env, char *cmd)
 	int		i;
 
 	curr = env;
-	while (ft_strcmp(curr->key, "PATH") != 0)
+	while (curr && ft_strcmp(curr->key, "PATH") != 0)
 		curr = curr->next;
 	if (!curr)
 		exit (127);
@@ -39,17 +39,49 @@ char	*find_path(t_env *env, char *cmd)
 	return (cmd);
 }
 
-void	exec_cmd(t_info *info, char **envp)
+static char	**ft_new_env(t_env *list_env)
+{
+	char	**new_env;
+	char	*aux;
+	t_env	*curr;
+	int		i;
+
+	i = 0;
+	curr = list_env;
+	while (curr)
+	{
+		i++;
+		curr = curr->next;
+	}
+	new_env = malloc(sizeof(char *) * (i + 1));
+	curr = list_env;
+	i = -1;
+	while (curr)
+	{
+		aux = ft_strjoin(curr->key, "=");
+		new_env[++i] = ft_strjoin(aux, curr->value);
+		curr = curr->next;
+		free(aux);
+	}
+	new_env[++i] = NULL;
+	return (new_env);
+}
+
+void	exec_cmd(t_info *info)
 {
 	char	**cmd_arg;
 	char	*cmd_path;
 	int		i;
 
+	g_signal_detector = MID_CMD;
 	if (info->par->infile != 0)
 		dup2(info->par->infile, STDIN_FILENO);
 	if (info->par->outfile != 1)
 		dup2(info->par->outfile, STDOUT_FILENO);
-	cmd_path = find_path(info->c->list_env, info->par->cmd);
+	if (ft_strncmp(info->par->cmd, "./", 2))
+		cmd_path = find_path(info->c->list_env, info->par->cmd);
+	else
+		cmd_path = ft_strdup(info->par->cmd);
 	i = 0;
 	while (info->par->args[i])
 		i++;
@@ -59,21 +91,27 @@ void	exec_cmd(t_info *info, char **envp)
 	while (info->par->args[++i])
 		cmd_arg[i + 1] = info->par->args[i];
 	cmd_arg[i + 1] = NULL;
-	execve(cmd_path, cmd_arg, envp);
+	execve(cmd_path, cmd_arg, ft_new_env(info->c->list_env));
 	exit (127);
 }
 
-void	ft_close(t_ps *par)
-{
-	if (par->infile != 0)
-		close(par->infile);
-	if (par->outfile != 1)
-		close(par->outfile);
-}
-
-void	ft_execute(t_info *info, char **envp)
+static void	ft_next_cmd(t_info *info)
 {
 	t_ps	*aux;
+
+	if (info->par->infile != 0)
+		close(info->par->infile);
+	if (info->par->outfile != 1)
+		close(info->par->outfile);
+	aux = info->par;
+	info->par = info->par->next;
+	free(aux->cmd);
+	ft_free(aux->args);
+	free(aux);
+}
+
+void	ft_execute(t_info *info)
+{
 	pid_t	pid;
 
 	while (info->par)
@@ -84,18 +122,14 @@ void	ft_execute(t_info *info, char **envp)
 		{
 			pid = fork();
 			if (pid == 0)
-				exec_cmd(info, envp);
+				exec_cmd(info);
 			else
 				waitpid(-1, &info->status, 0);
 			if (WIFEXITED(info->status))
 				info->status = WEXITSTATUS(info->status);
+			g_signal_detector = BASE;
 			ft_error_msg(info, 0);
 		}
-		ft_close(info->par);
-		aux = info->par;
-		info->par = info->par->next;
-		free(aux->cmd);
-		ft_free(aux->args);
-		free(aux);
+		ft_next_cmd(info);
 	}
 }
