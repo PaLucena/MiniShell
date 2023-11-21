@@ -6,7 +6,7 @@
 /*   By: palucena <palucena@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/12 18:39:35 by palucena          #+#    #+#             */
-/*   Updated: 2023/11/13 15:15:14 by palucena         ###   ########.fr       */
+/*   Updated: 2023/11/21 17:43:34 by palucena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,16 +24,17 @@ static void	ft_free_all(char *s1, char *s2, char *s3, char *s4)
 		free(s4);
 }
 
-static bool	check_status(char *str)
+static bool	check_status(char *str, int start, int end)
 {
-	int	i;
+	char	*aux;
 
-	i = -1;
-	while (str[++i])
+	aux = (ft_substr(str, start, end - 1));
+	if (ft_strncmp(aux, "$?", 2))
 	{
-		if (ft_isdigit(str[i]) == 0)
-			return (false);
+		free(aux);
+		return (false);
 	}
+	free(aux);
 	return (true);
 }
 
@@ -48,7 +49,7 @@ char	*ft_frankestein(char *base, char *limb, int start, int end)
 	post = NULL;
 	pre = ft_substr(base, 0, start);
 	i = 0;
-	if (check_status(limb))
+	if (check_status(base, start, end))
 		end = start + 2;
 	while (base[end + i])
 		i++;

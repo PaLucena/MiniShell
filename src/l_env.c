@@ -6,7 +6,7 @@
 /*   By: palucena <palucena@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 13:03:29 by palucena          #+#    #+#             */
-/*   Updated: 2023/11/20 17:12:59 by palucena         ###   ########.fr       */
+/*   Updated: 2023/11/21 17:36:02 by palucena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ static char	*l_new_str(t_info *info, char *new_str, int i)
 	key = check_keys(aux, info->c->list_env, info->status);
 	free(aux);
 	if (key)
-		new_str = ft_frankestein(new_str, key, i, i + j + 1);
+		new_str = ft_frankestein(new_str, key, i, i + j);
 	else
 		return (NULL);
 	return (new_str);
