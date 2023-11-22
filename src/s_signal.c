@@ -6,7 +6,7 @@
 /*   By: rdelicad <rdelicad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/11 18:11:39 by rdelicad          #+#    #+#             */
-/*   Updated: 2023/11/22 14:33:54 by rdelicad         ###   ########.fr       */
+/*   Updated: 2023/11/22 14:35:43 by rdelicad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,23 +46,6 @@ void	handler_sigusr(int signum)
 			rl_redisplay();
 		}
 	} 
-	/* if (g_signal_detector == BASE || g_signal_detector == MID_CMD)
-	{
-		rl_on_new_line();
-		rl_redisplay();
-		rl_replace_line("", 0);
-		write(1, "\033[K\n", 5);
-		rl_on_new_line();
-		rl_redisplay();
-		rl_replace_line("", 0);
-	}
-	if (g_signal_detector == HEREDOC)
-	{
-		write(1, "\n", 1);
-		rl_replace_line("", 1);
-		rl_on_new_line();
-		rl_redisplay();
-	} */
 }
 
 void	control_d(t_info *i)
@@ -71,9 +54,7 @@ void	control_d(t_info *i)
 	rl_on_new_line();
 	rl_redisplay();
 	ft_putstr_fd("exit\n", 1);
-	// ft_free_list(i->c->list_env);
-	// free(i->c);
-	if (i)
-		free_info(i);
+	/* if (i)
+		free_info(i); */
 	exit (0);
 }
