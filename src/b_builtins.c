@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   b_builtins.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: palucena <palucena@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: rdelicad <rdelicad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/04 13:25:14 by rdelicad          #+#    #+#             */
-/*   Updated: 2023/11/19 18:09:22 by palucena         ###   ########.fr       */
+/*   Updated: 2023/11/22 16:36:56 by rdelicad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 bool	check_builtin(char	*cmd)
 {
+	if (cmd == NULL)
+		return (false);
 	if (ft_strcmp(cmd, "echo") == 0)
 		return (true);
 	else if (ft_strcmp(cmd, "cd") == 0)

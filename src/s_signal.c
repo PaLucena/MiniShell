@@ -6,7 +6,7 @@
 /*   By: rdelicad <rdelicad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/11 18:11:39 by rdelicad          #+#    #+#             */
-/*   Updated: 2023/11/22 14:35:43 by rdelicad         ###   ########.fr       */
+/*   Updated: 2023/11/22 16:51:52 by rdelicad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,5 @@ void	control_d(t_info *i)
 	rl_on_new_line();
 	rl_redisplay();
 	ft_putstr_fd("exit\n", 1);
-	/* if (i)
-		free_info(i); */
 	exit (0);
 }

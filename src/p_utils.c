@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   p_utils.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: palucena <palucena@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: rdelicad <rdelicad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 15:27:49 by palucena          #+#    #+#             */
-/*   Updated: 2023/11/21 13:48:01 by palucena         ###   ########.fr       */
+/*   Updated: 2023/11/22 16:30:24 by rdelicad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,13 @@ int	ft_heredoc(char *limiter)
 		{
 			write(1, "> ", 2);
 			str = get_next_line(0);
-			if (ft_strncmp(str, limiter, ft_strlen(str)) == 10)
+			if (!str)
 				exit(0);
+			if (!*str || ft_strncmp(str, limiter, ft_strlen(str)) == 0)
+			{
+				free(str);
+				exit(0);
+			}
 			ft_putstr_fd(str, fd[1]);
 			free(str);
 		}
