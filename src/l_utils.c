@@ -6,7 +6,7 @@
 /*   By: palucena <palucena@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 11:37:45 by palucena          #+#    #+#             */
-/*   Updated: 2023/11/20 17:36:19 by palucena         ###   ########.fr       */
+/*   Updated: 2023/11/22 13:09:26 by palucena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,24 +23,6 @@ bool	l_is_finished(char start, char curr)
 			return (false);
 	}
 	return (true);
-}
-
-int	l_get_next_i(char *str, int i)
-{
-	int	j;
-
-	j = i;
-	if (str[i] == 34 || str[i] == 39 || str[i] == '|'
-		|| str[i] == '>' || str[i] =='<')
-		i++;
-	else if (str[i] && str[i] == ' ')
-	{
-		while (str[i] == ' ')
-			i++;
-	}
-	while (str[i] && !l_is_finished(str[j], str[i]))
-		i++;
-	return (i);
 }
 
 int	l_check_tokens(t_lx *lex)
@@ -66,10 +48,6 @@ int	l_check_tokens(t_lx *lex)
 
 bool	l_check_syntax(char *str, t_info *info)
 {
-	// Comprobar si:
-	// - Hay >>> o <<<
-	// - Hay ||
-	// Mandar a imprimir el error que sea y return (false)
 	if (str[0] == '|' && str[1] == '|')
 	{
 		ft_error_msg(info, 2);

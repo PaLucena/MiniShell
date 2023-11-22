@@ -6,7 +6,7 @@
 /*   By: palucena <palucena@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 10:45:41 by palucena          #+#    #+#             */
-/*   Updated: 2023/11/20 17:38:24 by palucena         ###   ########.fr       */
+/*   Updated: 2023/11/22 09:21:37 by palucena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,4 +115,3 @@ t_lx	*l_fill_lx(char *input, t_info *info)
 	}
 	return (lex);
 }
-// hay que arreglar esta funcion

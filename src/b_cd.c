@@ -6,7 +6,7 @@
 /*   By: palucena <palucena@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/04 15:40:50 by rdelicad          #+#    #+#             */
-/*   Updated: 2023/11/20 11:31:19 by palucena         ###   ########.fr       */
+/*   Updated: 2023/11/22 09:52:23 by palucena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	ft_cd(t_info *i)
 {
 	i->c->pwd = get_pwd(i->c);
 	i->c->input = get_directory_path(i);
-	if (ft_strcmp(i->c->input, "") == 0 || ft_strcmp(i->c->input, "-") == 0)
+	if (i->c->input && (ft_strcmp(i->c->input, "") == 0 || ft_strcmp(i->c->input, "-") == 0))
 		check_oldpwd(i);
 	else if (chdir(i->c->input) != 0 \
 	&& i->c->input != NULL && ft_strcmp(i->c->input, "~") != 0 \

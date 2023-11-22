@@ -6,7 +6,7 @@
 /*   By: palucena <palucena@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 11:11:25 by palucena          #+#    #+#             */
-/*   Updated: 2023/11/21 15:53:39 by palucena         ###   ########.fr       */
+/*   Updated: 2023/11/22 13:10:46 by palucena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,11 @@ char	*l_get_env(char *str, t_info *info);
 
 ////////// l_utils.c /////////
 bool	l_is_finished(char start, char curr);
-int		l_get_next_i(char *str, int i);
 int		l_check_tokens(t_lx *lex);
 bool	l_check_syntax(char *str, t_info *info);
+
+////////// l_next.c /////////
+int		l_get_next_i(char *str, int i);
 
 ////////// p_start.c //////////
 t_ps	*p_fill_ps(t_lx *lex, t_ps *par);

@@ -6,7 +6,7 @@
 /*   By: palucena <palucena@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 15:27:49 by palucena          #+#    #+#             */
-/*   Updated: 2023/11/21 13:48:01 by palucena         ###   ########.fr       */
+/*   Updated: 2023/11/22 13:49:10 by palucena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ int	ft_heredoc(char *limiter)
 	char	*str;
 	int		fd[2];
 
-	(void)limiter;
 	pipe(fd);
 	pid = fork();
 	g_signal_detector = HEREDOC;
@@ -29,14 +28,15 @@ int	ft_heredoc(char *limiter)
 		{
 			write(1, "> ", 2);
 			str = get_next_line(0);
+			if (!str)
+				str = ft_strjoin(limiter, "\n");
 			if (ft_strncmp(str, limiter, ft_strlen(str)) == 10)
 				exit(0);
 			ft_putstr_fd(str, fd[1]);
 			free(str);
 		}
 	}
-	else
-		waitpid(-1, NULL, 0);
+	waitpid(-1, NULL, 0);
 	close(fd[1]);
 	return (fd[0]);
 }
