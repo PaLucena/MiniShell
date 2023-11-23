@@ -6,12 +6,21 @@
 /*   By: palucena <palucena@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 10:44:14 by palucena          #+#    #+#             */
-/*   Updated: 2023/11/19 20:00:29 by palucena         ###   ########.fr       */
+/*   Updated: 2023/11/21 13:48:20 by palucena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINISHELL_STRUCTS_H
 # define MINISHELL_STRUCTS_H
+
+int	g_signal_detector;
+
+typedef enum e_sig_detect
+{
+	BASE = 0,
+	HEREDOC,
+	MID_CMD,
+}	t_sig_detect;
 
 typedef enum e_oken
 {
@@ -39,7 +48,6 @@ typedef struct s_cmd
 	t_env			*list_env;
 	t_env			*curr;
 	char			*parent_dir;
-	char			**path;
 	char			*argv_env;
 	char			*argv_unset;
 	char			*key;
@@ -47,7 +55,6 @@ typedef struct s_cmd
 	char			*equal_sign;
 	char			*pwd;
 	char			*input;
-	
 }					t_cmd;
 
 typedef struct s_lx

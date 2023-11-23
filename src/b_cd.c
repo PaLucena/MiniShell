@@ -6,7 +6,7 @@
 /*   By: palucena <palucena@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/04 15:40:50 by rdelicad          #+#    #+#             */
-/*   Updated: 2023/11/19 18:07:18 by palucena         ###   ########.fr       */
+/*   Updated: 2023/11/20 11:31:19 by palucena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,9 +80,7 @@ char	*get_pwd(t_cmd *c)
 {
 	c->pwd = getcwd(NULL, 0);
 	if (c->pwd == NULL)
-	{
 		perror("error");
-	}
 	return (c->pwd);
 }
 
@@ -94,9 +92,7 @@ int	clear_env(t_info *i)
 	while (i->c->curr)
 	{
 		if (!(ft_strcmp(curr->key, "HOME") == 0))
-		{
 			return (0);
-		}
 		curr = curr->next;
 	}
 	return (1);

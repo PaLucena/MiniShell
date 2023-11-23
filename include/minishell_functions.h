@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell_functions.h                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rdelicad <rdelicad@student.42.fr>          +#+  +:+       +#+        */
+/*   By: palucena <palucena@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 11:11:25 by palucena          #+#    #+#             */
-/*   Updated: 2023/11/20 20:11:02 by rdelicad         ###   ########.fr       */
+/*   Updated: 2023/11/23 18:28:06 by palucena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,14 @@ void	l_add_back(t_lx **lst, t_lx *new);
 int		l_tokenizer(t_lx *lx, int i);
 
 ////////// l_env.c /////////
-bool	l_is_finished(char start, char curr);
 bool	l_is_env(char *str, t_info *info);
 char	*l_get_env(char *str, t_info *info);
+
+////////// l_utils.c /////////
+bool	l_is_finished(char start, char curr);
+int		l_get_next_i(char *str, int i);
+int		l_check_tokens(t_lx *lex);
+bool	l_check_syntax(char *str, t_info *info);
 
 ////////// p_start.c //////////
 t_ps	*p_fill_ps(t_lx *lex, t_ps *par);
@@ -43,7 +48,7 @@ t_lx	*p_fill_arg(char **args, t_lx *lex);
 void	ft_error_msg(t_info *info, int e);
 
 ////////// exec.c //////////
-void	ft_execute(t_info *info, char **envp);
+void	ft_execute(t_info *info);
 
 ////////// free.c //////////
 void	free_lexer(t_lx *lex);
@@ -60,8 +65,8 @@ void	free_command(t_info *i);
 t_cmd	*init_struct(void);
 int		len_envp(char **envp);
 void	create_list_env(t_cmd *c, char **arr_env, int len_envp);
-void	create_path(t_cmd *c);
 void	changer_env_cmd(t_cmd *c);
+void	ft_shell_lvl(t_env *list_env);
 
 /* builtins.c */
 bool	check_builtin(char *cmd);

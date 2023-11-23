@@ -6,7 +6,7 @@
 /*   By: palucena <palucena@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 10:45:41 by palucena          #+#    #+#             */
-/*   Updated: 2023/11/19 20:37:19 by palucena         ###   ########.fr       */
+/*   Updated: 2023/11/20 17:38:24 by palucena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ t_lx	*l_new_node(char *str, int i, t_info *info)
 
 	lex = malloc(sizeof(t_lx));
 	lex->content = l_get_content(str, i, info);
+	if (!lex->content)
+		return (NULL);
 	lex->next = NULL;
 	return (lex);
 }
@@ -63,6 +65,8 @@ char	*l_get_word(char *str, int start, t_info *info)
 		i++;
 	word = ft_substr(str, start, i - start);
 	word = l_get_env(word, info);
+	if (!l_check_syntax(word, info))
+		return (NULL);
 	if (str[i] == 34 || str[i] == 39)
 	{
 		aux = l_get_quote(str, i, info);
@@ -95,17 +99,14 @@ t_lx	*l_fill_lx(char *input, t_info *info)
 	lex = NULL;
 	while (input[i])
 	{
-		while (input[i] == ' ')
-			i++;
 		if (lex == NULL && input[i])
 			lex = l_new_node(input, i, info);
 		else if (input[i])
 			l_add_back(&lex, l_new_node(input, i, info));
+		i = l_get_next_i(input, i);
+		if (!curr)
+			return (NULL);
 		curr = lex;
-		while (curr->next)
-			curr = curr->next;
-		while (input[i] && input[i] != ' ')
-			i++;
 	}
 	if (l_tokenizer(lex, 1) != 0)
 	{
@@ -114,3 +115,4 @@ t_lx	*l_fill_lx(char *input, t_info *info)
 	}
 	return (lex);
 }
+// hay que arreglar esta funcion

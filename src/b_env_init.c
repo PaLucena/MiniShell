@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   b_env_init.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rdelicad <rdelicad@student.42.com>         +#+  +:+       +#+        */
+/*   By: palucena <palucena@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 12:01:55 by palucena          #+#    #+#             */
-/*   Updated: 2023/11/14 19:41:10 by rdelicad         ###   ########.fr       */
+/*   Updated: 2023/11/21 15:57:38 by palucena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,21 +68,6 @@ void	create_list_env(t_cmd *c, char **envp, int len_envp)
 	changer_env_cmd(c);
 }
 
-void	create_path(t_cmd *c)
-{
-	t_env	*curr;
-
-	curr = c->list_env;
-	while (curr)
-	{
-		if (ft_strcmp(curr->key, "PATH") == 0)
-		{
-			c->path = ft_split(curr->value, ':');
-		}
-		curr = curr->next;
-	}
-}
-
 void	changer_env_cmd(t_cmd *c)
 {
 	t_env	*curr;
@@ -98,4 +83,20 @@ void	changer_env_cmd(t_cmd *c)
 		}
 		curr = curr->next;
 	}
+}
+
+void	ft_shell_lvl(t_env *list_env)
+{
+	t_env	*curr;
+	char	*aux;
+
+	curr = list_env;
+	while (curr && ft_strcmp(curr->key, "SHLVL"))
+		curr = curr->next;
+	if (!curr)
+		return ;
+	aux = curr->value;
+	curr->value = ft_itoa(ft_atoi(curr->value) + 1);
+	free(aux);
+	// Cambiar el SHLVL a atoi + 1
 }

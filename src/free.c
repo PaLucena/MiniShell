@@ -6,7 +6,7 @@
 /*   By: palucena <palucena@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/05 22:01:12 by palucena          #+#    #+#             */
-/*   Updated: 2023/11/15 16:24:08 by palucena         ###   ########.fr       */
+/*   Updated: 2023/11/20 16:13:50 by palucena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,6 @@ void	free_info(t_info *info)
 {
 	rl_clear_history();
 	ft_free_list(info->c->list_env);
-	ft_matfree(info->c->path);
 	free(info->c);
 	free(info);
 }

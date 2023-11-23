@@ -6,7 +6,8 @@
 		"*.excalidrawlib": "json",
 		"minishell.h": "c",
 		"libft.h": "c",
-		"minishell_structs.h": "c"
+		"minishell_structs.h": "c",
+		"sstream": "c"
 	},
 	"editor.inlineSuggest.showToolbar": "always",
 	"cmake.configureOnOpen": false
