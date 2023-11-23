@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   s_signal.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rdelicad <rdelicad@student.42.fr>          +#+  +:+       +#+        */
+/*   By: palucena <palucena@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/11 18:11:39 by rdelicad          #+#    #+#             */
-/*   Updated: 2023/11/22 14:35:43 by rdelicad         ###   ########.fr       */
+/*   Updated: 2023/11/23 18:29:18 by palucena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,5 @@ void	control_d(t_info *i)
 	rl_on_new_line();
 	rl_redisplay();
 	ft_putstr_fd("exit\n", 1);
-	/* if (i)
-		free_info(i); */
 	exit (0);
 }

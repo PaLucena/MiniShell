@@ -9,5 +9,6 @@
 		"minishell_structs.h": "c",
 		"sstream": "c"
 	},
-	"editor.inlineSuggest.showToolbar": "always"
+	"editor.inlineSuggest.showToolbar": "always",
+	"cmake.configureOnOpen": false
 }

@@ -6,7 +6,7 @@
 /*   By: palucena <palucena@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 19:07:37 by palucena          #+#    #+#             */
-/*   Updated: 2023/11/22 10:46:00 by palucena         ###   ########.fr       */
+/*   Updated: 2023/11/23 18:48:18 by palucena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,7 @@ static void	ft_minishell(t_info *info, char **argv)
 		input = readline("\033[36;1mminishell$ \033[0m");
 		if (!input)
 			control_d(info);
+		shell_level_detected(info, input);
 		add_history(input);
 		if (ft_strcmp(input, "\0") != 0)
 		{
