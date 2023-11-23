@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: palucena <palucena@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: rdelicad <rdelicad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 17:16:17 by palucena          #+#    #+#             */
-/*   Updated: 2023/11/21 15:58:24 by palucena         ###   ########.fr       */
+/*   Updated: 2023/11/22 14:32:36 by rdelicad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,6 @@ void	exec_cmd(t_info *info)
 	char	*cmd_path;
 	int		i;
 
-	g_signal_detector = MID_CMD;
 	if (info->par->infile != 0)
 		dup2(info->par->infile, STDIN_FILENO);
 	if (info->par->outfile != 1)
@@ -120,6 +119,7 @@ void	ft_execute(t_info *info)
 			ft_builtins(info);
 		else
 		{
+			g_signal_detector = MID_CMD;
 			pid = fork();
 			if (pid == 0)
 				exec_cmd(info);
