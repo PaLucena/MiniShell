@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   b_unset.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rdelicad <rdelicad@student.42.com>         +#+  +:+       +#+        */
+/*   By: palucena <palucena@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 13:58:05 by rdelicad          #+#    #+#             */
-/*   Updated: 2023/11/18 15:17:03 by rdelicad         ###   ########.fr       */
+/*   Updated: 2023/11/23 22:39:57 by palucena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,6 @@ int	middle_the_list(t_info *i)
 	return (0);
 }
 
-
 int	finish_the_list(t_info *i)
 {
 	t_env	*tmp;
@@ -111,4 +110,3 @@ int	finish_the_list(t_info *i)
 	}
 	return (0);
 }
-

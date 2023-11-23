@@ -6,7 +6,7 @@
 /*   By: palucena <palucena@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/04 15:40:50 by rdelicad          #+#    #+#             */
-/*   Updated: 2023/11/22 09:52:23 by palucena         ###   ########.fr       */
+/*   Updated: 2023/11/23 22:37:38 by palucena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,8 @@ void	ft_cd(t_info *i)
 {
 	i->c->pwd = get_pwd(i->c);
 	i->c->input = get_directory_path(i);
-	if (i->c->input && (ft_strcmp(i->c->input, "") == 0 || ft_strcmp(i->c->input, "-") == 0))
+	if (i->c->input && (!ft_strcmp(i->c->input, "")
+			|| !ft_strcmp(i->c->input, "-")))
 		check_oldpwd(i);
 	else if (chdir(i->c->input) != 0 \
 	&& i->c->input != NULL && ft_strcmp(i->c->input, "~") != 0 \
@@ -25,8 +26,7 @@ void	ft_cd(t_info *i)
 		printf("%s\n", i->c->input);
 		write (2, "cd: ", 4);
 		write (2, i->par->args[0], ft_strlen(i->par->args[0]));
-		write (2, ": No such file or directory", 27);
-		write (2, "\n", 1);
+		write (2, ": No such file or directory\n", 28);
 		i->status = 1;
 	}
 	else if (i->c->input == NULL || ft_strcmp(i->c->input, "~") == 0)

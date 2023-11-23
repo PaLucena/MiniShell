@@ -6,7 +6,7 @@
 /*   By: palucena <palucena@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 13:09:02 by palucena          #+#    #+#             */
-/*   Updated: 2023/11/23 19:16:30 by palucena         ###   ########.fr       */
+/*   Updated: 2023/11/23 22:43:00 by palucena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,10 @@ static int	l_end_of_word(char *str, int i)
 			i++;
 		return (i);
 	}
+	else if (str[i] == '|')
+		i++;
 	while (str[i] && str[i] != ' ' && str[i] != '|' && str[i] != 34
-		&& str[i] != 39	&& str[i] != '<' && str[i] != '>')
+		&& str[i] != 39 && str[i] != '<' && str[i] != '>')
 		i++;
 	if (str[i] && (str[i] == 34 || str[i] == 39))
 		i = l_end_of_quote(str, i);
@@ -60,6 +62,6 @@ int	l_get_next_i(char *str, int i)
 	else if (str[i])
 		i = l_end_of_word(str, i);
 	while (str[i] && str[i] == ' ')
-			i++;
+		i++;
 	return (i);
 }

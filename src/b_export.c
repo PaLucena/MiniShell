@@ -6,7 +6,7 @@
 /*   By: palucena <palucena@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/28 15:58:35 by rdelicad          #+#    #+#             */
-/*   Updated: 2023/11/19 18:09:29 by palucena         ###   ########.fr       */
+/*   Updated: 2023/11/23 22:38:55 by palucena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,11 +74,7 @@ void	print_export(t_cmd *c)
 void	ft_putenv(char *key, char *value, int equal, int fd)
 {
 	if (*value == '\0')
-	{
-		//imprimir oldpwd sin el signo = y sin value, si value = '\0'
-		
 		ft_value_zero(key, value, equal, fd);
-	}
 	else
 	{
 		if (fd == 1)

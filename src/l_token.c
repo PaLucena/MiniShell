@@ -6,7 +6,7 @@
 /*   By: palucena <palucena@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 13:30:18 by palucena          #+#    #+#             */
-/*   Updated: 2023/11/20 17:37:12 by palucena         ###   ########.fr       */
+/*   Updated: 2023/11/23 22:23:39 by palucena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ int	l_get_token(char *actual, t_lx *prev, bool check)
 {
 	static bool	cmd_door = false;
 
+	printf("La puerta esta en %i\n", cmd_door);
 	if (check)
 		cmd_door = true;
 	if (ft_strcmp(actual, "|") == 0)
@@ -44,7 +45,7 @@ int	l_get_token(char *actual, t_lx *prev, bool check)
 		return (REDIR_FILEIN);
 	else if (prev->token == REDIR_OUT || prev->token == REDIR_APPEND)
 		return (REDIR_FILEOUT);
-	else if (!cmd_door)
+	if (!cmd_door)
 	{
 		cmd_door = true;
 		return (CMD);

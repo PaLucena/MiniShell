@@ -6,7 +6,7 @@
 /*   By: palucena <palucena@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/11 18:11:39 by rdelicad          #+#    #+#             */
-/*   Updated: 2023/11/23 18:29:18 by palucena         ###   ########.fr       */
+/*   Updated: 2023/11/23 22:44:47 by palucena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,27 +32,32 @@ void	handler_sigusr(int signum)
 			rl_replace_line("", 0);
 			rl_on_new_line();
 			rl_redisplay();
-		} 
+		}
 		else if (g_signal_detector == MID_CMD)
 		{
+			ft_putstr_fd("\n", 1);
 			rl_on_new_line();
-			ft_putstr_fd("   \n", 1);
-		} 
-		if (g_signal_detector == HEREDOC)
-		{
-			ft_putstr_fd("   \n", 1);
-			rl_on_new_line();
-			rl_replace_line("", 0);
-			rl_redisplay();
 		}
-	} 
+		else if (g_signal_detector == HEREDOC)
+		{
+			ft_putstr_fd(">    \n", 1);
+			exit(0);
+		}
+		else if (g_signal_detector == HEREDOC_DAD)
+			g_signal_detector = CANCEL_EXEC;
+	}
 }
 
 void	control_d(t_info *i)
 {
 	(void)i;
-	rl_on_new_line();
-	rl_redisplay();
-	ft_putstr_fd("exit\n", 1);
+	if (g_signal_detector == HEREDOC)
+		exit(0);
+	else
+	{
+		rl_on_new_line();
+		rl_redisplay();
+		ft_putstr_fd("exit\n", 1);
+	}
 	exit (0);
 }

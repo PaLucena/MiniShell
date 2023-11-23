@@ -6,18 +6,34 @@
 /*   By: palucena <palucena@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 11:08:23 by palucena          #+#    #+#             */
-/*   Updated: 2023/11/15 16:43:27 by palucena         ###   ########.fr       */
+/*   Updated: 2023/11/23 21:55:59 by palucena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+static bool	check_arg(char *str)
+{
+	int	i;
+
+	i = 1;
+	if (str[0] != '-')
+		return (false);
+	while (str[i])
+	{
+		if (str[i] != 'n')
+			return (false);
+		i++;
+	}
+	return (true);
+}
 
 void	ft_echo(t_info *info, char **args)
 {
 	int	i;
 
 	i = 0;
-	while (args[i] && ft_strncmp(args[i], "-n", 2) == 0)
+	while (args[i] && check_arg(args[i]))
 		i++;
 	while (args[i])
 	{

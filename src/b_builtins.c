@@ -6,7 +6,7 @@
 /*   By: palucena <palucena@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/04 13:25:14 by rdelicad          #+#    #+#             */
-/*   Updated: 2023/11/23 18:32:48 by palucena         ###   ########.fr       */
+/*   Updated: 2023/11/23 22:36:25 by palucena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	ft_builtins2(t_info *i)
 	else if (ft_strcmp(i->par->cmd, "exit") == 0)
 		ft_exit(i);
 }
-	
+
 void	ft_builtins(t_info *i)
 {
 	if (ft_strcmp(i->par->cmd, "env") == 0)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   b_utils_export.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rdelicad <rdelicad@student.42.com>         +#+  +:+       +#+        */
+/*   By: palucena <palucena@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 17:53:05 by rdelicad          #+#    #+#             */
-/*   Updated: 2023/11/18 12:06:05 by rdelicad         ###   ########.fr       */
+/*   Updated: 2023/11/23 22:41:23 by palucena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void	ft_value_zero(char *key, char *value, int equal, int fd)
 		write(1, "declare -x ", 11);
 	ft_putstr_fd(key, fd);
 	if (equal == 1 && (ft_strcmp(key, "OLDPWD") == 0
-		&& ft_strcmp(value, "") != 0))
+			&& ft_strcmp(value, "") != 0))
 	{
 		write(1, "=", 1);
 		write(1, str, 2);

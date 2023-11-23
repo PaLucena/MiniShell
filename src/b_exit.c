@@ -6,7 +6,7 @@
 /*   By: palucena <palucena@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 19:27:20 by rdelicad          #+#    #+#             */
-/*   Updated: 2023/11/23 18:28:38 by palucena         ###   ########.fr       */
+/*   Updated: 2023/11/23 22:07:54 by palucena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	exit_no_digit(t_info *i)
 {
 	ft_putstr_fd("exit", 1);
 	write(1, "\n", 1);
-	write(2, "exit: ", 6);
+	write(2, "minishell: exit: ", 17);
 	write(2, i->par->args[0], ft_strlen(i->par->args[0]));
 	write(2, ": numeric argument required", 27);
 	write(1, "\n", 1);
@@ -49,11 +49,10 @@ void	exit_many_arguments(t_info *i)
 {
 	ft_putstr_fd("exit", 1);
 	write(1, "\n", 1);
-	write(2, "exit: ", 6);
+	write(2, "minishell: exit: ", 17);
 	write(2, "too many arguments", 18);
 	write(1, "\n", 1);
 	i->status = 1;
-	exit(1);
 }
 
 void	exit_number(t_info *i)
@@ -73,7 +72,7 @@ void	exit_number(t_info *i)
 	}
 	else
 	{
-		ft_putstr_fd("exit", 1);
+		ft_putstr_fd("exit\n", 1);
 		num = ft_atoi(i->par->args[0]);
 		i->status = num;
 		exit(num);

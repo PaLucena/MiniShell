@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   s_shell_level.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rdelicad <rdelicad@student.42.fr>          +#+  +:+       +#+        */
+/*   By: palucena <palucena@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 17:17:09 by rdelicad          #+#    #+#             */
-/*   Updated: 2023/11/20 20:23:41 by rdelicad         ###   ########.fr       */
+/*   Updated: 2023/11/23 22:44:28 by palucena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,8 @@ void	shell_level_detected(t_info *i, char *input)
 	tmp = ft_strrchr(input, '/');
 	if (!tmp)
 		tmp = input;
-	if (ft_strcmp(input, "./minishell") == 0 || ft_strcmp(tmp, "minishell") == 0)
+	if (!ft_strcmp(input, "./minishell") || !ft_strcmp(tmp, "minishell"))
 		shell_level_up(i);
-	/* else
-		shell_level_down(i); */
 }
 
 void	shell_level_up(t_info *i)

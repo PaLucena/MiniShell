@@ -6,7 +6,7 @@
 /*   By: palucena <palucena@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 13:03:29 by palucena          #+#    #+#             */
-/*   Updated: 2023/11/21 17:36:02 by palucena         ###   ########.fr       */
+/*   Updated: 2023/11/23 20:39:07 by palucena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,19 +64,16 @@ char	*l_get_env(char *str, t_info *info)
 	free(str);
 	while (new_str[++i])
 	{
-		if (new_str[i] == '$')
+		if (new_str[i] && new_str[i] == '$' && new_str[i + 1])
 		{
 			aux = l_new_str(info, new_str, i);
-			if (aux)
-			{
-				new_str = ft_strdup(aux);
-				free(aux);
-			}
-			else
+			if (!aux)
 			{
 				new_str = ft_substr(new_str, 0, i);
 				break ;
 			}
+			new_str = ft_strdup(aux);
+			free(aux);
 		}
 	}
 	return (new_str);

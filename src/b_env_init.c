@@ -6,7 +6,7 @@
 /*   By: palucena <palucena@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 12:01:55 by palucena          #+#    #+#             */
-/*   Updated: 2023/11/21 15:57:38 by palucena         ###   ########.fr       */
+/*   Updated: 2023/11/23 22:38:05 by palucena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,5 +98,4 @@ void	ft_shell_lvl(t_env *list_env)
 	aux = curr->value;
 	curr->value = ft_itoa(ft_atoi(curr->value) + 1);
 	free(aux);
-	// Cambiar el SHLVL a atoi + 1
 }

@@ -6,7 +6,7 @@
 /*   By: palucena <palucena@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 19:07:37 by palucena          #+#    #+#             */
-/*   Updated: 2023/11/23 19:03:05 by palucena         ###   ########.fr       */
+/*   Updated: 2023/11/23 22:43:40 by palucena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,13 +86,14 @@ static void	ft_minishell(t_info *info, char **argv)
 		if (ft_strcmp(input, "\0") != 0)
 		{
 			info->par = manage_input(input, argv, info);
-			if (info->par)
+			if (info->par && g_signal_detector != CANCEL_EXEC)
 			{
 				ft_execute(info);
-				free_parser(info->par);	
+				free_parser(info->par);
 			}
 		}
 		free(input);
+		g_signal_detector = BASE;
 	}
 }
 

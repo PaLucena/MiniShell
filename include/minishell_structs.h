@@ -6,7 +6,7 @@
 /*   By: palucena <palucena@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 10:44:14 by palucena          #+#    #+#             */
-/*   Updated: 2023/11/21 13:48:20 by palucena         ###   ########.fr       */
+/*   Updated: 2023/11/23 22:35:02 by palucena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,20 +19,22 @@ typedef enum e_sig_detect
 {
 	BASE = 0,
 	HEREDOC,
+	HEREDOC_DAD,
 	MID_CMD,
+	CANCEL_EXEC,
 }	t_sig_detect;
 
 typedef enum e_oken
 {
-	CMD = 0, //  0
-	ARG, //  1
-	PIPE, //  2
-	REDIR_IN, //  3 <
-	REDIR_OUT, //  4 >
-	REDIR_HEREDOC, //  5 <<
-	REDIR_APPEND, //  6 >>
-	REDIR_FILEIN, //  7
-	REDIR_FILEOUT, //  8
+	CMD = 0,
+	ARG,
+	PIPE,
+	REDIR_IN,
+	REDIR_OUT,
+	REDIR_HEREDOC,
+	REDIR_APPEND,
+	REDIR_FILEIN,
+	REDIR_FILEOUT,
 }	t_oken;
 
 typedef struct s_env

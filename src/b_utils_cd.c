@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   b_utils.cd.c                                       :+:      :+:    :+:   */
+/*   b_utils_cd.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rdelicad <rdelicad@student.42.com>         +#+  +:+       +#+        */
+/*   By: palucena <palucena@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 17:35:34 by rdelicad          #+#    #+#             */
-/*   Updated: 2023/11/18 14:01:18 by rdelicad         ###   ########.fr       */
+/*   Updated: 2023/11/23 22:41:05 by palucena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ char	*get_directory_path(t_info *i)
 		}
 		else if ((ft_strcmp(i->c->curr->key, "HOME") == 0) && i->par->args[0] \
 		== 0)
-			return(i->c->curr->value);
+			return (i->c->curr->value);
 		else if (i->par->args[0] != NULL \
 		&& (ft_strcmp(i->c->curr->key, "HOME") == 0) \
 		&& (ft_strcmp(i->par->args[0], "~") == 0))
@@ -86,7 +86,7 @@ void	check_oldpwd(t_info *i)
 			{
 				env_error("OLDPWD");
 				i->status = 1;
-				break;
+				break ;
 			}
 		}
 		else
