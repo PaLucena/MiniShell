@@ -6,7 +6,7 @@
 /*   By: palucena <palucena@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 11:37:45 by palucena          #+#    #+#             */
-/*   Updated: 2023/11/22 13:09:26 by palucena         ###   ########.fr       */
+/*   Updated: 2023/11/23 19:10:26 by palucena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,12 +53,12 @@ bool	l_check_syntax(char *str, t_info *info)
 		ft_error_msg(info, 2);
 		return (false);
 	}
-	else if (str[0] == '<' && str[2] && str[2] == str[0])
+	else if (str[0] == '<' && str[1] && str[2] && str[2] == str[0])
 	{
 		ft_error_msg(info, 3);
 		return (false);
 	}
-	else if (str[0] == '>' && str[2] && str[2] == str[0])
+	else if (str[0] == '>' && str[1] && str[2] && str[2] == str[0])
 	{
 		ft_error_msg(info, 4);
 		return (false);

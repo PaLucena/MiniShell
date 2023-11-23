@@ -6,7 +6,7 @@
 /*   By: palucena <palucena@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 13:09:02 by palucena          #+#    #+#             */
-/*   Updated: 2023/11/22 13:58:26 by palucena         ###   ########.fr       */
+/*   Updated: 2023/11/23 19:16:30 by palucena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,18 @@ static int	l_end_of_quote(char *str, int i)
 
 static int	l_end_of_word(char *str, int i)
 {
+	if (str[i] == '<')
+	{
+		while (str[i] == '<')
+			i++;
+		return (i);
+	}
+	else if (str[i] == '>')
+	{
+		while (str[i] == '>')
+			i++;
+		return (i);
+	}
 	while (str[i] && str[i] != ' ' && str[i] != '|' && str[i] != 34
 		&& str[i] != 39	&& str[i] != '<' && str[i] != '>')
 		i++;
