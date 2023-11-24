@@ -6,11 +6,25 @@
 /*   By: palucena <palucena@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 11:37:45 by palucena          #+#    #+#             */
-/*   Updated: 2023/11/23 19:10:26 by palucena         ###   ########.fr       */
+/*   Updated: 2023/11/24 11:35:34 by palucena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+bool	l_check_empty(char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+	{
+		if (str[i] != ' ')
+			return (false);
+		i++;
+	}
+	return (true);
+}
 
 bool	l_is_finished(char start, char curr)
 {

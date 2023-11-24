@@ -6,7 +6,7 @@
 /*   By: palucena <palucena@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 19:07:37 by palucena          #+#    #+#             */
-/*   Updated: 2023/11/23 22:43:40 by palucena         ###   ########.fr       */
+/*   Updated: 2023/11/24 14:16:44 by palucena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,10 +50,14 @@ t_ps	*manage_input(char *input, char **argv, t_info *info)
 	t_lx	*lex;
 	t_ps	*par;
 
-	lex = l_fill_lx(input, info);
+	lex = NULL;
+	par = NULL;
+	if (!l_check_empty(input))
+		lex = l_fill_lx(input, info);
 	if (!lex)
 		return (NULL);
 	par = p_fill_ps(lex, NULL);
+	info->n_cmds = ft_count_nodes(par);
 	print_select(lex, par, argv);
 	free_lexer(lex);
 	return (par);
@@ -101,7 +105,7 @@ int	main(int argc, char **argv, char **envp)
 {
 	t_info	*info;
 
-	//atexit(leaks);
+	atexit(leaks);
 	(void)argc;
 	g_signal_detector = BASE;
 	info = malloc(sizeof(t_info));

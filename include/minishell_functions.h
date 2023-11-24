@@ -6,7 +6,7 @@
 /*   By: palucena <palucena@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 11:11:25 by palucena          #+#    #+#             */
-/*   Updated: 2023/11/23 18:48:03 by palucena         ###   ########.fr       */
+/*   Updated: 2023/11/24 15:50:09 by palucena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,14 @@ t_lx	*l_fill_lx(char *input, t_info *info);
 ////////// l_token.c /////////
 int		l_check_tokens(t_lx *lex);
 void	l_add_back(t_lx **lst, t_lx *new);
-int		l_tokenizer(t_lx *lx, int i);
+int		l_tokenizer(t_lx *lx);
 
 ////////// l_env.c /////////
 bool	l_is_env(char *str, t_info *info);
 char	*l_get_env(char *str, t_info *info);
 
 ////////// l_utils.c /////////
+bool	l_check_empty(char *str);
 bool	l_is_finished(char start, char curr);
 int		l_check_tokens(t_lx *lex);
 bool	l_check_syntax(char *str, t_info *info);
@@ -45,6 +46,7 @@ t_ps	*p_fill_ps(t_lx *lex, t_ps *par);
 int		ft_heredoc(char *limiter);
 int		p_open(t_lx *lex);
 t_lx	*p_fill_arg(char **args, t_lx *lex);
+int		ft_count_nodes(t_ps *par);
 
 ////////// error.c //////////
 void	ft_error_msg(t_info *info, int e);
@@ -72,6 +74,7 @@ void	ft_shell_lvl(t_env *list_env);
 
 /* builtins.c */
 bool	check_builtin(char *cmd);
+bool	b_check_mayus(char *str, char *cmd);
 void	ft_builtins(t_info *i);
 
 /* utils_list.c */

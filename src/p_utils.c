@@ -6,7 +6,7 @@
 /*   By: palucena <palucena@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 15:27:49 by palucena          #+#    #+#             */
-/*   Updated: 2023/11/23 21:43:29 by palucena         ###   ########.fr       */
+/*   Updated: 2023/11/24 13:37:06 by palucena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,10 @@ int	ft_heredoc(char *limiter)
 		while (1)
 		{
 			str = readline("> ");
-			if (!str)
-				control_d(NULL);
-			if (ft_strncmp(str, limiter, ft_strlen(str)) == 10)
+			if (!str || !ft_strncmp(str, limiter, ft_strlen(str)))
 				exit(0);
 			ft_putstr_fd(str, fd[1]);
+			ft_putstr_fd("\n", fd[1]);
 			free(str);
 		}
 	}
@@ -76,4 +75,19 @@ t_lx	*p_fill_arg(char **args, t_lx *lex)
 	}
 	args[++i] = NULL;
 	return (lex);
+}
+
+int	ft_count_nodes(t_ps *par)
+{
+	t_ps	*curr;
+	int		i;
+
+	i = 0;
+	curr = par;
+	while (curr)
+	{
+		i++;
+		curr = curr->next;
+	}
+	return (i);
 }

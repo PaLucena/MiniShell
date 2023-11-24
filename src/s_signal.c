@@ -6,7 +6,7 @@
 /*   By: palucena <palucena@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/11 18:11:39 by rdelicad          #+#    #+#             */
-/*   Updated: 2023/11/23 22:44:47 by palucena         ###   ########.fr       */
+/*   Updated: 2023/11/24 13:18:01 by palucena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,13 +51,8 @@ void	handler_sigusr(int signum)
 void	control_d(t_info *i)
 {
 	(void)i;
-	if (g_signal_detector == HEREDOC)
-		exit(0);
-	else
-	{
-		rl_on_new_line();
-		rl_redisplay();
-		ft_putstr_fd("exit\n", 1);
-	}
+	rl_on_new_line();
+	rl_redisplay();
+	ft_putstr_fd("exit\n", 1);
 	exit (0);
 }

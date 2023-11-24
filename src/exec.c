@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rdelicad <rdelicad@student.42.fr>          +#+  +:+       +#+        */
+/*   By: palucena <palucena@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 17:16:17 by palucena          #+#    #+#             */
-/*   Updated: 2023/11/22 14:32:36 by rdelicad         ###   ########.fr       */
+/*   Updated: 2023/11/24 13:57:13 by palucena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,14 +115,19 @@ void	ft_execute(t_info *info)
 
 	while (info->par)
 	{
-		if (check_builtin(info->par->cmd))
+		if (check_builtin(info->par->cmd) && info->n_cmds == 1)
 			ft_builtins(info);
 		else
 		{
 			g_signal_detector = MID_CMD;
 			pid = fork();
 			if (pid == 0)
-				exec_cmd(info);
+			{
+				if (check_builtin(info->par->cmd))
+					ft_builtins(info);
+				else
+					exec_cmd(info);
+			}
 			else
 				waitpid(-1, &info->status, 0);
 			if (WIFEXITED(info->status))

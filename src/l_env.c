@@ -6,7 +6,7 @@
 /*   By: palucena <palucena@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 13:03:29 by palucena          #+#    #+#             */
-/*   Updated: 2023/11/23 20:39:07 by palucena         ###   ########.fr       */
+/*   Updated: 2023/11/24 15:42:10 by palucena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,13 +43,12 @@ static char	*l_new_str(t_info *info, char *new_str, int i)
 		&& new_str[i + j] != 39 && new_str[i + j] != '/'
 		&& new_str[i + j] != ' ')
 		j++;
+	j--;
 	aux = ft_substr(new_str, i + 1, j);
 	key = check_keys(aux, info->c->list_env, info->status);
 	free(aux);
 	if (key)
-		new_str = ft_frankestein(new_str, key, i, i + j);
-	else
-		return (NULL);
+		new_str = ft_frankestein(new_str, key, i, i + j + 1);
 	return (new_str);
 }
 
@@ -69,9 +68,12 @@ char	*l_get_env(char *str, t_info *info)
 			aux = l_new_str(info, new_str, i);
 			if (!aux)
 			{
+				free(new_str);
 				new_str = ft_substr(new_str, 0, i);
 				break ;
 			}
+			else
+				free(new_str);
 			new_str = ft_strdup(aux);
 			free(aux);
 		}

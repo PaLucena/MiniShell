@@ -6,7 +6,7 @@
 /*   By: palucena <palucena@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 10:45:41 by palucena          #+#    #+#             */
-/*   Updated: 2023/11/23 19:17:26 by palucena         ###   ########.fr       */
+/*   Updated: 2023/11/24 15:40:48 by palucena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +97,8 @@ t_lx	*l_fill_lx(char *input, t_info *info)
 
 	i = 0;
 	lex = NULL;
+	while (input[i] == ' ')
+		i++;
 	while (input[i])
 	{
 		if (lex == NULL && input[i])
@@ -108,7 +110,7 @@ t_lx	*l_fill_lx(char *input, t_info *info)
 			return (NULL);
 		curr = lex;
 	}
-	if (l_tokenizer(lex, 1) != 0)
+	if (l_tokenizer(lex) != 0)
 	{
 		ft_error_msg(info, l_check_tokens(lex));
 		return (NULL);

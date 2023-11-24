@@ -6,7 +6,7 @@
 /*   By: palucena <palucena@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 10:44:14 by palucena          #+#    #+#             */
-/*   Updated: 2023/11/23 22:35:02 by palucena         ###   ########.fr       */
+/*   Updated: 2023/11/24 13:30:37 by palucena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,7 @@ typedef struct s_info
 	t_ps	*par;
 	t_cmd	*c;
 	int		status;
+	int		n_cmds;
 }	t_info;
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: palucena <palucena@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 13:30:18 by palucena          #+#    #+#             */
-/*   Updated: 2023/11/23 22:23:39 by palucena         ###   ########.fr       */
+/*   Updated: 2023/11/24 13:55:30 by palucena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,16 +25,31 @@ int	l_check_redir(char *word)
 	return (0);
 }
 
-int	l_get_token(char *actual, t_lx *prev, bool check)
+static bool	l_search_cmd(t_lx *lex, int i)
 {
-	static bool	cmd_door = false;
+	t_lx	*curr;
+	int		c;
 
-	printf("La puerta esta en %i\n", cmd_door);
-	if (check)
-		cmd_door = true;
+	curr = lex;
+	c = 0;
+	while (i > 0)
+	{
+		if (curr->token == CMD)
+			c++;
+		else if (curr->token == PIPE)
+			c--;
+		curr = curr->next;
+		i--;
+	}
+	if (c != 0)
+		return (false);
+	return (true);
+}
+
+int	l_get_token(char *actual, t_lx *prev, t_lx *lex, int i)
+{
 	if (ft_strcmp(actual, "|") == 0)
 	{
-		cmd_door = false;
 		if (prev->token == PIPE)
 			return (-1);
 		return (PIPE);
@@ -45,11 +60,8 @@ int	l_get_token(char *actual, t_lx *prev, bool check)
 		return (REDIR_FILEIN);
 	else if (prev->token == REDIR_OUT || prev->token == REDIR_APPEND)
 		return (REDIR_FILEOUT);
-	if (!cmd_door)
-	{
-		cmd_door = true;
+	else if (l_search_cmd(lex, i))
 		return (CMD);
-	}
 	else
 		return (ARG);
 }
@@ -69,26 +81,19 @@ void	l_add_back(t_lx **lst, t_lx *new)
 		*lst = new;
 }
 
-int	l_tokenizer(t_lx *lex, int i)
+int	l_tokenizer(t_lx *lex)
 {
-	bool	cmd_door;
 	t_lx	*curr;
 	t_lx	*prev;
+	int		i;
 
 	curr = lex->next;
 	prev = lex;
-	cmd_door = false;
-	if (l_check_redir(prev->content) == 0)
-	{
-		cmd_door = true;
-		prev->token = CMD;
-	}
-	else
-		prev->token = l_check_redir(prev->content);
+	i = 1;
+	prev->token = l_check_redir(prev->content);
 	while (curr)
 	{
-		curr->token = l_get_token(curr->content, prev, cmd_door);
-		cmd_door = false;
+		curr->token = l_get_token(curr->content, prev, lex, i);
 		prev = curr;
 		curr = curr->next;
 		i++;
