@@ -6,7 +6,7 @@
 /*   By: palucena <palucena@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 11:11:25 by palucena          #+#    #+#             */
-/*   Updated: 2023/11/24 15:50:09 by palucena         ###   ########.fr       */
+/*   Updated: 2023/11/25 19:25:12 by palucena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,6 @@ void	ft_free(char **str);
 void	free_info(t_info *info);
 
 /* leaks.c */
-void	leaks(void);
 char	*ft_strldup(char const *s1, size_t n);
 void	free_command(t_info *i);
 

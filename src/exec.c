@@ -6,7 +6,7 @@
 /*   By: palucena <palucena@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 17:16:17 by palucena          #+#    #+#             */
-/*   Updated: 2023/11/24 13:57:13 by palucena         ###   ########.fr       */
+/*   Updated: 2023/11/25 21:02:48 by palucena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,8 +130,6 @@ void	ft_execute(t_info *info)
 			}
 			else
 				waitpid(-1, &info->status, 0);
-			if (WIFEXITED(info->status))
-				info->status = WEXITSTATUS(info->status);
 			g_signal_detector = BASE;
 			ft_error_msg(info, 0);
 		}

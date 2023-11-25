@@ -6,7 +6,7 @@
 /*   By: palucena <palucena@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 13:03:29 by palucena          #+#    #+#             */
-/*   Updated: 2023/11/24 15:42:10 by palucena         ###   ########.fr       */
+/*   Updated: 2023/11/25 20:19:29 by palucena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,14 @@ static char	*l_new_str(t_info *info, char *new_str, int i)
 	key = check_keys(aux, info->c->list_env, info->status);
 	free(aux);
 	if (key)
-		new_str = ft_frankestein(new_str, key, i, i + j + 1);
-	return (new_str);
+		return(ft_frankestein(new_str, key, i, i + j + 1));
+	return (NULL);
+}
+
+static void	l_env_free(char *s1, char *s2)
+{
+	free(s1);
+	free(s2);
 }
 
 char	*l_get_env(char *str, t_info *info)
@@ -73,9 +79,9 @@ char	*l_get_env(char *str, t_info *info)
 				break ;
 			}
 			else
-				free(new_str);
+				l_env_free(new_str, aux);
 			new_str = ft_strdup(aux);
-			free(aux);
+			//free(aux);
 		}
 	}
 	return (new_str);

@@ -6,7 +6,7 @@
 /*   By: palucena <palucena@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 16:50:39 by palucena          #+#    #+#             */
-/*   Updated: 2023/11/24 16:01:47 by palucena         ###   ########.fr       */
+/*   Updated: 2023/11/25 21:26:04 by palucena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ void	ft_error_msg(t_info *info, int e)
 	char	*token;
 
 	token = get_t(e);
+	if (WIFEXITED(info->status))
+		info->status = WEXITSTATUS(info->status);
 	if (token)
 	{
 		printf("minishell: syntax error near unexpected token `%s'\n", token);

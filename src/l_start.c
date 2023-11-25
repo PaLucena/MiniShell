@@ -6,7 +6,7 @@
 /*   By: palucena <palucena@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 10:45:41 by palucena          #+#    #+#             */
-/*   Updated: 2023/11/24 15:40:48 by palucena         ###   ########.fr       */
+/*   Updated: 2023/11/25 20:57:13 by palucena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,9 +101,7 @@ t_lx	*l_fill_lx(char *input, t_info *info)
 		i++;
 	while (input[i])
 	{
-		if (lex == NULL && input[i])
-			lex = l_new_node(input, i, info);
-		else if (input[i])
+		if (input[i])
 			l_add_back(&lex, l_new_node(input, i, info));
 		i = l_get_next_i(input, i);
 		if (!curr)
@@ -113,6 +111,7 @@ t_lx	*l_fill_lx(char *input, t_info *info)
 	if (l_tokenizer(lex) != 0)
 	{
 		ft_error_msg(info, l_check_tokens(lex));
+		free_lexer(lex);
 		return (NULL);
 	}
 	return (lex);

@@ -6,16 +6,11 @@
 /*   By: palucena <palucena@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 16:41:40 by rdelicad          #+#    #+#             */
-/*   Updated: 2023/11/20 16:12:39 by palucena         ###   ########.fr       */
+/*   Updated: 2023/11/25 19:24:51 by palucena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-void	leaks(void)
-{
-	system ("leaks -q minishell");
-}
 
 char	*ft_strldup(char const *s1, size_t n)
 {

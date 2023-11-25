@@ -6,7 +6,7 @@
 /*   By: palucena <palucena@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 13:58:05 by rdelicad          #+#    #+#             */
-/*   Updated: 2023/11/23 22:39:57 by palucena         ###   ########.fr       */
+/*   Updated: 2023/11/25 19:22:21 by palucena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,26 +22,6 @@ void	ft_unset(t_info *i)
 		return ;
 	else if (finish_the_list(i))
 		return ;
-	/* tmp = i->c->list_env;
-	while (tmp)
-	{
-		if (ft_strcmp(tmp->key, i->par->args[0]) == 0)
-		{
-			top_the_list(&i->c->list_env, tmp, i);
-			break ;
-		}
-		else if (tmp->next != NULL && ft_strcmp(tmp->next->key,
-				i->par->args[0]))
-		{
-			if (tmp->next->next == NULL)
-				finish_the_list(tmp);
-			else
-				middle_the_list(tmp);
-			i->status = 0;
-			break ;
-		}
-		tmp = tmp->next;
-	} */
 }
 
 int	top_the_list(t_info *i)

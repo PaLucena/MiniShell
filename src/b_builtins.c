@@ -6,7 +6,7 @@
 /*   By: palucena <palucena@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/04 13:25:14 by rdelicad          #+#    #+#             */
-/*   Updated: 2023/11/24 16:46:24 by palucena         ###   ########.fr       */
+/*   Updated: 2023/11/25 19:19:31 by palucena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,8 +60,6 @@ static void	ft_builtins3(t_info *i)
 			i->c->input = i->par->args[0];
 		if (!ft_strcmp(i->par->cmd, "cd"))
 			ft_cd(i);
-		else if (i->n_cmds > 1)
-			exit(0);
 	}
 	else if (b_check_mayus(i->par->cmd, "exit"))
 	{
@@ -91,18 +89,10 @@ static void	ft_builtins2(t_info *i)
 		{
 			i->status = 127;
 			ft_error_msg(i, 0);
-			if (i->n_cmds > 1)
-				exit(0);
 		}
 	}
-	else if (b_check_mayus(i->par->cmd, "unset"))
-	{
-		/*i->status = 127;
-			ft_error_msg(i, 0);
-			if (i->n_cmds > 1)
-				exit(0);*/
-		ft_unset(i);//
-	}
+	else if (b_check_mayus(i->par->cmd, "echo"))
+		ft_echo(i, i->par->args);
 	else
 		ft_builtins3(i);
 }
@@ -118,10 +108,18 @@ void	ft_builtins(t_info *i)
 		else
 			ft_env(i);
 	}
-	else if (b_check_mayus(i->par->cmd, "echo"))
-		ft_echo(i, i->par->args);
+	else if (b_check_mayus(i->par->cmd, "unset"))
+	{
+		if (ft_strcmp(i->par->cmd, "unset"))
+		{
+			i->status = 127;
+			ft_error_msg(i, 0);
+		}
+		else
+			ft_unset(i);
+	}
 	else
 		ft_builtins2(i);
-	if (i->n_cmds != 1 && !b_check_mayus(i->par->cmd, "exit"))
+	if (i->n_cmds > 1 && !b_check_mayus(i->par->cmd, "exit"))
 		exit(i->status);
 }
