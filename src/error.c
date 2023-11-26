@@ -6,7 +6,7 @@
 /*   By: palucena <palucena@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 16:50:39 by palucena          #+#    #+#             */
-/*   Updated: 2023/11/25 21:26:04 by palucena         ###   ########.fr       */
+/*   Updated: 2023/11/26 11:58:50 by palucena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,4 @@ void	ft_error_msg(t_info *info, int e)
 	}
 	if (info && info->status == 127)
 		printf("minishell: %s: command not found\n", info->par->cmd);
-	else if (info && info->status == 11)
-	{
-		printf("minishell: %s: no such file or directory\n", info->par->cmd);
-		info->status = 127;
-	}
 }
