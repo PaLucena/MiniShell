@@ -6,7 +6,7 @@
 /*   By: palucena <palucena@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 17:53:05 by rdelicad          #+#    #+#             */
-/*   Updated: 2023/11/23 22:41:23 by palucena         ###   ########.fr       */
+/*   Updated: 2023/11/27 15:36:09 by palucena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,7 @@ void	ft_value_zero(char *key, char *value, int equal, int fd)
 	char	str[2];
 
 	ft_strlcpy(str, "\"\"", 3);
-	if (fd == 1)
-		write(1, "declare -x ", 11);
+	write(1, "declare -x ", 11);
 	ft_putstr_fd(key, fd);
 	if (equal == 1 && (ft_strcmp(key, "OLDPWD") == 0
 			&& ft_strcmp(value, "") != 0))

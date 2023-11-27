@@ -6,7 +6,7 @@
 /*   By: palucena <palucena@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/28 15:58:35 by rdelicad          #+#    #+#             */
-/*   Updated: 2023/11/23 22:38:55 by palucena         ###   ########.fr       */
+/*   Updated: 2023/11/27 15:36:13 by palucena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,8 +77,7 @@ void	ft_putenv(char *key, char *value, int equal, int fd)
 		ft_value_zero(key, value, equal, fd);
 	else
 	{
-		if (fd == 1)
-			write(1, "declare -x ", 11);
+		write(1, "declare -x ", 11);
 		ft_putstr_fd(key, fd);
 		write(1, "=", 1);
 		if (!ft_strchr(value, 34))

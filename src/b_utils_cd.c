@@ -6,7 +6,7 @@
 /*   By: palucena <palucena@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 17:35:34 by rdelicad          #+#    #+#             */
-/*   Updated: 2023/11/27 10:58:32 by palucena         ###   ########.fr       */
+/*   Updated: 2023/11/27 13:13:55 by palucena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ char	*get_directory_path(t_info *i)
 			return (i->c->curr->value);
 		else if (i->par->args[0] != NULL && (ft_strcmp(i->par->args[0],
 					"~") == 0))
-			return ("/Users/rdelicad");
+			return (i->c->home);
 		else if (i->par->args[0] != NULL && (ft_strcmp(i->c->curr->key,
 					"OLDPWD") == 0) && (ft_strcmp(i->par->args[0], "-") == 0))
 			return (print_new_line(i->c->curr->value), i->c->curr->value);

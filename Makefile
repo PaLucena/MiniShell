@@ -7,7 +7,7 @@ SRC_PATH = src/
 SRC = b_leaks.c b_env_init.c b_utils_list.c b_env.c b_export.c\
 		b_utils_export.c b_utils_export1.c b_utils_export2.c b_unset.c b_pwd.c\
 		b_builtins.c b_cd.c b_echo.c b_utils_cd.c b_exit.c\
-		s_signal.c s_shell_level.c b_utils_cd1.c\
+		s_signal.c b_utils_cd1.c\
 		main.c free.c\
 		l_start.c l_token.c l_env.c l_utils.c l_next.c\
 		p_start.c p_utils.c\

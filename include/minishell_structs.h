@@ -6,7 +6,7 @@
 /*   By: palucena <palucena@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 10:44:14 by palucena          #+#    #+#             */
-/*   Updated: 2023/11/24 13:30:37 by palucena         ###   ########.fr       */
+/*   Updated: 2023/11/27 13:27:00 by palucena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ typedef enum e_sig_detect
 	HEREDOC_DAD,
 	MID_CMD,
 	CANCEL_EXEC,
+	SIG_C_BASE,
+	SIG_C_CMD,
 }	t_sig_detect;
 
 typedef enum e_oken
@@ -57,6 +59,7 @@ typedef struct s_cmd
 	char			*equal_sign;
 	char			*pwd;
 	char			*input;
+	char			*home;
 }					t_cmd;
 
 typedef struct s_lx

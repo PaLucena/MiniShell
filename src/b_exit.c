@@ -6,24 +6,35 @@
 /*   By: palucena <palucena@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 19:27:20 by rdelicad          #+#    #+#             */
-/*   Updated: 2023/11/23 22:07:54 by palucena         ###   ########.fr       */
+/*   Updated: 2023/11/27 16:36:45 by palucena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+void	leaks(void)
+{
+	system("leaks -q minishell");
+}
+
 void	ft_exit(t_info *i)
 {
+	atexit(leaks);
 	if (i->par->args[0] == NULL)
 	{
 		ft_putstr_fd("exit\n", 1);
 		i->status = 0;
+		free_parser(i->par);
+		free_command(i);
 		exit(0);
 	}
 	else if (!ft_str_isdigit(i->par->args[0]))
 	{
-		if ((i->par->args[0][0] != '-' && i->par->args[0][0] != '+'))
+		if ((i->par->args[0][0] != '-') && (i->par->args[0][0] != '+'))
 			exit_no_digit(i);
+		else if ((i->par->args[0][0] == '-' || i->par->args[0][0] == '+') \
+		&& !ft_isdigit(i->par->args[0][1]))
+            exit_no_digit(i);
 		else
 			exit_number(i);
 	}
@@ -42,6 +53,9 @@ void	exit_no_digit(t_info *i)
 	write(2, ": numeric argument required", 27);
 	write(1, "\n", 1);
 	i->status = 255;
+	free_parser(i->par);
+	free_command(i);
+	free_info(i);
 	exit(255);
 }
 
@@ -68,6 +82,8 @@ void	exit_number(t_info *i)
 		num = abs(ft_atoi(i->par->args[0])) % 256;
 		ft_putstr_fd("exit", 1);
 		i->status = num;
+		free_parser(i->par);
+		free_command(i);
 		exit(num);
 	}
 	else
@@ -75,6 +91,8 @@ void	exit_number(t_info *i)
 		ft_putstr_fd("exit\n", 1);
 		num = ft_atoi(i->par->args[0]);
 		i->status = num;
+		free_parser(i->par);
+		free_command(i);
 		exit(num);
 	}
 }
