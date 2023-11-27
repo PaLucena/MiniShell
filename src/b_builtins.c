@@ -6,7 +6,7 @@
 /*   By: palucena <palucena@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/04 13:25:14 by rdelicad          #+#    #+#             */
-/*   Updated: 2023/11/26 11:43:45 by palucena         ###   ########.fr       */
+/*   Updated: 2023/11/27 10:47:35 by palucena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,8 @@ static void	ft_builtins3(t_info *i)
 			i->status = 127;
 			ft_error_msg(i, 0);
 		}
-		ft_exit(i);
+		else
+			ft_exit(i);
 	}
 }
 
