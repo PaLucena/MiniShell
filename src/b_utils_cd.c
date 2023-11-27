@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   b_utils.cd.c                                       :+:      :+:    :+:   */
+/*   b_utils_cd.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rdelicad <rdelicad@student.42.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 17:35:34 by rdelicad          #+#    #+#             */
-/*   Updated: 2023/11/18 14:01:18 by rdelicad         ###   ########.fr       */
+/*   Updated: 2023/11/27 10:52:11 by rdelicad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,23 +19,21 @@ char	*get_directory_path(t_info *i)
 	{
 		if (i->par->args[0] != NULL && ft_strcmp(i->par->args[0], "/") == 0)
 			return ("/");
-		else if (i->par->args[0] != NULL && ft_strcmp(i->par->args[0], "..") \
-		== 0)
+		else if (i->par->args[0] != NULL && ft_strcmp(i->par->args[0],
+				"..") == 0)
 		{
 			i->c->parent_dir = get_parent_directory(i->c->pwd);
 			return (i->c->parent_dir);
 		}
-		else if ((ft_strcmp(i->c->curr->key, "HOME") == 0) && i->par->args[0] \
-		== 0)
-			return(i->c->curr->value);
-		else if (i->par->args[0] != NULL \
-		&& (ft_strcmp(i->c->curr->key, "HOME") == 0) \
-		&& (ft_strcmp(i->par->args[0], "~") == 0))
+		else if ((ft_strcmp(i->c->curr->key, "HOME") == 0)
+			&& i->par->args[0] == 0)
 			return (i->c->curr->value);
-		else if (i->par->args[0] != NULL \
-		&& (ft_strcmp(i->c->curr->key, "OLDPWD") == 0) \
-		&& (ft_strcmp(i->par->args[0], "-") == 0))
-			return (i->c->curr->value);
+		else if (i->par->args[0] != NULL && (ft_strcmp(i->par->args[0],
+					"~") == 0))
+			return ("/Users/rdelicad");
+		else if (i->par->args[0] != NULL && (ft_strcmp(i->c->curr->key,
+					"OLDPWD") == 0) && (ft_strcmp(i->par->args[0], "-") == 0))
+			return (print_new_line(i->c->curr->value), i->c->curr->value);
 		i->c->curr = i->c->curr->next;
 	}
 	return (i->par->args[0]);
@@ -53,9 +51,9 @@ char	*get_parent_directory(char *path)
 
 void	env_error(char *env)
 {
-	write (1, "cd: ", 4);
-	write (1, env, ft_strlen(env));
-	write (1, " not set\n", 9);
+	write(1, "cd: ", 4);
+	write(1, env, ft_strlen(env));
+	write(1, " not set\n", 9);
 }
 
 int	no_clear_home(t_info *i, char *key)
@@ -86,7 +84,7 @@ void	check_oldpwd(t_info *i)
 			{
 				env_error("OLDPWD");
 				i->status = 1;
-				break;
+				break ;
 			}
 		}
 		else
