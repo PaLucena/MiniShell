@@ -6,7 +6,7 @@
 /*   By: palucena <palucena@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 19:27:20 by rdelicad          #+#    #+#             */
-/*   Updated: 2023/11/27 17:00:43 by palucena         ###   ########.fr       */
+/*   Updated: 2023/11/27 17:01:35 by palucena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	ft_exit(t_info *i)
 			exit_no_digit(i);
 		else if ((i->par->args[0][0] == '-' || i->par->args[0][0] == '+') \
 		&& !ft_isdigit(i->par->args[0][1]))
-            exit_no_digit(i);
+			exit_no_digit(i);
 		else
 			exit_number(i);
 	}
