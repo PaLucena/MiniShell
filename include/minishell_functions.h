@@ -6,7 +6,7 @@
 /*   By: palucena <palucena@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 11:11:25 by palucena          #+#    #+#             */
-/*   Updated: 2023/11/25 19:25:12 by palucena         ###   ########.fr       */
+/*   Updated: 2023/11/27 10:56:43 by palucena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,10 @@ char	*get_parent_directory(char *path);
 void	env_error(char *env);
 int		no_clear_home(t_info *i, char *key);
 void	check_oldpwd(t_info *i);
+void	print_new_line(char *str);
+
+/* utils_cd1.c */
+void	print_new_line(char *str);
 
 /* env.c */
 void	ft_env(t_info *i);

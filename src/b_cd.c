@@ -6,7 +6,7 @@
 /*   By: palucena <palucena@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/04 15:40:50 by rdelicad          #+#    #+#             */
-/*   Updated: 2023/11/27 10:45:33 by palucena         ###   ########.fr       */
+/*   Updated: 2023/11/27 10:58:17 by palucena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,6 @@ void	ft_cd(t_info *i)
 		write (2, i->par->args[0], ft_strlen(i->par->args[0]));
 		write (2, ": No such file or directory\n", 28);
 		i->status = 1;
-	}
-	else if (i->c->input == NULL || ft_strcmp(i->c->input, "~") == 0)
-	{
-		env_error("HOME");
-		i->status = 0;
 	}
 	else
 	{
