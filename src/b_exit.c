@@ -6,20 +6,14 @@
 /*   By: palucena <palucena@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 19:27:20 by rdelicad          #+#    #+#             */
-/*   Updated: 2023/11/27 16:36:45 by palucena         ###   ########.fr       */
+/*   Updated: 2023/11/27 17:00:43 by palucena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	leaks(void)
-{
-	system("leaks -q minishell");
-}
-
 void	ft_exit(t_info *i)
 {
-	atexit(leaks);
 	if (i->par->args[0] == NULL)
 	{
 		ft_putstr_fd("exit\n", 1);
