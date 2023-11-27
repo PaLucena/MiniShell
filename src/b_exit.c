@@ -6,7 +6,7 @@
 /*   By: palucena <palucena@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 19:27:20 by rdelicad          #+#    #+#             */
-/*   Updated: 2023/11/27 17:01:35 by palucena         ###   ########.fr       */
+/*   Updated: 2023/11/27 18:18:01 by palucena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,6 @@ void	exit_no_digit(t_info *i)
 	i->status = 255;
 	free_parser(i->par);
 	free_command(i);
-	free_info(i);
 	exit(255);
 }
 

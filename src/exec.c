@@ -6,7 +6,7 @@
 /*   By: palucena <palucena@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 17:16:17 by palucena          #+#    #+#             */
-/*   Updated: 2023/11/27 14:15:35 by palucena         ###   ########.fr       */
+/*   Updated: 2023/11/27 18:37:02 by palucena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ void	exec_cmd(t_info *info)
 		dup2(info->par->infile, STDIN_FILENO);
 	if (info->par->outfile != 1)
 		dup2(info->par->outfile, STDOUT_FILENO);
-	if (ft_strncmp(info->par->cmd, "./", 2))
+	if (ft_isalnum(info->par->cmd[0]))
 		cmd_path = find_path(info->c->list_env, info->par->cmd);
 	else
 		cmd_path = ft_strdup(info->par->cmd);

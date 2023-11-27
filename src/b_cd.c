@@ -6,7 +6,7 @@
 /*   By: palucena <palucena@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/04 15:40:50 by rdelicad          #+#    #+#             */
-/*   Updated: 2023/11/27 10:58:17 by palucena         ###   ########.fr       */
+/*   Updated: 2023/11/27 18:32:27 by palucena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ void	ft_cd(t_info *i)
 	&& i->c->input != NULL && ft_strcmp(i->c->input, "~") != 0 \
 	&& ft_strcmp(i->c->input, "-") != 0)
 	{
-		printf("%s\n", i->c->input);
 		write (2, "cd: ", 4);
 		write (2, i->par->args[0], ft_strlen(i->par->args[0]));
 		write (2, ": No such file or directory\n", 28);
