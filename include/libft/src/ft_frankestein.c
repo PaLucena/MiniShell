@@ -6,7 +6,7 @@
 /*   By: palucena <palucena@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/12 18:39:35 by palucena          #+#    #+#             */
-/*   Updated: 2023/11/24 12:38:12 by palucena         ###   ########.fr       */
+/*   Updated: 2023/12/11 17:54:36 by palucena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ char	*ft_frankestein(char *base, char *limb, int start, int end)
 	char	*aux;
 	int		i;
 
-	post = NULL;
+	post = NULL;   
 	pre = ft_substr(base, 0, start);
 	i = 0;
 	if (check_status(base, start, end))
