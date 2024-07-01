@@ -1,5 +1,5 @@
 
-  <h1>Minishell</h1>
+  <h1 align="center">Minishell</h1>
 
   <h2>Description</h2>
   <p><strong>Minishell</strong> is a project from the 42 cursus that involves creating a simple Unix shell. The main objective is to understand the fundamentals of command-line interface programming, process creation and management, and signal handling. Minishell should be able to interpret and execute various shell commands, offering a basic yet functional shell environment.</p>
