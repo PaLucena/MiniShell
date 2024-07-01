@@ -13,7 +13,7 @@
 #ifndef MINISHELL_STRUCTS_H
 # define MINISHELL_STRUCTS_H
 
-int	g_signal_detector;
+extern int	g_signal_detector;
 
 typedef enum e_sig_detect
 {

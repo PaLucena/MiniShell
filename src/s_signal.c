@@ -12,6 +12,8 @@
 
 #include "minishell.h"
 
+int	g_signal_detector;
+
 void	signal_manager(t_info *i)
 {
 	(void)i;
