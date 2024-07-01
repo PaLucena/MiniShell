@@ -3,6 +3,7 @@
 
   <h2>Description</h2>
   <p><strong>Minishell</strong> is a project from the 42 cursus that involves creating a simple Unix shell. The main objective is to understand the fundamentals of command-line interface programming, process creation and management, and signal handling. Minishell should be able to interpret and execute various shell commands, offering a basic yet functional shell environment.</p>
+  <div align="center"><img height="400" src="https://github.com/PaLucena/MiniShell/blob/master/img/terminal.PNG"></div>
 
   <h2>Table of Contents</h2>
   <ul>
