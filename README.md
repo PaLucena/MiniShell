@@ -60,7 +60,7 @@ cd minishell</code></pre>
   <h2 id="authors">Authors</h2>
   <p>This project was developed by the 42 cursus students:</p>
   <ul>
-      <li><a href="https://github.com/rdelicado" target="_blank">Ruben Delicado García Villaraco</a></li>
+      <li><a href="https://github.com/rdelicado" target="_blank">Rubén Delicado García Villaraco</a></li>
       <li><a href="https://github.com/PaLucena" target="_blank">Pablo Lucena González</a></li>
   </ul>
 
